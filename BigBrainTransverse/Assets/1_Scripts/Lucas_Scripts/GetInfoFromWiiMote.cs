@@ -3,22 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 using WiimoteApi;
 
-namespace WiimoteApi
+public class GetInfoFromWiiMote : MonoBehaviour
 {
-    public class GetInfoFromWiiMote : MonoBehaviour
+    private Wiimote wiimote;
+
+    void Update()
     {
-        private Wiimote wiimote;
+        if (!WiimoteManager.HasWiimote()) { return; }
 
-        void Update()
+        wiimote = WiimoteManager.Wiimotes[0];
+
+        int ret;
+        do
         {
-            if (!WiimoteManager.HasWiimote()) { return; }
+            ret = wiimote.ReadWiimoteData();
+        } while (ret > 0);
 
-            wiimote = WiimoteManager.Wiimotes[0];
-
-            if (wiimote.Button.a)
-            {
-                Debug.Log("Button A pressed");
-            }
+        if (wiimote.Button.a)
+        {
+            Debug.Log("Button A pressed");
         }
     }
 }
