@@ -72,7 +72,8 @@ public class MovingObject : MonoBehaviour
         if(coll.gameObject.tag == "Walls")
         {
             quaternion = Random.rotation;
-            this.transform.rotation = quaternion;
+            Vector3 v = transform.rotation.eulerAngles;
+            transform.rotation = Quaternion.Euler(v.x, Random.Range(-90, 180), v.z);
             Debug.Log("yeetus");
         }
     }
