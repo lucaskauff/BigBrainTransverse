@@ -5,7 +5,7 @@ using WiimoteApi;
 
 public class GetWiiMoteInfo : MonoBehaviour
 {
-    public WiimoteModel model;
+    public GameObject model;
 
     public RectTransform[] ir_dots;
     public RectTransform[] ir_bb;
@@ -21,7 +21,7 @@ public class GetWiiMoteInfo : MonoBehaviour
 
     private void Start()
     {
-        initial_rotation = model.rot.localRotation;
+        //initial_rotation = model.transform.localRotation;
 
         WiimoteManager.FindWiimotes();
     }
@@ -51,10 +51,7 @@ public class GetWiiMoteInfo : MonoBehaviour
             }
         } while (ret > 0);
 
-        if (wiimote.Button.a)
-        {
-            Debug.Log("yeetus");
-        }
+        GetButtons();
 
         if (ir_dots.Length < 4) return;
 
@@ -88,5 +85,32 @@ public class GetWiiMoteInfo : MonoBehaviour
         float[] pointer = wiimote.Ir.GetPointingPosition();
         ir_pointer.anchorMin = new Vector2(pointer[0], pointer[1]);
         ir_pointer.anchorMax = new Vector2(pointer[0], pointer[1]);
+    }
+
+    void GetButtons()
+    {
+        if (wiimote.Button.a)
+        {
+            Debug.Log("A pressed");
+        }
+
+        if (wiimote.Button.b)
+        {
+            Debug.Log("B pressed");
+        }
+    }
+
+    private Vector3 GetAccelVector()
+    {
+        float accel_x;
+        float accel_y;
+        float accel_z;
+
+        float[] accel = wiimote.Accel.GetCalibratedAccelData();
+        accel_x = accel[0];
+        accel_y = -accel[2];
+        accel_z = -accel[1];
+
+        return new Vector3(accel_x, accel_y, accel_z).normalized;
     }
 }
