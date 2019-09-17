@@ -5,6 +5,9 @@ using WiimoteApi;
 
 public class GetWiiMoteInfo : MonoBehaviour
 {
+    [Header("Serializable variables")]
+    [SerializeField, Range(0, 1)] int player;
+
     public GameObject model;
 
     public RectTransform[] ir_dots;
@@ -21,7 +24,7 @@ public class GetWiiMoteInfo : MonoBehaviour
 
     private void Start()
     {
-        //initial_rotation = model.transform.localRotation;
+        initial_rotation = model.transform.localRotation;
 
         WiimoteManager.FindWiimotes();
     }
@@ -35,7 +38,7 @@ public class GetWiiMoteInfo : MonoBehaviour
     {
         if (!WiimoteManager.HasWiimote()) { return; }
 
-        wiimote = WiimoteManager.Wiimotes[0];
+        wiimote = WiimoteManager.Wiimotes[player];
 
         int ret;
         do
@@ -48,10 +51,17 @@ public class GetWiiMoteInfo : MonoBehaviour
                                                 wiimote.MotionPlus.YawSpeed,
                                                 wiimote.MotionPlus.RollSpeed) / 95f; // Divide by 95Hz (average updates per second from wiimote)
                 wmpOffset += offset;
+
+                model.transform.Rotate(offset, Space.Self);
             }
         } while (ret > 0);
 
         GetButtons();
+
+        GetAxe();
+
+        if (wiimote.current_ext != ExtensionController.MOTIONPLUS)
+            model.transform.localRotation = initial_rotation;
 
         if (ir_dots.Length < 4) return;
 
@@ -80,11 +90,6 @@ public class GetWiiMoteInfo : MonoBehaviour
                 ir_bb[i].anchorMax = new Vector2(xmax, ymax);
             }
         }
-
-
-        float[] pointer = wiimote.Ir.GetPointingPosition();
-        ir_pointer.anchorMin = new Vector2(pointer[0], pointer[1]);
-        ir_pointer.anchorMax = new Vector2(pointer[0], pointer[1]);
     }
 
     void GetButtons()
@@ -100,6 +105,18 @@ public class GetWiiMoteInfo : MonoBehaviour
         }
     }
 
+    void GetAxe()
+    {
+        float[] pointer = wiimote.Ir.GetPointingPosition();
+        /*
+        ir_pointer.anchorMin = new Vector2(pointer[0], pointer[1]);
+        ir_pointer.anchorMax = new Vector2(pointer[0], pointer[1]);
+        */
+
+        Debug.Log(pointer[0].ToString());
+        Debug.Log(pointer[1].ToString());
+    }
+
     private Vector3 GetAccelVector()
     {
         float accel_x;
@@ -112,5 +129,14 @@ public class GetWiiMoteInfo : MonoBehaviour
         accel_z = -accel[1];
 
         return new Vector3(accel_x, accel_y, accel_z).normalized;
+    }
+
+    void OnApplicationQuit()
+    {
+        if (wiimote != null)
+        {
+            WiimoteManager.Cleanup(wiimote);
+            wiimote = null;
+        }
     }
 }
