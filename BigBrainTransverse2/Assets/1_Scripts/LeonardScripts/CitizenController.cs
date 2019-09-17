@@ -38,6 +38,6 @@ public class CitizenController : MonoBehaviour {
         }
 
         //use to ignore collisions between citizens
-        if (collision.gameObject.tag == "Citizens") Physics.IgnoreCollision(collision.gameObject.GetComponent<Collider>(), GetComponent<Collider>());
+        //if (collision.gameObject.tag == "Citizens") Physics.IgnoreCollision(collision.gameObject.GetComponent<Collider>(), GetComponent<Collider>());
     }
 }
