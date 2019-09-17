@@ -1,12 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using WiimoteApi;
 
 public class GetWiiMoteInfo : MonoBehaviour
 {
     [Header("Serializable variables")]
     [SerializeField, Range(0, 1)] int player;
+    [SerializeField, Range(0, 4)] int[] lumi = new int[4];
 
     public GameObject model;
 
@@ -58,11 +60,20 @@ public class GetWiiMoteInfo : MonoBehaviour
 
         GetButtons();
 
-        GetAxe();
+        if (Input.GetKey(KeyCode.Space))
+        {
+            FeedbackLED(lumi[0], lumi[1], lumi[2], lumi[3]);
+        }
+        else
+        {
+            FeedbackLED(0, 0, 0, 0);
+        }
 
+        /*
         if (wiimote.current_ext != ExtensionController.MOTIONPLUS)
             model.transform.localRotation = initial_rotation;
-
+        */
+        
         if (ir_dots.Length < 4) return;
 
         float[,] ir = wiimote.Ir.GetProbableSensorBarIR();
@@ -90,6 +101,10 @@ public class GetWiiMoteInfo : MonoBehaviour
                 ir_bb[i].anchorMax = new Vector2(xmax, ymax);
             }
         }
+
+        GetAxe();
+
+        MotionPlus();
     }
 
     void GetButtons()
@@ -105,16 +120,27 @@ public class GetWiiMoteInfo : MonoBehaviour
         }
     }
 
+    void FeedbackLED(int intens0, int intens1, int intens2, int intens3)
+    {
+        for (int x = 0; x < 4; x++)
+            wiimote.SendPlayerLED(x == intens0, x == intens1, x == intens2, x == intens3);
+    }
+
     void GetAxe()
     {
         float[] pointer = wiimote.Ir.GetPointingPosition();
-        /*
+        
         ir_pointer.anchorMin = new Vector2(pointer[0], pointer[1]);
         ir_pointer.anchorMax = new Vector2(pointer[0], pointer[1]);
-        */
 
         Debug.Log(pointer[0].ToString());
-        Debug.Log(pointer[1].ToString());
+        Debug.Log(pointer[1].ToString());        
+    }
+
+    void MotionPlus()
+    {
+        model.transform.rotation = Quaternion.FromToRotation(model.transform.rotation * GetAccelVector(), Vector3.up) * model.transform.rotation;
+        model.transform.rotation = Quaternion.FromToRotation(model.transform.forward, Vector3.forward) * model.transform.rotation;
     }
 
     private Vector3 GetAccelVector()
