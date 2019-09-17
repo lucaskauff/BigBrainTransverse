@@ -22,8 +22,8 @@ GameObject:
   - component: {fileID: 33508411360466544}
   - component: {fileID: 23124506457506538}
   - component: {fileID: 65064326946216950}
-  - component: {fileID: 114612115774466314}
   - component: {fileID: 54796146902016814}
+  - component: {fileID: 114183014796567926}
   m_Layer: 0
   m_Name: MovingCube_Bobby
   m_TagString: Citizens
@@ -113,7 +113,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &114612115774466314
+--- !u!114 &114183014796567926
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -121,10 +121,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 1187548129409664}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b461f0133631b0408ea47ecf7349888, type: 3}
+  m_Script: {fileID: 11500000, guid: b7dffc57a8fb2a24280ba5d6e7684b2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 20
-  target: {fileID: 0}
-  direction: {x: 0, y: 0, z: 0}
+  citizenSpeed: 17
   rb: {fileID: 54796146902016814}
