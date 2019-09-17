@@ -5,7 +5,7 @@ using WiimoteApi;
 
 public class GetWiiMoteInfo : MonoBehaviour
 {
-    public WiimoteModel model;
+    //public WiimoteModel model;
 
     public RectTransform[] ir_dots;
     public RectTransform[] ir_bb;
@@ -21,7 +21,7 @@ public class GetWiiMoteInfo : MonoBehaviour
 
     private void Start()
     {
-        initial_rotation = model.rot.localRotation;
+        //initial_rotation = model.rot.localRotation;
 
         WiimoteManager.FindWiimotes();
     }
