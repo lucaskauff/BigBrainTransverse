@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Sirenix.OdinInspector;
+using Sirenix.Serialization;
 
 public class MovingObject : MonoBehaviour
 {
@@ -73,8 +75,14 @@ public class MovingObject : MonoBehaviour
         {
             quaternion = Random.rotation;
             Vector3 v = transform.rotation.eulerAngles;
-            transform.rotation = Quaternion.Euler(v.x, Random.Range(-90, 180), v.z);
+            transform.rotation = Quaternion.Euler(v.x, Random.Range(-360, 360), v.z);
             Debug.Log("yeetus");
+        }
+
+        if(coll.gameObject.tag == "Citizens")
+        {
+            Debug.Log("Time to Ignore");
+            Physics.IgnoreCollision(coll.gameObject.GetComponent<Collider>(), GetComponent<Collider>());
         }
     }
 }
