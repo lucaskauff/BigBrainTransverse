@@ -311,8 +311,8 @@ MonoBehaviour:
     IsBackgroundCustom: 0
   - Type: 1
     Key: Assets/3_Assets
-    SmallIcon: {fileID: 2800000, guid: 0508340b76cfbdd43826ca620f578abd, type: 3}
-    LargeIcon: {fileID: 2800000, guid: a4decc2460e61e44b9ccd3d2d248738b, type: 3}
+    SmallIcon: {fileID: 2800000, guid: b3234aceffe9f9b4d9a996be7f0bb931, type: 3}
+    LargeIcon: {fileID: 2800000, guid: 39bbe70e6f465fe4682184eda239d9ae, type: 3}
     IsIconRecursive: 0
     IsIconCustom: 0
     Background: {fileID: 0}
