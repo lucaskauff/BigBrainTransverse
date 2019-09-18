@@ -10,6 +10,7 @@ public class CitizenController : MonoBehaviour {
     [SerializeField] float citizenLifePoints;
     [SerializeField] float citizenSpeed;
     [SerializeField] float intervalToRandomizeRotation;
+    [SerializeField] float lifepoints;
 
     float step;
     Stopwatch timer = new Stopwatch();
@@ -36,6 +37,8 @@ public class CitizenController : MonoBehaviour {
             timer.Stop();
             timer.Reset();
         }
+
+        if (lifepoints <= 0) Dead();
     }
 
     void Movement()
@@ -81,5 +84,10 @@ public class CitizenController : MonoBehaviour {
     void EnergyEffect()
     {
         UnityEngine.Debug.Log("FUCK NIGG, i've been triggerd by your croissant");
+    }
+
+    void Dead()
+    {
+
     }
 }

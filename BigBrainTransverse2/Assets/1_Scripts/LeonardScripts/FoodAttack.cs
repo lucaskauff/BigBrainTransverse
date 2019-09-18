@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FoodAttack : MonoBehaviour
+class FoodAttack : MonoBehaviour
 {
-
     [SerializeField] int meshOrderInList;
     [SerializeField] float foodMoveSpeed;
     [SerializeField] FoodData foodData;
@@ -19,7 +18,6 @@ public class FoodAttack : MonoBehaviour
 
     void Setup()
     {
-
         foodData.FoodMesh = foodData.FoodMeshList[meshOrderInList];
         GetComponent<MeshFilter>().mesh = foodData.FoodMesh;
     }
@@ -28,7 +26,7 @@ public class FoodAttack : MonoBehaviour
     void Update()
     {
         //MoveToPosition();
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             MoveToPosition();
         }
@@ -45,14 +43,11 @@ public class FoodAttack : MonoBehaviour
         if (Physics.Raycast(ray, out hit))
         {
             Debug.Log(hit.collider.name + " says YOOOOOOOOOOOOOOOOO");
-            //Find the direction to move in
-            Vector3 dir = hit.point - this.transform.position;
+
             Vector3 hitPointCoord = new Vector3(hit.point.x, hit.point.y, hit.point.z);
 
-            //Now move your character in world space 
-            //transform.Translate(dir * Time.deltaTime * foodMoveSpeed, Space.World);
-            float step = foodMoveSpeed * Time.deltaTime; // calculate distance to move
-            transform.position = Vector3.MoveTowards(transform.position, hitPointCoord, step);
+            rb.useGravity = true;
+            rb.AddForce(hitPointCoord, ForceMode.Impulse);
         }
     }
 
