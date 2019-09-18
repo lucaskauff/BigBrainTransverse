@@ -7,6 +7,7 @@ using System.Diagnostics;
 
 public class CitizenController : MonoBehaviour {
 
+    [SerializeField] float citizenLifePoints;
     [SerializeField] float citizenSpeed;
     [SerializeField] float intervalToRandomizeRotation;
 
@@ -58,7 +59,20 @@ public class CitizenController : MonoBehaviour {
             RandomizeRotation();
         }
 
+        if(collision.gameObject.tag == "Food")
+        {
+            Physics.IgnoreCollision(collision.gameObject.GetComponent<Collider>(), GetComponent<Collider>()); //ignore the collision between food and
+        }
+
         //use to ignore collisions between citizens
         //if (collision.gameObject.tag == "Citizens") Physics.IgnoreCollision(collision.gameObject.GetComponent<Collider>(), GetComponent<Collider>());
+    }
+
+    void OnTriggerEnter(Collider collider)
+    {
+        if(collider.gameObject.tag == "Food")
+        {
+            UnityEngine.Debug.Log("i've been triggerd by your croissant, nigg");
+        }
     }
 }
