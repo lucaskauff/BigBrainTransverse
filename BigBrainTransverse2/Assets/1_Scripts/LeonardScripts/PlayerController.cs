@@ -7,6 +7,8 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] Transform spawnPoint;
     [SerializeField] GameObject food;
 
+    GameObject cloneProj;
+
     // Use this for initialization
     void Start () {
 		
@@ -17,7 +19,8 @@ public class PlayerController : MonoBehaviour {
     {
 		if(Input.GetMouseButtonDown(0))
         {
-            Instantiate(food, spawnPoint.position, Quaternion.identity);
+            cloneProj = Instantiate(food, spawnPoint.position, Quaternion.identity);
+            cloneProj.gameObject.SendMessage("MoveToPosition");
         }
 	}
 }

@@ -7,6 +7,7 @@ TagManager:
   - Walls
   - Citizens
   - Food
+  - Floor
   layers:
   - Default
   - TransparentFX
