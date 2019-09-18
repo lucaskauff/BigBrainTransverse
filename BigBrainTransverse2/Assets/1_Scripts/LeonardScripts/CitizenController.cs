@@ -3,29 +3,52 @@ using System.Collections.Generic;
 using UnityEngine;
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;
+using System.Diagnostics;
 
 public class CitizenController : MonoBehaviour {
 
-    float step;
+    [SerializeField] float citizenLifePoints;
     [SerializeField] float citizenSpeed;
-    [SerializeField] Rigidbody rb;
+    [SerializeField] float intervalToRandomizeRotation;
+
+    float step;
+    Stopwatch timer = new Stopwatch();
+    Rigidbody rigidbody;
+    Vector3 baseRotationVector;
 
     // Use this for initialization
-    void Start ()
+    void Start()
     {
-		
-	}
-	
-	// Update is called once per frame
-	void Update ()
+        rigidbody = GetComponent<Rigidbody>();
+        intervalToRandomizeRotation = Random.Range(0f, 5f);
+    }
+
+    // Update is called once per frame
+    void Update()
     {
         Movement();
+
+        timer.Start();
+
+        if (timer.Elapsed.TotalSeconds >= intervalToRandomizeRotation)
+        {
+            RandomizeRotation();
+            timer.Stop();
+            timer.Reset();
+        }
     }
 
     void Movement()
     {
         step = citizenSpeed * Time.deltaTime; // calculate distance to move
-        rb.MovePosition(transform.position + transform.forward * step);
+        rigidbody.MovePosition(transform.position + transform.forward * step);
+    }
+
+    void RandomizeRotation()
+    {
+        baseRotationVector = transform.rotation.eulerAngles;
+        transform.rotation = Quaternion.Euler(baseRotationVector.x, Random.Range(-180, 180), baseRotationVector.z);
+        intervalToRandomizeRotation = Random.Range(0f, 1f);
     }
 
     void OnCollisionEnter(Collision collision)
@@ -33,11 +56,23 @@ public class CitizenController : MonoBehaviour {
         //use to detect collision against wall and change the facing direction
         if (collision.gameObject.tag == "Walls")
         {
-            Vector3 baseRotationVector = transform.rotation.eulerAngles;
-            transform.rotation = Quaternion.Euler(baseRotationVector.x, Random.Range(-360, 360), baseRotationVector.z);
+            RandomizeRotation();
+        }
+
+        if(collision.gameObject.tag == "Food")
+        {
+            Physics.IgnoreCollision(collision.gameObject.GetComponent<Collider>(), GetComponent<Collider>()); //ignore the collision between food and
         }
 
         //use to ignore collisions between citizens
         //if (collision.gameObject.tag == "Citizens") Physics.IgnoreCollision(collision.gameObject.GetComponent<Collider>(), GetComponent<Collider>());
+    }
+
+    void OnTriggerEnter(Collider collider)
+    {
+        if(collider.gameObject.tag == "Food")
+        {
+            UnityEngine.Debug.Log("i've been triggerd by your croissant, nigg");
+        }
     }
 }
