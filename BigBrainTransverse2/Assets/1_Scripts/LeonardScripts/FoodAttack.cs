@@ -12,11 +12,13 @@ public class FoodAttack : MonoBehaviour {
     int meshOrderInList;
     [SerializeField]
     float foodMoveSpeed;
+    Rigidbody rigidbody;
 
     // Use this for initialization
     void Start ()
     {
         Setup();
+        rigidbody = GetComponent<Rigidbody>();
     }
 	
 	// Update is called once per frame
@@ -36,11 +38,11 @@ public class FoodAttack : MonoBehaviour {
                 //Find the direction to move in
                 Vector3 dir = hit.point - transform.position;
 
-                //Make it so that its only in x and y axis
-                //dir.y = 0; // No vertical movement
-
                 //Now move your character in world space 
-                transform.Translate(dir * Time.deltaTime * foodMoveSpeed, Space.World);
+                //transform.Translate(dir * Time.deltaTime * foodMoveSpeed, Space.World);
+
+                float step = foodMoveSpeed * Time.deltaTime; // calculate distance to move
+                rigidbody.MovePosition(dir * step);
             }
         }
     }
