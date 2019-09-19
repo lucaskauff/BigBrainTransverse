@@ -202,7 +202,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00db858c1f8ff90478dad0aa1bac9a2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TwoUsers: 0
+  TwoUsers: 1
   ComputeUserMap: 1
   ComputeColorMap: 1
   DisplayUserMap: 0
