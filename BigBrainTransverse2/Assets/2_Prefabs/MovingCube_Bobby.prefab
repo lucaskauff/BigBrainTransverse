@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 65064326946216950}
   - component: {fileID: 54796146902016814}
   - component: {fileID: 114183014796567926}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: MovingCube_Bobby
   m_TagString: Citizens
   m_Icon: {fileID: 0}
@@ -124,5 +124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7dffc57a8fb2a24280ba5d6e7684b2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  citizenLifePoints: 0
   citizenSpeed: 17
-  rb: {fileID: 54796146902016814}
+  intervalToRandomizeRotation: 0
+  lifepoints: 0

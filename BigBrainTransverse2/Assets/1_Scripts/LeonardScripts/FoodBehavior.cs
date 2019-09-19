@@ -1,14 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Sirenix.OdinInspector;
+using Sirenix.Serialization;
+using System.Diagnostics;
+
 
 class FoodBehavior : MonoBehaviour
 {
     [SerializeField] int meshOrderInList;
     [SerializeField] float foodMoveSpeed;
     [SerializeField] FoodData foodData;
+
     Rigidbody rb;
     Vector3 hitPointCoord;
+
+    [SerializeField] float timeToSelfDestruct;
+    Stopwatch timer = new Stopwatch();
 
     // Use this for initialization
     void Start()
@@ -25,7 +33,7 @@ class FoodBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        SelfDestruct();
     }
 
     void MoveToPosition()
@@ -33,14 +41,25 @@ class FoodBehavior : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
 
-        if (Physics.Raycast(ray, out hit))
+        if (Physics.Raycast(ray, out hit) && hit.collider.gameObject.layer == LayerMask.NameToLayer("BoundsLayer"))
         {
             hitPointCoord = new Vector3(hit.point.x, hit.point.y, hit.point.z);
 
             rb = GetComponent<Rigidbody>();
             rb.useGravity = true;
+            Vector3 dir = hitPointCoord - transform.position;
+            rb.AddForce(dir * foodMoveSpeed, ForceMode.Impulse);
+        }
+    }
 
-            rb.AddForce(hitPointCoord, ForceMode.Impulse);
+    void SelfDestruct()
+    {
+        timer.Start();
+
+        if (timer.Elapsed.TotalSeconds >= timeToSelfDestruct)
+        {
+            timer.Stop();
+            Destroy(gameObject);
         }
     }
 
@@ -63,9 +82,9 @@ class FoodBehavior : MonoBehaviour
                 default:
                     break;
             }
+            Destroy(this.gameObject);
         }
-
-        if(collision.gameObject.tag == "Floor") Destroy(this.gameObject);
-        if (collision.gameObject.tag == "Food") Physics.IgnoreCollision(collision.gameObject.GetComponent<Collider>(), GetComponent<Collider>());
+        
+        if (collision.gameObject.layer == LayerMask.NameToLayer("BoundsLayer")) Destroy(this.gameObject);
     }
 }
