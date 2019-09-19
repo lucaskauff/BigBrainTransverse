@@ -65,7 +65,6 @@ public class CitizenController : MonoBehaviour {
         if(collision.gameObject.tag == "Food")
         {
             Physics.IgnoreCollision(collision.gameObject.GetComponent<Collider>(), GetComponent<Collider>()); //ignore the collision between food and
-            Dead();
         }
 
         //use to ignore collisions between citizens
@@ -75,16 +74,22 @@ public class CitizenController : MonoBehaviour {
     void GreaseEffect()
     {
         UnityEngine.Debug.Log("i've been triggerd by your greasy-assed croissant, nigg");
+        ScoringSystem.GreaseKills("player1");
+        citizenSpeed /= 2;
     }
 
     void SweetEffect()
     {
         UnityEngine.Debug.Log("i've been triggerd by your sweet mothafuckin croissant, nigg");
+        ScoringSystem.SweetKills("player1");
+        Dead();
     }
 
     void EnergyEffect()
     {
         UnityEngine.Debug.Log("FUCK NIGG, i've been triggerd by your croissant");
+        ScoringSystem.EnergyKills("player1");
+        Dead();
     }
 
     void Dead()

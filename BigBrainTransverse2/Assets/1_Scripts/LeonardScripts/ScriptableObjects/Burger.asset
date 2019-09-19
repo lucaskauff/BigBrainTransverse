@@ -15,10 +15,7 @@ MonoBehaviour:
   foodName: 0
   mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
   foodMeshList:
-  - {fileID: 4300014, guid: 02437e6fae26c4cf591a118a12d6d6a8, type: 3}
-  - {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
-  - {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
   - {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
-  foodMesh: {fileID: 0}
+  foodMesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
   goldCost: 99
   attackDamage: 99

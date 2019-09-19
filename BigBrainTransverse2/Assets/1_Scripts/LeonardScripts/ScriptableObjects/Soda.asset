@@ -13,12 +13,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   foodType: 1
   foodName: 4
-  mesh: {fileID: 0}
+  mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
   foodMeshList:
-  - {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
   - {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
-  - {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
-  - {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
   foodMesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
   goldCost: 0
   attackDamage: 0
