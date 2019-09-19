@@ -1,6 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Sirenix.OdinInspector;
+using Sirenix.Serialization;
+using System.Diagnostics;
+
 
 class FoodBehavior : MonoBehaviour
 {
@@ -10,6 +14,9 @@ class FoodBehavior : MonoBehaviour
 
     Rigidbody rb;
     Vector3 hitPointCoord;
+
+    [SerializeField] float timeToSelfDestruct;
+    Stopwatch timer = new Stopwatch();
 
     // Use this for initialization
     void Start()
@@ -26,7 +33,7 @@ class FoodBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        SelfDestruct();
     }
 
     void MoveToPosition()
@@ -42,6 +49,17 @@ class FoodBehavior : MonoBehaviour
             rb.useGravity = true;
             Vector3 dir = hitPointCoord - transform.position;
             rb.AddForce(dir * foodMoveSpeed, ForceMode.Impulse);
+        }
+    }
+
+    void SelfDestruct()
+    {
+        timer.Start();
+
+        if (timer.Elapsed.TotalSeconds >= timeToSelfDestruct)
+        {
+            timer.Stop();
+            Destroy(gameObject);
         }
     }
 
