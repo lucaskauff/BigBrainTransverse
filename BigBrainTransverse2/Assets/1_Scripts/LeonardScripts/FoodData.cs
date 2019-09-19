@@ -29,6 +29,10 @@ public class FoodData : ScriptableObject
         {
             return foodType;
         }
+        set
+        {
+            this.foodType = value;
+        }
     }
 
     public FoodName FoodName

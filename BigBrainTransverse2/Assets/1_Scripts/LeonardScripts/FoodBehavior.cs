@@ -11,7 +11,7 @@ class FoodBehavior : MonoBehaviour
     [SerializeField] int meshOrderInList;
     [SerializeField] float foodMoveSpeed;
     [SerializeField] FoodData foodData;
-
+    
     Rigidbody rb;
     Vector3 hitPointCoord;
 
@@ -22,6 +22,7 @@ class FoodBehavior : MonoBehaviour
     void Start()
     {
         Setup();
+        foodData = PlayerController.equipedFood;
     }
 
     void Setup()
