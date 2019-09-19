@@ -7,6 +7,7 @@ class FoodBehavior : MonoBehaviour
     [SerializeField] int meshOrderInList;
     [SerializeField] float foodMoveSpeed;
     [SerializeField] FoodData foodData;
+
     Rigidbody rb;
     Vector3 hitPointCoord;
 
@@ -33,14 +34,14 @@ class FoodBehavior : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
 
-        if (Physics.Raycast(ray, out hit))
+        if (Physics.Raycast(ray, out hit) && hit.collider.gameObject.layer == LayerMask.NameToLayer("BoundsLayer"))
         {
             hitPointCoord = new Vector3(hit.point.x, hit.point.y, hit.point.z);
 
             rb = GetComponent<Rigidbody>();
             rb.useGravity = true;
-
-            rb.AddForce(hitPointCoord, ForceMode.Impulse);
+            Vector3 dir = hitPointCoord - transform.position;
+            rb.AddForce(dir * foodMoveSpeed, ForceMode.Impulse);
         }
     }
 
@@ -63,9 +64,9 @@ class FoodBehavior : MonoBehaviour
                 default:
                     break;
             }
+            Destroy(this.gameObject);
         }
-
-        if(collision.gameObject.tag == "Floor") Destroy(this.gameObject);
-        if (collision.gameObject.tag == "Food") Physics.IgnoreCollision(collision.gameObject.GetComponent<Collider>(), GetComponent<Collider>());
+        
+        if (collision.gameObject.layer == LayerMask.NameToLayer("BoundsLayer")) Destroy(this.gameObject);
     }
 }

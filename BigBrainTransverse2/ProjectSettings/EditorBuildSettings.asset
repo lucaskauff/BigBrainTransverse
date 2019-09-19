@@ -5,10 +5,13 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
-    path: Assets/0_Scenes/LeonardScenes/AIScene.unity
+  - enabled: 0
+    path: Assets/0_Scenes/LeonardScenes/_TestAIScene.unity
     guid: aba80543f4981334ba20518373cdbdba
-  - enabled: 1
+  - enabled: 0
     path: Assets/0_Scenes/Lucas_Scenes/IntegrationTest.unity
     guid: 75e6e771290da644583f6c5eb5d08b67
+  - enabled: 1
+    path: Assets/0_Scenes/LeonardScenes/_TestGeneralScene.unity
+    guid: c83a45b9cdef1bd42a9d73ee61375d7d
   m_configObjects: {}

@@ -38,7 +38,7 @@ public class CitizenController : MonoBehaviour {
             timer.Reset();
         }
 
-        if (lifepoints <= 0) Dead();
+        //if (lifepoints <= 0) Dead();
     }
 
     void Movement()
@@ -65,6 +65,7 @@ public class CitizenController : MonoBehaviour {
         if(collision.gameObject.tag == "Food")
         {
             Physics.IgnoreCollision(collision.gameObject.GetComponent<Collider>(), GetComponent<Collider>()); //ignore the collision between food and
+            Dead();
         }
 
         //use to ignore collisions between citizens
@@ -88,6 +89,6 @@ public class CitizenController : MonoBehaviour {
 
     void Dead()
     {
-
+        Destroy(gameObject);
     }
 }
