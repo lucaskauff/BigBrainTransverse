@@ -10,16 +10,17 @@ public class CitizenController : MonoBehaviour {
     [SerializeField] float citizenLifePoints;
     [SerializeField] float citizenSpeed;
     [SerializeField] float intervalToRandomizeRotation;
+    [SerializeField] float lifepoints;
 
     float step;
     Stopwatch timer = new Stopwatch();
-    Rigidbody rigidbody;
+    Rigidbody rb;
     Vector3 baseRotationVector;
 
     // Use this for initialization
     void Start()
     {
-        rigidbody = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody>();
         intervalToRandomizeRotation = Random.Range(0f, 5f);
     }
 
@@ -36,12 +37,14 @@ public class CitizenController : MonoBehaviour {
             timer.Stop();
             timer.Reset();
         }
+
+        //if (lifepoints <= 0) Dead();
     }
 
     void Movement()
     {
         step = citizenSpeed * Time.deltaTime; // calculate distance to move
-        rigidbody.MovePosition(transform.position + transform.forward * step);
+        rb.MovePosition(transform.position + transform.forward * step);
     }
 
     void RandomizeRotation()
@@ -62,17 +65,30 @@ public class CitizenController : MonoBehaviour {
         if(collision.gameObject.tag == "Food")
         {
             Physics.IgnoreCollision(collision.gameObject.GetComponent<Collider>(), GetComponent<Collider>()); //ignore the collision between food and
+            Dead();
         }
 
         //use to ignore collisions between citizens
         //if (collision.gameObject.tag == "Citizens") Physics.IgnoreCollision(collision.gameObject.GetComponent<Collider>(), GetComponent<Collider>());
     }
-
-    void OnTriggerEnter(Collider collider)
+    
+    void GreaseEffect()
     {
-        if(collider.gameObject.tag == "Food")
-        {
-            UnityEngine.Debug.Log("i've been triggerd by your croissant, nigg");
-        }
+        UnityEngine.Debug.Log("i've been triggerd by your greasy-assed croissant, nigg");
+    }
+
+    void SweetEffect()
+    {
+        UnityEngine.Debug.Log("i've been triggerd by your sweet mothafuckin croissant, nigg");
+    }
+
+    void EnergyEffect()
+    {
+        UnityEngine.Debug.Log("FUCK NIGG, i've been triggerd by your croissant");
+    }
+
+    void Dead()
+    {
+        Destroy(gameObject);
     }
 }
