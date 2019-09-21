@@ -16,7 +16,7 @@ public class CalibrationMenuManager : MonoBehaviour
     [SerializeField] Text tvButtonText;
     [SerializeField] SuperTextMesh[] playerStatus;
 
-    [SerializeField] GameObject connectingBox;
+    [SerializeField] Image connectingGauge;
 
     [Header("Serializable variables")]
     [SerializeField] KinectWrapper.NuiSkeletonPositionIndex[] TrackedJoints;
@@ -37,7 +37,8 @@ public class CalibrationMenuManager : MonoBehaviour
     bool[] arePointsRunning;
 
     bool playersAreConnecting = false;
-    public float connectionFill = 0;
+    float startFillT = 0;
+    float connectionFill = 0;
 
     private void Start()
     {
@@ -151,17 +152,28 @@ public class CalibrationMenuManager : MonoBehaviour
             if (kinectManager.IsPlayerCalibrated(kinectManager.Player1ID)
                 /*&& kinectManager.IsPlayerCalibrated(kinectManager.Player2ID)*/
                 && (playerKnobs[0].isConnecting || playerKnobs[1].isConnecting)
-                /*&& (playerKnobs[2].isConnecting || playerKnobs[3].isConnecting*/
-                && !playersAreConnecting)
+                /*&& (playerKnobs[2].isConnecting || playerKnobs[3].isConnecting)*/)
             {
-                StartCoroutine(Connecting());
+                if (!playersAreConnecting)
+                {
+                    startFillT = Time.time;
+                    StartCoroutine(Connecting());
+                    playersAreConnecting = true;
+                }
+                else
+                {
+                    connectionFill = Time.time - startFillT;
+                }
             }
             else
             {
-                StopCoroutine(Connecting());
+                //StopCoroutine(Connecting());
+                StopAllCoroutines();
                 connectionFill = 0;
                 playersAreConnecting = false;
             }
+
+            UpdateConnectionUI();
         }
     }
 
@@ -182,6 +194,11 @@ public class CalibrationMenuManager : MonoBehaviour
             tvButton.localPosition = new Vector2(tvButton.localPosition.x, buttonYPositions[1]);
             tvButtonText.text = "Turn on camera";
         }
+    }
+
+    void UpdateConnectionUI()
+    {
+        connectingGauge.fillAmount = connectionFill / connectingT;
     }
 
     public void SwitchRCam()
@@ -205,10 +222,8 @@ public class CalibrationMenuManager : MonoBehaviour
 
     IEnumerator Connecting()
     {
-        playersAreConnecting = true;
-        connectionFill += Time.deltaTime;
         yield return new WaitForSeconds(connectingT);
-        //sceneLoader.ChangeScene(nextSceneName);
-        Debug.Log("NEXT SCENE");
+        sceneLoader.ChangeScene(nextSceneName);
+        //Debug.Log("NEXT SCENE");
     }
 }
