@@ -7,10 +7,13 @@ public class CalibrationMenuManager : MonoBehaviour
 {
     [Header("Objects to serialize")]
     [SerializeField] RawImage realtimeCam;
+    [SerializeField] RectTransform tvButton;
+    [SerializeField] Text tvButtonText;
     [SerializeField] SuperTextMesh[] playerStatus;
 
     [Header("Serializable variables")]
     [SerializeField] float pointT = 0.5f;
+    [SerializeField] Vector2 buttonYPositions;
 
     //Private
     string[] playerStatusTexts;
@@ -44,6 +47,8 @@ public class CalibrationMenuManager : MonoBehaviour
         {
             playerStatus[i].text = "<j>Player " + (i+1) + " Status : " + playerStatusTexts[i];
         }
+
+
     }
 
     void RenderRealtimeCam(KinectManager man)
@@ -57,6 +62,15 @@ public class CalibrationMenuManager : MonoBehaviour
     public void SwitchRCam()
     {
         realtimeCam.enabled = !realtimeCam.enabled;
+
+        if (realtimeCam.enabled)
+        {
+            tvButton.localPosition = new Vector2(tvButton.localPosition.x, buttonYPositions[0]);
+        }
+        else
+        {
+            tvButton.localPosition = new Vector2(tvButton.localPosition.x, buttonYPositions[0]);
+        }
     }
 
     IEnumerator ThreePoints(int playerInt)
