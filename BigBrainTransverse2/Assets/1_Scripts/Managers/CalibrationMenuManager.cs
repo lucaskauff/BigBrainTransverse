@@ -37,7 +37,7 @@ public class CalibrationMenuManager : MonoBehaviour
     bool[] arePointsRunning;
 
     bool playersAreConnecting = false;
-    float connectionFill = 0;
+    public float connectionFill = 0;
 
     private void Start()
     {
@@ -159,6 +159,8 @@ public class CalibrationMenuManager : MonoBehaviour
             else
             {
                 StopCoroutine(Connecting());
+                connectionFill = 0;
+                playersAreConnecting = false;
             }
         }
     }
@@ -204,6 +206,7 @@ public class CalibrationMenuManager : MonoBehaviour
     IEnumerator Connecting()
     {
         playersAreConnecting = true;
+        connectionFill += Time.deltaTime;
         yield return new WaitForSeconds(connectingT);
         //sceneLoader.ChangeScene(nextSceneName);
         Debug.Log("NEXT SCENE");
