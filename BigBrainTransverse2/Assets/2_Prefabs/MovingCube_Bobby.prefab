@@ -124,7 +124,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7dffc57a8fb2a24280ba5d6e7684b2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  citizenLifePoints: 0
-  citizenSpeed: 17
+  currentCalories: 0
+  baseMaxCalorieTol: 20
+  currentMaxCalorieTol: 0
+  citizenMoveSpeed: 9
   intervalToRandomizeRotation: 0
-  lifepoints: 0

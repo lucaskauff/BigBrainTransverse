@@ -19,9 +19,11 @@ public class FoodData : ScriptableObject
     [SerializeField]
     private Mesh foodMesh;
     [SerializeField]
-    private int goldCost;
+    private int calorieGainOnHit;
     [SerializeField]
-    private int attackDamage;
+    private int calorieToleranceDecrease;
+    [SerializeField]
+    private int calorieGainOverTime;
 
     public FoodType FoodType
     {
@@ -64,19 +66,27 @@ public class FoodData : ScriptableObject
         }
     }
 
-    public int GoldCost
+    public int CalorieGainOnHit
     {
         get
         {
-            return goldCost;
+            return calorieGainOnHit;
         }
     }
 
-    public int AttackDamage
+    public int CalorieToleranceDecrease
     {
         get
         {
-            return attackDamage;
+            return calorieToleranceDecrease;
+        }
+    }
+
+    public int CalorieGainOverTime
+    {
+        get
+        {
+            return calorieGainOverTime;
         }
     }
 }

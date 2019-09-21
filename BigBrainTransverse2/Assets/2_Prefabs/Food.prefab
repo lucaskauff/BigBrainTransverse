@@ -127,4 +127,7 @@ MonoBehaviour:
   meshOrderInList: 0
   foodMoveSpeed: 9
   foodData: {fileID: 11400000, guid: eccb042bc7c6f4741be2f0f7062143fa, type: 2}
+  foodWeapons:
+  - {fileID: 11400000, guid: eccb042bc7c6f4741be2f0f7062143fa, type: 2}
+  - {fileID: 11400000, guid: 7cc053aa2265bf54ab700377711e4f1b, type: 2}
   timeToSelfDestruct: 3

@@ -1,17 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Sirenix.OdinInspector;
+using Sirenix.Serialization;
+using System.Diagnostics;
 
 public class PlayerController : MonoBehaviour
 {
-
     [SerializeField] Transform spawnPoint;
     [SerializeField] GameObject food;
-
-    [SerializeField] int equipedItemNumber;
     GameObject cloneProj;
-    [SerializeField] public static FoodData equipedFood;
-    [SerializeField] List<FoodData> foodObjectsList = new List<FoodData>();
+    [ShowInInspector] public static bool isGreasy = true;
+    [ShowInInspector] public static bool isSweet = false;
+    [ShowInInspector] public static bool isEnergy = false;
 
     // Use this for initialization
     void Start()
@@ -31,25 +32,18 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        //Debug.Log(Input.GetAxis("Mouse ScrollWheel"));
-
-        if (Input.GetAxis("Mouse ScrollWheel") > 0f)
+        if (Input.GetKeyDown(KeyCode.LeftShift))
         {
-            equipedItemNumber++;
-            equipedFood = foodObjectsList[equipedItemNumber];
-            // scroll up
+            isGreasy = true;
+            isSweet = false;
+            isEnergy = false;
         }
 
-        else if (Input.GetAxis("Mouse ScrollWheel") < 0f)
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            equipedItemNumber--;
-            equipedFood = foodObjectsList[equipedItemNumber];
-            // scroll down
-        }
-
-        if(equipedItemNumber > 3 || equipedItemNumber < 0)
-        {
-            equipedItemNumber = 0;
+            isGreasy = false;
+            isSweet = true;
+            isEnergy = false;
         }
     }
 }

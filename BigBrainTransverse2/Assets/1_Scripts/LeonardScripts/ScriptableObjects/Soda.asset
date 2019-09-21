@@ -17,5 +17,6 @@ MonoBehaviour:
   foodMeshList:
   - {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
   foodMesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
-  goldCost: 0
-  attackDamage: 0
+  calorieGainOnHit: 5
+  calorieToleranceDecrease: 30
+  calorieGainOverTime: 0

@@ -1,9 +1,7 @@
-﻿using System.Collections;
+﻿using Sirenix.OdinInspector;
 using System.Collections.Generic;
-using UnityEngine;
-using Sirenix.OdinInspector;
-using Sirenix.Serialization;
 using System.Diagnostics;
+using UnityEngine;
 
 
 class FoodBehavior : MonoBehaviour
@@ -11,7 +9,9 @@ class FoodBehavior : MonoBehaviour
     [SerializeField] int meshOrderInList;
     [SerializeField] float foodMoveSpeed;
     [SerializeField] FoodData foodData;
-    
+
+    [FoldoutGroup("Internal Variables")] [SerializeField] List<FoodData> foodWeapons = new List<FoodData>();
+
     Rigidbody rb;
     Vector3 hitPointCoord;
 
@@ -22,7 +22,6 @@ class FoodBehavior : MonoBehaviour
     void Start()
     {
         Setup();
-        foodData = PlayerController.equipedFood;
     }
 
     void Setup()
@@ -35,6 +34,16 @@ class FoodBehavior : MonoBehaviour
     void Update()
     {
         SelfDestruct();
+
+        if (PlayerController.isGreasy == true)
+        {
+            foodData = foodWeapons[0];
+        }
+
+        if (PlayerController.isSweet == true)
+        {
+            foodData = foodWeapons[1];
+        }
     }
 
     void MoveToPosition()
@@ -69,23 +78,10 @@ class FoodBehavior : MonoBehaviour
         //use to detect collision against wall and change the facing direction
         if (collision.gameObject.tag == "Citizens")
         {
-            switch (foodData.FoodType)
-            {
-                case FoodType.greasy:
-                    collision.gameObject.SendMessage("GreaseEffect");
-                    break;
-                case FoodType.sweet:
-                    collision.gameObject.SendMessage("SweetEffect");
-                    break;
-                case FoodType.energy:
-                    collision.gameObject.SendMessage("EnergyEffect");
-                    break;
-                default:
-                    break;
-            }
+            collision.gameObject.SendMessage("WhichFoodType", foodData);
             Destroy(this.gameObject);
         }
-        
+
         if (collision.gameObject.layer == LayerMask.NameToLayer("BoundsLayer")) Destroy(this.gameObject);
     }
 }
