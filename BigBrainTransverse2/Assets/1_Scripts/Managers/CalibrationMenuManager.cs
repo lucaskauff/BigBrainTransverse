@@ -5,7 +5,21 @@ using UnityEngine.UI;
 
 public class CalibrationMenuManager : MonoBehaviour
 {
+    [Header("Objects to serialize")]
+    [SerializeField] RawImage realtimeCam;
     [SerializeField] SuperTextMesh[] playerStatus;
+
+    [Header("Serializable variables")]
+    [SerializeField] float pointT = 0.5f;
+
+    //Private
+    string[] playerStatusTexts;
+    bool arePointsRunning = false;
+
+    private void Start()
+    {
+        playerStatusTexts = new string[playerStatus.Length];
+    }
 
     private void Update()
     {
@@ -13,17 +27,49 @@ public class CalibrationMenuManager : MonoBehaviour
 
         if (kinectManager && kinectManager.IsInitialized())
         {
-            if (kinectManager.IsUserDetected())
+            RenderRealtimeCam(kinectManager);
+
+            if (kinectManager.IsPlayerCalibrated(kinectManager.Player1ID))
             {
-                if (kinectManager.IsPlayerCalibrated(kinectManager.Player1ID))
-                {
-                    playerStatus[0].text = "Player 1 Status : Connected !";
-                }
-                else
-                {
-                    playerStatus[0].text = "Player 1 Status : Searching for player...";
-                }
+                StopAllCoroutines();
+                playerStatusTexts[0] = "Calibrated !";
+            }
+            else if (!arePointsRunning)
+            {
+                StartCoroutine(ThreePoints(0));
             }
         }
+
+        for (int i = 0; i < playerStatus.Length; i++)
+        {
+            playerStatus[i].text = "<j>Player " + (i+1) + " Status : " + playerStatusTexts[i];
+        }
+    }
+
+    void RenderRealtimeCam(KinectManager man)
+    {
+        if (realtimeCam && realtimeCam.texture == null)
+        {
+            realtimeCam.texture = man.GetUsersClrTex();
+        }
+    }
+
+    public void SwitchRCam()
+    {
+        realtimeCam.enabled = !realtimeCam.enabled;
+    }
+
+    IEnumerator ThreePoints(int playerInt)
+    {
+        arePointsRunning = true;
+        playerStatusTexts[playerInt] = "Searching for player";
+        yield return new WaitForSeconds(pointT);
+        playerStatusTexts[playerInt] = "Searching for player.";
+        yield return new WaitForSeconds(pointT);
+        playerStatusTexts[playerInt] = "Searching for player..";
+        yield return new WaitForSeconds(pointT);
+        playerStatusTexts[playerInt] = "Searching for player...";
+        yield return new WaitForSeconds(pointT);
+        arePointsRunning = false;
     }
 }

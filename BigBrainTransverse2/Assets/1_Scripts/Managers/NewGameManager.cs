@@ -4,7 +4,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(SceneLoader))]
 //[RequireComponent(typeof(InputManager))]
-public class NewGameManager : Singleton<GameManager>
+public class NewGameManager : Singleton<NewGameManager>
 {
     protected NewGameManager() { }
 
