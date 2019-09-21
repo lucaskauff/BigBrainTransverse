@@ -9,7 +9,7 @@ public class CalibrationMenuManager : MonoBehaviour
     SceneLoader sceneLoader;
 
     [Header("Objects to serialize")]
-    [SerializeField] GameObject[] playerKnobs;
+    [SerializeField] PlayerKnob[] playerKnobs;
 
     [SerializeField] RawImage realtimeCam;
     [SerializeField] RectTransform tvButton;
@@ -34,7 +34,7 @@ public class CalibrationMenuManager : MonoBehaviour
     private float distanceToCamera = 10f;
 
     string[] playerStatusTexts;
-    bool arePointsRunning = false;
+    bool[] arePointsRunning;
 
     bool playersAreConnecting = false;
 
@@ -44,8 +44,9 @@ public class CalibrationMenuManager : MonoBehaviour
 
         distanceToCamera = (playerKnobs[0].transform.position - Camera.main.transform.position).magnitude;
 
-        iJointIndexes = new int[2];
-        playerStatusTexts = new string[playerStatus.Length];
+        iJointIndexes = new int[playerStatus.Length]; //=2
+        playerStatusTexts = new string[playerStatus.Length]; //=2
+        arePointsRunning = new bool[playerStatus.Length]; //=2
     }
 
     private void Update()
@@ -86,13 +87,6 @@ public class CalibrationMenuManager : MonoBehaviour
 
                             if (playerKnobs[i])
                             {
-                                /*
-                                Vector2 vPosOverlay = new Vector2(scaleX, scaleY);
-                                Vector2 vPosOverlay = new Vector2((scaleX - 0.5f) * rangeMultipliers[0], (scaleY - 0.5f) * rangeMultipliers[1]);
-                                Debug.Log(vPosOverlay);
-                                playerKnobs[i].anchoredPosition = Vector2.Lerp(playerKnobs[i].anchoredPosition, vPosOverlay, smoothFactor * Time.deltaTime);
-                                */
-
                                 Vector3 vPosOverlay = Camera.main.ViewportToWorldPoint(new Vector3(scaleX, scaleY, distanceToCamera));
                                 playerKnobs[i].transform.position = Vector3.Lerp(playerKnobs[i].transform.position, vPosOverlay, smoothFactor * Time.deltaTime);
                             }                            
@@ -103,31 +97,60 @@ public class CalibrationMenuManager : MonoBehaviour
                 StopCoroutine(ThreePoints(0));
                 playerStatusTexts[0] = "Calibrated !";
             }
-            else if (!arePointsRunning)
+            else if (!arePointsRunning[0])
             {
                 StartCoroutine(ThreePoints(0));
             }
 
             //PlayerSide2
-            /*
             if (kinectManager.IsPlayerCalibrated(kinectManager.Player2ID))
             {
                 uint userId;
                 userId = kinectManager.GetPlayer2ID();
 
+                for (int i = 0; i < iJointIndexes.Length; i++)
+                {
+                    if (kinectManager.IsJointTracked(userId, iJointIndexes[i]))
+                    {
+                        Vector3 posJoint = kinectManager.GetRawSkeletonJointPos(userId, iJointIndexes[i]);
+
+                        if (posJoint != Vector3.zero)
+                        {
+                            Vector2 posDepth = kinectManager.GetDepthMapPosForJointPos(posJoint);
+                            //Debug.Log(posDepth);
+
+                            Vector2 posColor = kinectManager.GetColorMapPosForDepthPos(posDepth);
+                            //Debug.Log(posDepth);
+
+                            float scaleX = posColor.x / KinectWrapper.Constants.ColorImageWidth;
+                            float scaleY = 1.0f - posColor.y / KinectWrapper.Constants.ColorImageHeight;
+
+                            if (playerKnobs[i+2])
+                            {
+                                Vector3 vPosOverlay = Camera.main.ViewportToWorldPoint(new Vector3(scaleX, scaleY, distanceToCamera));
+                                playerKnobs[i+2].transform.position = Vector3.Lerp(playerKnobs[i+2].transform.position, vPosOverlay, smoothFactor * Time.deltaTime);
+                            }
+                        }
+                    }
+                }
+
                 StopCoroutine(ThreePoints(1));
                 playerStatusTexts[1] = "Calibrated !";
             }
-            else if (!arePointsRunning)
+            else if (!arePointsRunning[1])
             {
                 StartCoroutine(ThreePoints(1));
             }
-            */
 
             if (kinectManager.IsPlayerCalibrated(kinectManager.Player1ID)
                 /*&& kinectManager.IsPlayerCalibrated(kinectManager.Player2ID)*/)
             {
-
+                if ((playerKnobs[0].isConnecting || playerKnobs[1].isConnecting)
+                    /*&& (playerKnobs[2].isConnecting || playerKnobs[3].isConnecting*/
+                    && !playersAreConnecting)
+                {
+                    StartCoroutine(Connecting());
+                }
             }
         }
 
@@ -163,7 +186,7 @@ public class CalibrationMenuManager : MonoBehaviour
 
     IEnumerator ThreePoints(int playerInt)
     {
-        arePointsRunning = true;
+        arePointsRunning[playerInt] = true;
         playerStatusTexts[playerInt] = "Searching for player";
         yield return new WaitForSeconds(pointT);
         playerStatusTexts[playerInt] = "Searching for player.";
@@ -172,7 +195,7 @@ public class CalibrationMenuManager : MonoBehaviour
         yield return new WaitForSeconds(pointT);
         playerStatusTexts[playerInt] = "Searching for player...";
         yield return new WaitForSeconds(pointT);
-        arePointsRunning = false;
+        arePointsRunning[playerInt] = false;
     }
 
     IEnumerator Connecting()
@@ -180,5 +203,6 @@ public class CalibrationMenuManager : MonoBehaviour
         playersAreConnecting = true;
         yield return new WaitForSeconds(connectingT);
         //sceneLoader.ChangeScene(nextSceneName);
+        Debug.Log("NEXT SCENE");
     }
 }
