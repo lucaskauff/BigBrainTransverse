@@ -37,6 +37,7 @@ public class CalibrationMenuManager : MonoBehaviour
     bool[] arePointsRunning;
 
     bool playersAreConnecting = false;
+    float connectionFill = 0;
 
     private void Start()
     {
@@ -142,21 +143,23 @@ public class CalibrationMenuManager : MonoBehaviour
                 StartCoroutine(ThreePoints(1));
             }
 
-            if (kinectManager.IsPlayerCalibrated(kinectManager.Player1ID)
-                /*&& kinectManager.IsPlayerCalibrated(kinectManager.Player2ID)*/)
+            for (int i = 0; i < playerStatus.Length; i++)
             {
-                if ((playerKnobs[0].isConnecting || playerKnobs[1].isConnecting)
-                    /*&& (playerKnobs[2].isConnecting || playerKnobs[3].isConnecting*/
-                    && !playersAreConnecting)
-                {
-                    StartCoroutine(Connecting());
-                }
+                playerStatus[i].text = "Player " + (i + 1) + " Status : " + playerStatusTexts[i];
             }
-        }
 
-        for (int i = 0; i < playerStatus.Length; i++)
-        {
-            playerStatus[i].text = "Player " + (i+1) + " Status : " + playerStatusTexts[i];
+            if (kinectManager.IsPlayerCalibrated(kinectManager.Player1ID)
+                /*&& kinectManager.IsPlayerCalibrated(kinectManager.Player2ID)*/
+                && (playerKnobs[0].isConnecting || playerKnobs[1].isConnecting)
+                /*&& (playerKnobs[2].isConnecting || playerKnobs[3].isConnecting*/
+                && !playersAreConnecting)
+            {
+                StartCoroutine(Connecting());
+            }
+            else
+            {
+                StopCoroutine(Connecting());
+            }
         }
     }
 
