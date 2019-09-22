@@ -13,10 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   foodType: 0
   foodName: 0
-  mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
-  foodMeshList:
-  - {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
   foodMesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
-  calorieGainOnHit: 10
+  calorieGainOnHit: 0
   calorieToleranceDecrease: 0
   calorieGainOverTime: 0

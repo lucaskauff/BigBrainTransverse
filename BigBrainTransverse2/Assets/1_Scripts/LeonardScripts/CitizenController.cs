@@ -1,6 +1,9 @@
-﻿using Sirenix.OdinInspector;
-using System.Diagnostics;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using Sirenix.OdinInspector;
+using Sirenix.Serialization;
+using System.Diagnostics;
 
 public class CitizenController : MonoBehaviour
 {
@@ -9,6 +12,7 @@ public class CitizenController : MonoBehaviour
     
     [FoldoutGroup("Debug Variables")] [SerializeField] float currentCalories;
     [FoldoutGroup("Debug Variables")] [SerializeField] float currentMaxCalorieTol; //maximum calorie tolerance at any given time
+    bool isHitByEnergy = false;
 
     [FoldoutGroup("Internal Variables")] [SerializeField] float baseMaxCalorieTol; //maximum calorie tolerance when game starts
     [FoldoutGroup("Internal Variables")] [SerializeField] float citizenMoveSpeed;
@@ -18,6 +22,7 @@ public class CitizenController : MonoBehaviour
     FoodData foodData;
 
     //Components
+    Renderer cubeRenderer;
     Stopwatch timer = new Stopwatch();
     Rigidbody rb;
     Vector3 baseRotationVector;
@@ -27,9 +32,11 @@ public class CitizenController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        SpawnManager.citizensInScene.Add(this.gameObject);
         currentMaxCalorieTol = baseMaxCalorieTol;
         rb = GetComponent<Rigidbody>();
         intervalToRandomizeRotation = Random.Range(0f, 5f);
+        cubeRenderer = GetComponent<Renderer>();
     }
 
     // Update is called once per frame
@@ -45,6 +52,8 @@ public class CitizenController : MonoBehaviour
             timer.Stop();
             timer.Reset();
         }
+
+        if (isHitByEnergy) EnergyEffect(foodData.CalorieGainOnHit, foodData.CalorieGainOverTime);
     }
 
     void LateUpdate()
@@ -62,18 +71,22 @@ public class CitizenController : MonoBehaviour
 
         if (collision.gameObject.tag == "Food")
         {
-            Physics.IgnoreCollision(collision.gameObject.GetComponent<Collider>(), GetComponent<Collider>()); //ignore the collision between food and
+            Physics.IgnoreCollision(collision.gameObject.GetComponent<Collider>(), GetComponent<Collider>()); //ignore the collision between food and citizen
 
             switch (foodData.FoodType)
             {
                 case FoodType.greasy:
                     GreaseEffect(foodData.CalorieGainOnHit);
+                    cubeRenderer.material.SetColor("_Color", Color.red);
                     break;
                 case FoodType.sweet:
                     SweetEffect(foodData.CalorieGainOnHit, foodData.CalorieToleranceDecrease);
+                    cubeRenderer.material.SetColor("_Color", Color.blue);
                     break;
                 case FoodType.energy:
                     EnergyEffect(foodData.CalorieGainOnHit, foodData.CalorieGainOverTime);
+                    cubeRenderer.material.SetColor("_Color", Color.green);
+                    isHitByEnergy = true;
                     break;
                 default:
                     break;
@@ -123,12 +136,12 @@ public class CitizenController : MonoBehaviour
     {
         UnityEngine.Debug.Log("I just gained " + caloriesGained + " calories and i'm gaining " + overTimeCalGain + " calories over time");
 
-        currentCalories += caloriesGained;
+        currentCalories += overTimeCalGain * Time.deltaTime;
     }
 
     void CheckCitizenStatus()
     {
-        if (currentCalories > currentMaxCalorieTol)
+        if (currentCalories >= currentMaxCalorieTol)
         {
             Dead();
         }
@@ -136,7 +149,8 @@ public class CitizenController : MonoBehaviour
 
     void Dead()
     {
-        //Destroy(gameObject);
+        SpawnManager.citizensInScene.Remove(this.gameObject);
+        Destroy(gameObject);
         //Destroy Colliders
         //Lock Animation on last frame
     }
