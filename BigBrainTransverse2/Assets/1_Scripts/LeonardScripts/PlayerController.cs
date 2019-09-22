@@ -7,6 +7,9 @@ using System.Diagnostics;
 
 public class PlayerController : MonoBehaviour
 {
+    KinectManager kinectManager;
+    [SerializeField] GestureListener gestureListener;
+
     [FoldoutGroup("Debug Variables")] [SerializeField] GameObject equippedFood;
     [FoldoutGroup("Debug Variables")] [SerializeField] int currentlySelectedFood;
 
@@ -17,22 +20,36 @@ public class PlayerController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        kinectManager = KinectManager.Instance;
+
         currentlySelectedFood = 0;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (!kinectManager || !kinectManager.IsInitialized() || !kinectManager.IsUserDetected())
         {
-            cloneProj = Instantiate(equippedFood, spawnPoint.position, Quaternion.identity);
-            cloneProj.gameObject.SendMessage("MoveToPosition");
+            if (Input.GetMouseButtonDown(0))
+            {
+                ShootProjectile();
+            }
+        }
+        else if (gestureListener.IsSwipeDown())
+        {
+            ShootProjectile();
         }
     }
 
     void Update()
     {
         WeaponSwitch();
+    }
+
+    void ShootProjectile()
+    {
+        cloneProj = Instantiate(equippedFood, spawnPoint.position, Quaternion.identity);
+        cloneProj.gameObject.SendMessage("MoveToPosition");
     }
 
     void WeaponSwitch() 

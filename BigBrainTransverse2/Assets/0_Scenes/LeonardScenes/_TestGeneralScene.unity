@@ -791,6 +791,16 @@ Prefab:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
+    - {fileID: 114224042387421656, guid: bc355aa629c81e5449223483fd538ad4, type: 2}
+    - {fileID: 114895157800008446, guid: bc355aa629c81e5449223483fd538ad4, type: 2}
+    - {fileID: 114968838651169642, guid: bc355aa629c81e5449223483fd538ad4, type: 2}
+    - {fileID: 114563260038747542, guid: bc355aa629c81e5449223483fd538ad4, type: 2}
+    - {fileID: 114566862229655376, guid: bc355aa629c81e5449223483fd538ad4, type: 2}
+    - {fileID: 114415411458091844, guid: bc355aa629c81e5449223483fd538ad4, type: 2}
+    - {fileID: 114596528719698008, guid: bc355aa629c81e5449223483fd538ad4, type: 2}
+    - {fileID: 114773522086206466, guid: bc355aa629c81e5449223483fd538ad4, type: 2}
+    - {fileID: 114334078533163504, guid: bc355aa629c81e5449223483fd538ad4, type: 2}
+    - {fileID: 114913516362588890, guid: bc355aa629c81e5449223483fd538ad4, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: bc355aa629c81e5449223483fd538ad4, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &2105732413
