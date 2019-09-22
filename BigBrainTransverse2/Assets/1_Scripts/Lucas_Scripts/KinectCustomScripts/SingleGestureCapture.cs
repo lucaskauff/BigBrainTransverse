@@ -44,6 +44,7 @@ public class SingleGestureCapture : MonoBehaviour
                     if (posJoint != Vector3.zero)
                     {
                         Vector2 posDepth = manager.GetDepthMapPosForJointPos(posJoint);
+                        Debug.Log(posDepth);
                         Vector2 posColor = manager.GetColorMapPosForDepthPos(posDepth);
                         float scaleX = posColor.x / KinectWrapper.Constants.ColorImageWidth;
                         float scaleY = 1.0f - posColor.y / KinectWrapper.Constants.ColorImageHeight;
