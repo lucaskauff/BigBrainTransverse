@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/0_Scenes/_FINALSCENES/CalibrationScene.unity
     guid: 1f17e87f534e11c4bbce7b7881292253
+  - enabled: 1
+    path: Assets/0_Scenes/_FINALSCENES/SelectionScene.unity
+    guid: 252366e6e1cad7944ad5b4c8861ee596
   m_configObjects: {}
