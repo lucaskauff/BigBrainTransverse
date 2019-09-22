@@ -76,8 +76,7 @@ MonoBehaviour:
   Player1Gestures: 
   Player2Gestures: 
   MinTimeBetweenGestures: 0.7
-  GestureListeners:
-  - {fileID: 0}
+  GestureListeners: []
   CalibrationText: {fileID: 0}
   HandCursor1: {fileID: 0}
   HandCursor2: {fileID: 0}

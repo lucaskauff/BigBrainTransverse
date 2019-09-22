@@ -1,22 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Sirenix.OdinInspector;
+using Sirenix.Serialization;
+using System.Diagnostics;
 
 public class PlayerController : MonoBehaviour
 {
+    [FoldoutGroup("Debug Variables")] [SerializeField] GameObject equippedFood;
+    [FoldoutGroup("Debug Variables")] [SerializeField] int currentlySelectedFood;
 
-    [SerializeField] Transform spawnPoint;
-    [SerializeField] GameObject food;
-
-    [SerializeField] int equipedItemNumber;
+    [FoldoutGroup("Internal Variables")] [SerializeField] List<GameObject> foodWeapons = new List<GameObject>();
+    [FoldoutGroup("Internal Variables")] [SerializeField] Transform spawnPoint;
     GameObject cloneProj;
-    [SerializeField] public static FoodData equipedFood;
-    [SerializeField] List<FoodData> foodObjectsList = new List<FoodData>();
 
     // Use this for initialization
     void Start()
     {
-
+        currentlySelectedFood = 0;
     }
 
     // Update is called once per frame
@@ -24,32 +25,22 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            cloneProj = Instantiate(food, spawnPoint.position, Quaternion.identity);
+            cloneProj = Instantiate(equippedFood, spawnPoint.position, Quaternion.identity);
             cloneProj.gameObject.SendMessage("MoveToPosition");
         }
     }
 
     void Update()
     {
-        //Debug.Log(Input.GetAxis("Mouse ScrollWheel"));
+        WeaponSwitch();
+    }
 
-        if (Input.GetAxis("Mouse ScrollWheel") > 0f)
-        {
-            equipedItemNumber++;
-            equipedFood = foodObjectsList[equipedItemNumber];
-            // scroll up
-        }
+    void WeaponSwitch() 
+    {
+        if (Input.GetKeyDown(KeyCode.LeftShift)) currentlySelectedFood++;
+        if (Input.GetKeyDown(KeyCode.Space)) currentlySelectedFood--;
+        if (currentlySelectedFood > foodWeapons.Count - 1 || currentlySelectedFood < 0) currentlySelectedFood = 0;
 
-        else if (Input.GetAxis("Mouse ScrollWheel") < 0f)
-        {
-            equipedItemNumber--;
-            equipedFood = foodObjectsList[equipedItemNumber];
-            // scroll down
-        }
-
-        if(equipedItemNumber > 3 || equipedItemNumber < 0)
-        {
-            equipedItemNumber = 0;
-        }
+        equippedFood = foodWeapons[currentlySelectedFood];
     }
 }

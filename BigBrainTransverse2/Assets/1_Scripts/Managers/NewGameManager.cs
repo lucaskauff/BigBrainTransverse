@@ -3,17 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(SceneLoader))]
-//[RequireComponent(typeof(InputManager))]
+[RequireComponent(typeof(NewInputManager))]
 public class NewGameManager : Singleton<NewGameManager>
 {
     protected NewGameManager() { }
 
     public SceneLoader sceneLoader;
-    //public InputManager inputManager;
+    public NewInputManager inputManager;
+
+    public int[] selectedLobbyPlayers;
 
     private void Awake()
     {
         sceneLoader = GetComponent<SceneLoader>();
-        //inputManager = GetComponent<InputManager>();
+        inputManager = GetComponent<NewInputManager>();
     }
 }
