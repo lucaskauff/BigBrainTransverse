@@ -7,17 +7,12 @@ using System.Diagnostics;
 
 public class PlayerController : MonoBehaviour
 {
+    [FoldoutGroup("Debug Variables")] [SerializeField] GameObject equippedFood;
+    [FoldoutGroup("Debug Variables")] [SerializeField] int currentlySelectedFood;
+
+    [FoldoutGroup("Internal Variables")] [SerializeField] List<GameObject> foodWeapons = new List<GameObject>();
+    [FoldoutGroup("Internal Variables")] [SerializeField] Transform spawnPoint;
     GameObject cloneProj;
-
-    [FoldoutGroup("PlayerController Variables")] [SerializeField] List<GameObject> foodWeapons = new List<GameObject>();
-    [FoldoutGroup("PlayerController Variables")] [SerializeField] Transform spawnPoint;
-    [FoldoutGroup("PlayerController Variables")] [SerializeField] GameObject equippedFood;
-
-    [FoldoutGroup("Internal Variables")] [SerializeField] int currentlySelectedFood;
-    [FoldoutGroup("Internal Variables")] [ShowInInspector] public static bool isGreasy = true;
-    [FoldoutGroup("Internal Variables")] [ShowInInspector] public static bool isSweet = false;
-    [FoldoutGroup("Internal Variables")] [ShowInInspector] public static bool isEnergy = false;
-
 
     // Use this for initialization
     void Start()
@@ -37,26 +32,14 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.LeftShift))
-        {
-            /*isGreasy = true;
-            isSweet = false;
-            isEnergy = false;*/
-            currentlySelectedFood++;
-        }
+        WeaponSwitch();
+    }
 
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            /*isGreasy = false;
-            isSweet = true;
-            isEnergy = false;*/
-            currentlySelectedFood--;
-        }
-
-        if(currentlySelectedFood > foodWeapons.Count-1 || currentlySelectedFood < 0)
-        {
-            currentlySelectedFood = 0;
-        }
+    void WeaponSwitch() 
+    {
+        if (Input.GetKeyDown(KeyCode.LeftShift)) currentlySelectedFood++;
+        if (Input.GetKeyDown(KeyCode.Space)) currentlySelectedFood--;
+        if (currentlySelectedFood > foodWeapons.Count - 1 || currentlySelectedFood < 0) currentlySelectedFood = 0;
 
         equippedFood = foodWeapons[currentlySelectedFood];
     }

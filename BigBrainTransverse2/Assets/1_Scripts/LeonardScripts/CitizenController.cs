@@ -6,16 +6,15 @@ public class CitizenController : MonoBehaviour
 {
 
     #region VARIABLE DECLARATIONS
+    
+    [FoldoutGroup("Debug Variables")] [SerializeField] float currentCalories;
+    [FoldoutGroup("Debug Variables")] [SerializeField] float currentMaxCalorieTol; //maximum calorie tolerance at any given time
 
-    //Citizen Variables
-    [FoldoutGroup("Citizen Variables")] [SerializeField] float currentCalories;
-    [FoldoutGroup("Citizen Variables")] [SerializeField] float baseMaxCalorieTol; //maximum calorie tolerance when game starts
-    [FoldoutGroup("Citizen Variables")] [SerializeField] float currentMaxCalorieTol; //maximum calorie tolerance at any given time
-    [FoldoutGroup("Citizen Variables")] [SerializeField] float citizenMoveSpeed;
-
-    //Internal Variables
-    float step;
+    [FoldoutGroup("Internal Variables")] [SerializeField] float baseMaxCalorieTol; //maximum calorie tolerance when game starts
+    [FoldoutGroup("Internal Variables")] [SerializeField] float citizenMoveSpeed;
     [FoldoutGroup("Internal Variables")] [SerializeField] float intervalToRandomizeRotation;
+    [FoldoutGroup("Internal Variables")] [SerializeField] float speedDecreaseMultiplier;
+    float step;
     FoodData foodData;
 
     //Components
@@ -105,20 +104,16 @@ public class CitizenController : MonoBehaviour
 
     void GreaseEffect(int caloriesGained)
     {
-        UnityEngine.Debug.Log("i've been triggerd by your greasy-assed croissant, nigg");
-        ScoringSystem.GreaseKills("player1");
         UnityEngine.Debug.Log("I just gained " + caloriesGained + " calories");
 
         currentCalories += caloriesGained;
 
-        citizenMoveSpeed /= 2;
+        citizenMoveSpeed /= speedDecreaseMultiplier;
     }
 
     void SweetEffect(int caloriesGained, int toleranceDecrease)
     {
-        UnityEngine.Debug.Log("i've been triggerd by your sweet mothafuckin croissant, nigg");
         UnityEngine.Debug.Log("I just gained " + caloriesGained + " calories and my tolerance went down by " + toleranceDecrease);
-
 
         currentCalories += caloriesGained;
         currentMaxCalorieTol -= toleranceDecrease;
@@ -126,9 +121,7 @@ public class CitizenController : MonoBehaviour
 
     void EnergyEffect(int caloriesGained, int overTimeCalGain)
     {
-        UnityEngine.Debug.Log("FUCK NIGG, i've been triggerd by your croissant");
         UnityEngine.Debug.Log("I just gained " + caloriesGained + " calories and i'm gaining " + overTimeCalGain + " calories over time");
-
 
         currentCalories += caloriesGained;
     }

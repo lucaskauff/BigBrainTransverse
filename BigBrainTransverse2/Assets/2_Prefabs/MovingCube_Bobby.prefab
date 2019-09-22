@@ -99,8 +99,8 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
-  m_CollisionDetection: 1
+  m_Constraints: 84
+  m_CollisionDetection: 0
 --- !u!65 &65064326946216950
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -125,7 +125,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentCalories: 0
-  baseMaxCalorieTol: 20
   currentMaxCalorieTol: 0
+  baseMaxCalorieTol: 20
   citizenMoveSpeed: 9
   intervalToRandomizeRotation: 0
+  speedDecreaseMultiplier: 1
