@@ -19,8 +19,11 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4110707216951004}
-  - component: {fileID: 114396497218681926}
+  - component: {fileID: 114001468028614208}
+  - component: {fileID: 114207357103611616}
   - component: {fileID: 114383435714609316}
+  - component: {fileID: 114447853899687594}
+  - component: {fileID: 114847533780147552}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -35,12 +38,47 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1502457957667680}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -5.7461305, y: 37.24121, z: -35.51278}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114001468028614208
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1502457957667680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6e37dd8399bb424e86f981dc5b306a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneLoader: {fileID: 0}
+  inputManager: {fileID: 0}
+--- !u!114 &114207357103611616
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1502457957667680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22544df88539cd042982e95a556f58d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonAPressed1: 0
+  buttonBPressed1: 0
+  buttonUpPressed1: 0
+  buttonRightPressed1: 0
+  buttonDownPressed1: 0
+  buttonLeftPressed1: 0
+  buttonMinusPressed1: 0
+  buttonHomePressed1: 0
+  buttonPlusPressed1: 0
+  buttonOnePressed1: 0
+  buttonTwoPressed1: 0
 --- !u!114 &114383435714609316
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -52,7 +90,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c06f0ccf5dfabb478b73b9f1f802643, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114396497218681926
+--- !u!114 &114447853899687594
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -60,7 +98,28 @@ MonoBehaviour:
   m_GameObject: {fileID: 1502457957667680}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98011f43087827546bd80ef556f02082, type: 3}
+  m_Script: {fileID: 11500000, guid: 4e5e5151a3c777543a6b9830233708d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneLoader: {fileID: 0}
+  gameLengthInSeconds: 60
+--- !u!114 &114847533780147552
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1502457957667680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41f0cafc57736904aa80401720fbd5f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxNumberOfEntitiesToSpawn: 50
+  spawnPointsList:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  people: {fileID: 1187548129409664, guid: 9f11eddfcd80f27418a71ade2abbb6dd, type: 2}
+  numberToSpawn: 1
+  intervalToSpawnInSeconds: 3
