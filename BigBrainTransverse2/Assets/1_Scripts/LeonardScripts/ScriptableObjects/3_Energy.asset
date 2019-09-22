@@ -9,14 +9,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 607cddc2d115a9046b606e19d5bc4b44, type: 3}
-  m_Name: Burger
+  m_Name: 3_Energy
   m_EditorClassIdentifier: 
   foodType: 0
   foodName: 0
-  mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
-  foodMeshList:
-  - {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
-  foodMesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
-  calorieGainOnHit: 10
+  mesh: {fileID: 0}
+  foodMeshList: []
+  foodMesh: {fileID: 0}
+  calorieGainOnHit: 0
   calorieToleranceDecrease: 0
   calorieGainOverTime: 0

@@ -410,6 +410,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e5e5151a3c777543a6b9830233708d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameLengthInSeconds: 60
 --- !u!1 &876405024
 GameObject:
   m_ObjectHideFlags: 0
@@ -815,6 +816,24 @@ Prefab:
       propertyPath: m_RootOrder
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 114687506317338528, guid: 616386fc259e59c4a8dc17757a50b853,
+        type: 2}
+      propertyPath: foodWeapons.Array.data[0]
+      value: 
+      objectReference: {fileID: 1668910094014942, guid: 64d0520ff69f63e47b620dd183451728,
+        type: 2}
+    - target: {fileID: 114687506317338528, guid: 616386fc259e59c4a8dc17757a50b853,
+        type: 2}
+      propertyPath: foodWeapons.Array.data[1]
+      value: 
+      objectReference: {fileID: 1668910094014942, guid: a6f1fe68e84a24b4ebc15ecfc75ed70d,
+        type: 2}
+    - target: {fileID: 114687506317338528, guid: 616386fc259e59c4a8dc17757a50b853,
+        type: 2}
+      propertyPath: foodWeapons.Array.data[2]
+      value: 
+      objectReference: {fileID: 1668910094014942, guid: 8cbfe37e67a28e44090b0b1771c27a14,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 616386fc259e59c4a8dc17757a50b853, type: 2}
   m_IsPrefabParent: 0

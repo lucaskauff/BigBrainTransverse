@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 23628687266477958}
   - component: {fileID: 54270539666276120}
   m_Layer: 9
-  m_Name: Food
+  m_Name: Food_Sweet
   m_TagString: Food
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -126,8 +126,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   meshOrderInList: 0
   foodMoveSpeed: 9
-  foodData: {fileID: 11400000, guid: eccb042bc7c6f4741be2f0f7062143fa, type: 2}
-  foodWeapons:
-  - {fileID: 11400000, guid: eccb042bc7c6f4741be2f0f7062143fa, type: 2}
-  - {fileID: 11400000, guid: 7cc053aa2265bf54ab700377711e4f1b, type: 2}
   timeToSelfDestruct: 3
+  foodData: {fileID: 11400000, guid: 7cc053aa2265bf54ab700377711e4f1b, type: 2}

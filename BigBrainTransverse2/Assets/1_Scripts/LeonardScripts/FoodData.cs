@@ -8,22 +8,14 @@ public enum FoodName { burger, fries, kebab, tacos, drink };
 [CreateAssetMenu(fileName = "New Food Type", menuName = "Food Spells")]
 public class FoodData : ScriptableObject
 {
-    [SerializeField]
-    private FoodType foodType;
-    [SerializeField]
-    private FoodName foodName;
-    [SerializeField]
-    private Mesh mesh;
-    [SerializeField]
-    private List<Mesh> foodMeshList = new List<Mesh>();
-    [SerializeField]
-    private Mesh foodMesh;
-    [SerializeField]
-    private int calorieGainOnHit;
-    [SerializeField]
-    private int calorieToleranceDecrease;
-    [SerializeField]
-    private int calorieGainOverTime;
+    [SerializeField] private FoodType foodType;
+    [SerializeField] private FoodName foodName;
+    /*[SerializeField] private Mesh mesh;
+    [SerializeField] private List<Mesh> foodMeshList = new List<Mesh>();*/
+    [SerializeField] private Mesh foodMesh;
+    [SerializeField] private int calorieGainOnHit;
+    [SerializeField] private int calorieToleranceDecrease;
+    [SerializeField] private int calorieGainOverTime;
 
     public FoodType FoodType
     {
@@ -45,7 +37,7 @@ public class FoodData : ScriptableObject
         }
     }
 
-    public List<Mesh> FoodMeshList
+    /*public List<Mesh> FoodMeshList
     {
         get
         {
@@ -64,7 +56,7 @@ public class FoodData : ScriptableObject
         {
            this.foodMesh = value;
         }
-    }
+    }*/
 
     public int CalorieGainOnHit
     {

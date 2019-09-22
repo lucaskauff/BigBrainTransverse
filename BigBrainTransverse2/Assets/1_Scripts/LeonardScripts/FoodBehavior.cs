@@ -6,44 +6,25 @@ using UnityEngine;
 
 class FoodBehavior : MonoBehaviour
 {
-    [SerializeField] int meshOrderInList;
-    [SerializeField] float foodMoveSpeed;
     [SerializeField] FoodData foodData;
-
-    [FoldoutGroup("Internal Variables")] [SerializeField] List<FoodData> foodWeapons = new List<FoodData>();
+    [FoldoutGroup("Food Variables")] [SerializeField] float foodMoveSpeed;
+    [FoldoutGroup("Internal Variables")] [SerializeField] float timeToSelfDestruct;
 
     Rigidbody rb;
     Vector3 hitPointCoord;
 
-    [SerializeField] float timeToSelfDestruct;
     Stopwatch timer = new Stopwatch();
 
     // Use this for initialization
     void Start()
     {
-        Setup();
-    }
 
-    void Setup()
-    {
-        foodData.FoodMesh = foodData.FoodMeshList[meshOrderInList];
-        GetComponent<MeshFilter>().mesh = foodData.FoodMesh;
     }
 
     // Update is called once per frame
     void Update()
     {
         SelfDestruct();
-
-        if (PlayerController.isGreasy == true)
-        {
-            foodData = foodWeapons[0];
-        }
-
-        if (PlayerController.isSweet == true)
-        {
-            foodData = foodWeapons[1];
-        }
     }
 
     void MoveToPosition()

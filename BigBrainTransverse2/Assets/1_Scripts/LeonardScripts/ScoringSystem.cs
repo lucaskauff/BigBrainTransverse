@@ -1,12 +1,14 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using Sirenix.OdinInspector;
+using Sirenix.Serialization;
+using System.Diagnostics;
 using UnityEngine;
 
 public class ScoringSystem : MonoBehaviour
 {
-    static int player1Score = 0;
-    static int player2Score = 0;
+    [ShowInInspector] [FoldoutGroup("Player Scores")] static int player1Score = 0;
+    [ShowInInspector] [FoldoutGroup("Player Scores")] static int player2Score = 0;
 
+    [SerializeField] [FoldoutGroup("Game Variables")] float gameLengthInSeconds;
 
 
     // Use this for initialization
@@ -18,7 +20,8 @@ public class ScoringSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //ScoreCalculator();
+        //DebuggingScoreCalculator();
+        GameTimer();
     }
 
     public static void GreaseKills(string whichPlayer = "")
@@ -60,9 +63,32 @@ public class ScoringSystem : MonoBehaviour
         }
     }
 
-    void ScoreCalculator()
+    void DebuggingScoreCalculator()
     {
-        Debug.Log("Player1 has " + player1Score + " points");
-        Debug.Log("Player2 has " + player2Score + " points");
+        UnityEngine.Debug.Log("Player1 has " + player1Score + " points");
+        UnityEngine.Debug.Log("Player2 has " + player2Score + " points");
+    }
+    
+    void GameTimer() 
+    {
+        gameLengthInSeconds -= Time.deltaTime;
+        if (gameLengthInSeconds < 0) {
+            GameOver();
+        }
+    }
+
+    void GameOver() 
+    {
+        UnityEngine.Debug.Log("The game is over");
+
+        if(player1Score > player2Score) 
+        {
+            UnityEngine.Debug.Log("Player1 has defeated player2");
+        }
+
+        else if (player2Score > player1Score) 
+        {
+            UnityEngine.Debug.Log("Player2 has defeated player1");
+        }
     }
 }
