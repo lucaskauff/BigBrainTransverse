@@ -224,6 +224,5 @@ public class CalibrationMenuManager : MonoBehaviour
     {
         yield return new WaitForSeconds(connectingT);
         sceneLoader.ChangeScene(nextSceneName);
-        //Debug.Log("NEXT SCENE");
     }
 }
