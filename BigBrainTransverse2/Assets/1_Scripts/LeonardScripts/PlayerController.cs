@@ -17,7 +17,6 @@ public class PlayerController : MonoBehaviour
     [FoldoutGroup("Internal Variables")] [SerializeField] Transform spawnPoint;
     GameObject cloneProj;
 
-    // Use this for initialization
     void Start()
     {
         kinectManager = KinectManager.Instance;
@@ -25,24 +24,19 @@ public class PlayerController : MonoBehaviour
         currentlySelectedFood = 0;
     }
 
-    // Update is called once per frame
-    void FixedUpdate()
-    {
-        if (!kinectManager || !kinectManager.IsInitialized() || !kinectManager.IsUserDetected())
-        {
-            if (Input.GetMouseButtonDown(0))
-            {
-                ShootProjectile();
-            }
-        }
-        else if (gestureListener.IsSwipeDown())
-        {
-            ShootProjectile();
-        }
-    }
-
     void Update()
     {
+        if (kinectManager && kinectManager.IsInitialized() && kinectManager.IsUserDetected())
+        {
+            if (gestureListener.IsSwipeDown())
+                ShootProjectile();
+        }
+        else
+        {
+            if (Input.GetMouseButtonDown(0))
+                ShootProjectile();
+        }
+
         WeaponSwitch();
     }
 
