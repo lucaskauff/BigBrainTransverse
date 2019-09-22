@@ -1,25 +1,33 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using Sirenix.OdinInspector;
-using Sirenix.Serialization;
+﻿using Sirenix.OdinInspector;
 using System.Diagnostics;
+using UnityEngine;
 
-public class CitizenController : MonoBehaviour {
+public class CitizenController : MonoBehaviour
+{
 
-    [SerializeField] float citizenLifePoints;
-    [SerializeField] float citizenSpeed;
-    [SerializeField] float intervalToRandomizeRotation;
-    [SerializeField] float lifepoints;
+    #region VARIABLE DECLARATIONS
+    
+    [FoldoutGroup("Debug Variables")] [SerializeField] float currentCalories;
+    [FoldoutGroup("Debug Variables")] [SerializeField] float currentMaxCalorieTol; //maximum calorie tolerance at any given time
 
+    [FoldoutGroup("Internal Variables")] [SerializeField] float baseMaxCalorieTol; //maximum calorie tolerance when game starts
+    [FoldoutGroup("Internal Variables")] [SerializeField] float citizenMoveSpeed;
+    [FoldoutGroup("Internal Variables")] [SerializeField] float intervalToRandomizeRotation;
+    [FoldoutGroup("Internal Variables")] [SerializeField] float speedDecreaseMultiplier;
     float step;
+    FoodData foodData;
+
+    //Components
     Stopwatch timer = new Stopwatch();
     Rigidbody rb;
     Vector3 baseRotationVector;
+    #endregion
 
+    #region //BASE UNITY CALLBACKS
     // Use this for initialization
     void Start()
     {
+        currentMaxCalorieTol = baseMaxCalorieTol;
         rb = GetComponent<Rigidbody>();
         intervalToRandomizeRotation = Random.Range(0f, 5f);
     }
@@ -37,21 +45,11 @@ public class CitizenController : MonoBehaviour {
             timer.Stop();
             timer.Reset();
         }
-
-        //if (lifepoints <= 0) Dead();
     }
 
-    void Movement()
+    void LateUpdate()
     {
-        step = citizenSpeed * Time.deltaTime; // calculate distance to move
-        rb.MovePosition(transform.position + transform.forward * step);
-    }
-
-    void RandomizeRotation()
-    {
-        baseRotationVector = transform.rotation.eulerAngles;
-        transform.rotation = Quaternion.Euler(baseRotationVector.x, Random.Range(-180, 180), baseRotationVector.z);
-        intervalToRandomizeRotation = Random.Range(0f, 1f);
+        CheckCitizenStatus();
     }
 
     void OnCollisionEnter(Collision collision)
@@ -62,38 +60,85 @@ public class CitizenController : MonoBehaviour {
             RandomizeRotation();
         }
 
-        if(collision.gameObject.tag == "Food")
+        if (collision.gameObject.tag == "Food")
         {
             Physics.IgnoreCollision(collision.gameObject.GetComponent<Collider>(), GetComponent<Collider>()); //ignore the collision between food and
+
+            switch (foodData.FoodType)
+            {
+                case FoodType.greasy:
+                    GreaseEffect(foodData.CalorieGainOnHit);
+                    break;
+                case FoodType.sweet:
+                    SweetEffect(foodData.CalorieGainOnHit, foodData.CalorieToleranceDecrease);
+                    break;
+                case FoodType.energy:
+                    EnergyEffect(foodData.CalorieGainOnHit, foodData.CalorieGainOverTime);
+                    break;
+                default:
+                    break;
+            }
         }
-
-        //use to ignore collisions between citizens
-        //if (collision.gameObject.tag == "Citizens") Physics.IgnoreCollision(collision.gameObject.GetComponent<Collider>(), GetComponent<Collider>());
     }
-    
-    void GreaseEffect()
+    #endregion
+
+    #region //CUSTOM FUNCTIONS
+    //Message Receiver - Sender is in FoodBehavior script
+    void WhichFoodType(FoodData receivedFoodData)
     {
-        UnityEngine.Debug.Log("i've been triggerd by your greasy-assed croissant, nigg");
-        ScoringSystem.GreaseKills("player1");
-        citizenSpeed /= 2;
+        foodData = receivedFoodData;
     }
 
-    void SweetEffect()
+    void Movement()
     {
-        UnityEngine.Debug.Log("i've been triggerd by your sweet mothafuckin croissant, nigg");
-        ScoringSystem.SweetKills("player1");
-        Dead();
+        step = citizenMoveSpeed * Time.deltaTime; // calculate distance to move
+        rb.MovePosition(transform.position + transform.forward * step);
     }
 
-    void EnergyEffect()
+    void RandomizeRotation()
     {
-        UnityEngine.Debug.Log("FUCK NIGG, i've been triggerd by your croissant");
-        ScoringSystem.EnergyKills("player1");
-        Dead();
+        baseRotationVector = transform.rotation.eulerAngles;
+        transform.rotation = Quaternion.Euler(baseRotationVector.x, Random.Range(-180, 180), baseRotationVector.z);
+        intervalToRandomizeRotation = Random.Range(0f, 1f);
+    }
+
+    void GreaseEffect(int caloriesGained)
+    {
+        UnityEngine.Debug.Log("I just gained " + caloriesGained + " calories");
+
+        currentCalories += caloriesGained;
+
+        citizenMoveSpeed /= speedDecreaseMultiplier;
+    }
+
+    void SweetEffect(int caloriesGained, int toleranceDecrease)
+    {
+        UnityEngine.Debug.Log("I just gained " + caloriesGained + " calories and my tolerance went down by " + toleranceDecrease);
+
+        currentCalories += caloriesGained;
+        currentMaxCalorieTol -= toleranceDecrease;
+    }
+
+    void EnergyEffect(int caloriesGained, int overTimeCalGain)
+    {
+        UnityEngine.Debug.Log("I just gained " + caloriesGained + " calories and i'm gaining " + overTimeCalGain + " calories over time");
+
+        currentCalories += caloriesGained;
+    }
+
+    void CheckCitizenStatus()
+    {
+        if (currentCalories > currentMaxCalorieTol)
+        {
+            Dead();
+        }
     }
 
     void Dead()
     {
-        Destroy(gameObject);
+        //Destroy(gameObject);
+        //Destroy Colliders
+        //Lock Animation on last frame
     }
+    #endregion
 }
