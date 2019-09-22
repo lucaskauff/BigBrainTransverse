@@ -60,7 +60,6 @@ class FoodBehavior : MonoBehaviour
         if (collision.gameObject.tag == "Citizens")
         {
             collision.gameObject.SendMessage("WhichFoodType", foodData);
-            Destroy(this.gameObject);
         }
 
         if (collision.gameObject.layer == LayerMask.NameToLayer("BoundsLayer")) Destroy(this.gameObject);

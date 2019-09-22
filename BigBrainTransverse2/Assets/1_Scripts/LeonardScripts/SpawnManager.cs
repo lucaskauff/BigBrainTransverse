@@ -5,9 +5,11 @@ using Sirenix.OdinInspector;
 using Sirenix.Serialization;
 using System.Diagnostics;
 
-public class SpawnManager : MonoBehaviour {
-
+public class SpawnManager : MonoBehaviour
+{
+    [SerializeField] int maxNumberOfEntitiesToSpawn;
     [SerializeField] List<GameObject> spawnPointsList = new List<GameObject>();
+    [ShowInInspector] public static List<GameObject> citizensInScene = new List<GameObject>();
     [SerializeField] GameObject people;
     [SerializeField] float numberToSpawn;
     [SerializeField] float intervalToSpawnInSeconds;
@@ -22,19 +24,34 @@ public class SpawnManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
+        if (citizensInScene.Count < maxNumberOfEntitiesToSpawn) SpawnMobs();
+        else return;
+    }
+
+    void SpawnMobs() 
+    {
         timer.Start();
 
-        if (timer.Elapsed.TotalSeconds >= intervalToSpawnInSeconds)
-        {
-            for (int i = 0; i < numberToSpawn; i++)
+        if (timer.Elapsed.TotalSeconds >= intervalToSpawnInSeconds) {
+            for (int i = 0; i < numberToSpawn; i++) 
             {
-                foreach (GameObject citizenSpawner in spawnPointsList)
+                foreach (GameObject SpawnPoint in spawnPointsList) 
                 {
+                    Vector3 baseRotationVector = SpawnPoint.transform.rotation.eulerAngles;
+                    SpawnPoint.transform.rotation = Quaternion.Euler(baseRotationVector.x, Random.Range(-180, 180), baseRotationVector.z);
+                }
+
+                foreach (GameObject citizenSpawner in spawnPointsList) {
                     Instantiate(people, citizenSpawner.transform.position, Quaternion.identity);
                 }
             }
             timer.Stop();
             timer.Reset();
         }
+    }
+
+    void RandomizeSpawnerRotations() 
+    {
+        
     }
 }
