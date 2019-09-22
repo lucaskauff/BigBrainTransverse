@@ -14,6 +14,6 @@ MonoBehaviour:
   foodType: 2
   foodName: 4
   foodMesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
-  calorieGainOnHit: 30
+  calorieGainOnHit: 5
   calorieToleranceDecrease: 0
-  calorieGainOverTime: 12
+  calorieGainOverTime: 10
