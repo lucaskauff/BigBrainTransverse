@@ -150,9 +150,9 @@ public class CalibrationMenuManager : MonoBehaviour
             }
 
             if (kinectManager.IsPlayerCalibrated(kinectManager.Player1ID)
-                /*&& kinectManager.IsPlayerCalibrated(kinectManager.Player2ID)*/
+                && kinectManager.IsPlayerCalibrated(kinectManager.Player2ID)
                 && (playerKnobs[0].isConnecting || playerKnobs[1].isConnecting)
-                /*&& (playerKnobs[2].isConnecting || playerKnobs[3].isConnecting)*/)
+                && (playerKnobs[2].isConnecting || playerKnobs[3].isConnecting))
             {
                 if (!playersAreConnecting)
                 {

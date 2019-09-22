@@ -767,6 +767,8 @@ MonoBehaviour:
   HandCursor2: {fileID: 0}
   ControlMouseCursor: 0
   GesturesDebugText: {fileID: 0}
+  Player1ID: 0
+  Player2ID: 0
 --- !u!114 &1833723682
 MonoBehaviour:
   m_ObjectHideFlags: 0
