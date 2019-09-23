@@ -71,7 +71,7 @@ public class CitizenController : MonoBehaviour
 
         if (collision.gameObject.tag == "Food")
         {
-            Physics.IgnoreCollision(collision.gameObject.GetComponent<Collider>(), GetComponent<Collider>()); //ignore the collision between food and citizen
+            //Physics.IgnoreCollision(collision.gameObject.GetComponent<Collider>(), GetComponent<Collider>()); //ignore the collision between food and citizen
 
             switch (foodData.FoodType)
             {
