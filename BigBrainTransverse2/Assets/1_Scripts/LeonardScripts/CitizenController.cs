@@ -147,6 +147,15 @@ public class CitizenController : MonoBehaviour
         }
     }
 
+    void FoodHits(string whichFood)
+    {
+        int greasy = 0;
+        int sweet = 0;
+        float greasePercentage = greasy / (greasy + sweet);
+        float sweetPercentage = sweet / (greasy + sweet);
+        float highestPercentage = Mathf.Max(greasePercentage, sweetPercentage);
+    }
+
     void Dead()
     {
         SpawnManager.citizensInScene.Remove(this.gameObject);
