@@ -467,7 +467,9 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114447853899687594, guid: 0a59a014e1d0f70499bec451e07252c8, type: 2}
+    - {fileID: 114847533780147552, guid: 0a59a014e1d0f70499bec451e07252c8, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 0a59a014e1d0f70499bec451e07252c8, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &408879064
@@ -1306,12 +1308,16 @@ MonoBehaviour:
   - {fileID: 55385563}
   - {fileID: 1931016527}
   - {fileID: 524613792}
+  rideaux: []
   realtimeCam: {fileID: 1262689081}
   tvButton: {fileID: 21699595}
   tvButtonText: {fileID: 21699596}
   buttonYPositions:
   - 113
   - 345
+  cachedColor: {r: 0, g: 0, b: 0, a: 0}
+  previousSceneName: 
+  nextSceneName: 
 --- !u!1 &1588731238
 GameObject:
   m_ObjectHideFlags: 0
