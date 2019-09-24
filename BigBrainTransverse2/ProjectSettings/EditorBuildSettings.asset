@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/0_Scenes/_FINALSCENES/SelectionScene.unity
     guid: 252366e6e1cad7944ad5b4c8861ee596
+  - enabled: 0
+    path: Assets/0_Scenes/LeonardScenes/_TestGeneralSceneKinect.unity
+    guid: c01dd9b302c0f0847a4b7cebc5d461ae
   m_configObjects: {}

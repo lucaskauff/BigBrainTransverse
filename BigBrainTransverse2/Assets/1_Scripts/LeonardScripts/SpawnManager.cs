@@ -10,18 +10,11 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] int maxNumberOfEntitiesToSpawn;
     [SerializeField] List<GameObject> spawnPointsList = new List<GameObject>();
     [ShowInInspector] public static List<GameObject> citizensInScene = new List<GameObject>();
-    [SerializeField] GameObject people;
+    [SerializeField] GameObject[] people;
     [SerializeField] float numberToSpawn;
     [SerializeField] float intervalToSpawnInSeconds;
     [SerializeField] Stopwatch timer = new Stopwatch();
 
-    // Use this for initialization
-    void Start ()
-    {
-        
-    }
-	
-	// Update is called once per frame
 	void Update ()
     {
         if (citizensInScene.Count < maxNumberOfEntitiesToSpawn) SpawnMobs();
@@ -42,7 +35,7 @@ public class SpawnManager : MonoBehaviour
                 }
 
                 foreach (GameObject citizenSpawner in spawnPointsList) {
-                    Instantiate(people, citizenSpawner.transform.position, Quaternion.identity);
+                    Instantiate(people[Random.Range(0, people.Length-1)], citizenSpawner.transform.position, Quaternion.identity);
                 }
             }
             timer.Stop();
