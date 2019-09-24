@@ -11,10 +11,16 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] List<GameObject> spawnPointsList = new List<GameObject>();
     [ShowInInspector] public static List<GameObject> citizensInScene = new List<GameObject>();
     [SerializeField] GameObject[] people;
+    [SerializeField] GameObject scientist;
     [SerializeField] float numberToSpawn;
     [SerializeField] float intervalToSpawnInSeconds;
     [SerializeField] Stopwatch timer = new Stopwatch();
+    [SerializeField] bool hasSpawnedScientist = false;
 
+    void Start()
+    {
+        citizensInScene.Clear();
+    }
 	void Update ()
     {
         if (citizensInScene.Count < maxNumberOfEntitiesToSpawn) SpawnMobs();
@@ -28,18 +34,20 @@ public class SpawnManager : MonoBehaviour
         if (timer.Elapsed.TotalSeconds >= intervalToSpawnInSeconds) {
             for (int i = 0; i < numberToSpawn; i++) 
             {
-                foreach (GameObject SpawnPoint in spawnPointsList) 
+                foreach (GameObject citizenSpawner in spawnPointsList) 
                 {
-                    Vector3 baseRotationVector = SpawnPoint.transform.rotation.eulerAngles;
-                    SpawnPoint.transform.rotation = Quaternion.Euler(baseRotationVector.x, Random.Range(-180, 180), baseRotationVector.z);
-                }
-
-                foreach (GameObject citizenSpawner in spawnPointsList) {
+                    if (!hasSpawnedScientist)
+                    {
+                        scientist = Instantiate(people[Random.Range(0, people.Length-1)], citizenSpawner.transform.position, Quaternion.identity);
+                        scientist.GetComponent<CitizenController>().isScientist = true;
+                        hasSpawnedScientist = true;                      
+                    }     
                     Instantiate(people[Random.Range(0, people.Length-1)], citizenSpawner.transform.position, Quaternion.identity);
                 }
             }
             timer.Stop();
             timer.Reset();
+            hasSpawnedScientist = false;
         }
     }
 
