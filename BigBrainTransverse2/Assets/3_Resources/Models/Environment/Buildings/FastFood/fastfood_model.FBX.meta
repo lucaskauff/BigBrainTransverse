@@ -1,20 +1,15 @@
 fileFormatVersion: 2
-guid: b9956b179a5497e44934e7aa308365ea
+guid: 7ac66eb45ff0bb64685fa12ba2de5ef6
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
     100000: //RootNode
     400000: //RootNode
-    2100000: 'Material #45'
+    2100000: No Name
     2300000: //RootNode
     3300000: //RootNode
-    4300000: lowpoly
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: 'Material #45'
-    second: {fileID: 2100000, guid: f109bc8ee53d73449b3ef52283d1e218, type: 2}
+    4300000: Object
+  externalObjects: {}
   materials:
     importMaterials: 1
     materialName: 0

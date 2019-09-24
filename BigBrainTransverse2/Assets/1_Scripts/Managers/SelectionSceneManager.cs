@@ -52,7 +52,7 @@ public class SelectionSceneManager : MonoBehaviour
     {
         MouseBackupForSceneMan();
 
-        TheCacheManagement();
+        //TheCacheManagement();
 
         KinectManager kinectManager = KinectManager.Instance;
 

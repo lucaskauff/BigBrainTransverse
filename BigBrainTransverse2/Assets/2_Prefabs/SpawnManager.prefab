@@ -34,6 +34,16 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4368662003500288}
+  - component: {fileID: 114224042387421656}
+  - component: {fileID: 114895157800008446}
+  - component: {fileID: 114968838651169642}
+  - component: {fileID: 114563260038747542}
+  - component: {fileID: 114566862229655376}
+  - component: {fileID: 114415411458091844}
+  - component: {fileID: 114596528719698008}
+  - component: {fileID: 114773522086206466}
+  - component: {fileID: 114334078533163504}
+  - component: {fileID: 114913516362588890}
   m_Layer: 0
   m_Name: SpawnManager
   m_TagString: Untagged
@@ -184,3 +194,156 @@ Transform:
   m_Father: {fileID: 4368662003500288}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114224042387421656
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1345169353043030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e5e5151a3c777543a6b9830233708d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameLengthInSeconds: 0
+--- !u!114 &114334078533163504
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1345169353043030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c06f0ccf5dfabb478b73b9f1f802643, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114415411458091844
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1345169353043030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22544df88539cd042982e95a556f58d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonAPressed1: 0
+  buttonBPressed1: 0
+  buttonUpPressed1: 0
+  buttonRightPressed1: 0
+  buttonDownPressed1: 0
+  buttonLeftPressed1: 0
+  buttonMinusPressed1: 0
+  buttonHomePressed1: 0
+  buttonPlusPressed1: 0
+  buttonOnePressed1: 0
+  buttonTwoPressed1: 0
+--- !u!114 &114563260038747542
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1345169353043030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c06f0ccf5dfabb478b73b9f1f802643, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114566862229655376
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1345169353043030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6e37dd8399bb424e86f981dc5b306a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneLoader: {fileID: 0}
+  inputManager: {fileID: 0}
+--- !u!114 &114596528719698008
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1345169353043030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d54ac63906b951e448bbf4208c21b3dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  equippedFood: {fileID: 0}
+  currentlySelectedFood: 0
+  foodWeapons: []
+  spawnPoint: {fileID: 0}
+--- !u!114 &114773522086206466
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1345169353043030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2452faa5ff84d54ebbbbec7a377d203, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  foodData: {fileID: 0}
+  foodMoveSpeed: 0
+  timeToSelfDestruct: 0
+--- !u!114 &114895157800008446
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1345169353043030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7dffc57a8fb2a24280ba5d6e7684b2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentCalories: 0
+  currentMaxCalorieTol: 0
+  baseMaxCalorieTol: 0
+  citizenMoveSpeed: 0
+  intervalToRandomizeRotation: 0
+  speedDecreaseMultiplier: 0
+--- !u!114 &114913516362588890
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1345169353043030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41f0cafc57736904aa80401720fbd5f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxNumberOfEntitiesToSpawn: 0
+  spawnPointsList: []
+  people: {fileID: 0}
+  numberToSpawn: 0
+  intervalToSpawnInSeconds: 0
+--- !u!114 &114968838651169642
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1345169353043030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22544df88539cd042982e95a556f58d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonAPressed1: 0
+  buttonBPressed1: 0
+  buttonUpPressed1: 0
+  buttonRightPressed1: 0
+  buttonDownPressed1: 0
+  buttonLeftPressed1: 0
+  buttonMinusPressed1: 0
+  buttonHomePressed1: 0
+  buttonPlusPressed1: 0
+  buttonOnePressed1: 0
+  buttonTwoPressed1: 0
