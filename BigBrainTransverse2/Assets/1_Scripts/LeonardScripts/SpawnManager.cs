@@ -50,17 +50,12 @@ public class SpawnManager : MonoBehaviour
                         spawnScientistTimer.Stop();
                         spawnScientistTimer.Reset();
                         timeToSpawnScientist = Random.Range(minTimeToScientist, maxTimeToScientist);
-                    }     
-                    Instantiate(people[Random.Range(0, people.Length-1)], citizenSpawner.transform.position, Quaternion.identity);
+                    }
+                    else Instantiate(people[Random.Range(0, people.Length-1)], citizenSpawner.transform.position, Quaternion.identity);
                 }
             }
             spawnTimer.Stop();
             spawnTimer.Reset();
         }
-    }
-
-    void RandomizeSpawnerRotations() 
-    {
-        
     }
 }
