@@ -6,10 +6,14 @@ public class GestureListener : MonoBehaviour, KinectGestures.GestureListenerInte
 {
 	// GUI Text to display the gesture messages.
 	public GUIText GestureInfo;
-	
-	private bool swipeLeft;
+
+    KinectManager manager;
+
+    private bool swipeLeft;
 	private bool swipeRight;
-    private bool swipeDown;
+    private bool swipeDownP1;
+
+    private bool swipeDownP2;
 	
 	public bool IsSwipeLeft()
 	{
@@ -33,21 +37,37 @@ public class GestureListener : MonoBehaviour, KinectGestures.GestureListenerInte
 		return false;
 	}
 
-    public bool IsSwipeDown()
+    public bool IsSwipeDownP1()
     {
-        if (swipeDown)
+        if (swipeDownP1)
         {
-            swipeDown = false;
+            swipeDownP1 = false;
             return true;
         }
 
         return false;
     }
 
+    public bool IsSwipeDownP2()
+    {
+        if (swipeDownP2)
+        {
+            swipeDownP2 = false;
+            return true;
+        }
+
+        return false;
+    }
+
+    private void Start()
+    {
+        manager = KinectManager.Instance;
+    }
+
     public void UserDetected(uint userId, int userIndex)
 	{
 		// detect these user specific gestures
-		KinectManager manager = KinectManager.Instance;
+		//KinectManager manager = KinectManager.Instance;
 		
 		manager.DetectGesture(userId, KinectGestures.Gestures.SwipeLeft);
 		manager.DetectGesture(userId, KinectGestures.Gestures.SwipeRight);
@@ -82,12 +102,23 @@ public class GestureListener : MonoBehaviour, KinectGestures.GestureListenerInte
 			GestureInfo.GetComponent<GUIText>().text = sGestureText;
 		}
 		
-		if(gesture == KinectGestures.Gestures.SwipeLeft)
-			swipeLeft = true;
-		else if(gesture == KinectGestures.Gestures.SwipeRight)
-			swipeRight = true;
-        else if (gesture == KinectGestures.Gestures.SwipeDown)
-            swipeDown = true;
+        if (userId == manager.GetPlayer1ID())
+        {
+            /*
+            if (gesture == KinectGestures.Gestures.SwipeLeft)
+                swipeLeft = true;
+            else if (gesture == KinectGestures.Gestures.SwipeRight)
+                swipeRight = true;
+            */
+            if (gesture == KinectGestures.Gestures.SwipeDown)
+                swipeDownP1 = true;
+        }
+
+        if (userId == manager.GetPlayer2ID())
+        {
+            if (gesture == KinectGestures.Gestures.SwipeDown)
+                swipeDownP2 = true;
+        }
 
         return true;
 	}
