@@ -75,10 +75,10 @@ public class SelectionSceneManager : MonoBehaviour
                 {
                     currentlySelectedLobby[0] = ChangeSelection(0, 1);
                 }
-                else if (gestureListener.IsSwipeDown())
+                /*else if (gestureListener.IsSwipeDown())
                 {
                     Selection(0);
-                }
+                }*/
             }
 
             UpdateSelector(0);

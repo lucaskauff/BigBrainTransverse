@@ -28,8 +28,8 @@ public class PlayerController : MonoBehaviour
     {
         if (kinectManager && kinectManager.IsInitialized() && kinectManager.IsUserDetected())
         {
-            if (gestureListener.IsSwipeDown())
-                ShootProjectile();
+            //if (gestureListener.IsSwipeDown())
+                //ShootProjectile();
         }
         else
         {
