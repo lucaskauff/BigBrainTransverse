@@ -11,7 +11,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/0_Scenes/Lucas_Scenes/IntegrationTest.unity
     guid: 75e6e771290da644583f6c5eb5d08b67
-  - enabled: 1
+  - enabled: 0
     path: Assets/0_Scenes/LeonardScenes/_TestGeneralScene.unity
     guid: c83a45b9cdef1bd42a9d73ee61375d7d
   - enabled: 0
@@ -23,4 +23,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/0_Scenes/LeonardScenes/_TestGeneralSceneKinect.unity
     guid: c01dd9b302c0f0847a4b7cebc5d461ae
+  - enabled: 1
+    path: Assets/0_Scenes/LeonardScenes/_TestGeneralSceneKinect 1.unity
+    guid: 6d36d26647a53a1429a6fae3d1e73810
   m_configObjects: {}
