@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public enum FoodType { greasy, sweet, energy };
-public enum FoodName { burger, fries, kebab, tacos, drink };
+public enum FoodName { fries, tacos, sunday, coke, redbull };
 
 [CreateAssetMenu(fileName = "New Food Type", menuName = "Food Spells")]
 public class FoodData : ScriptableObject

@@ -9,11 +9,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 607cddc2d115a9046b606e19d5bc4b44, type: 3}
-  m_Name: 2_Soda
+  m_Name: 2_Sunday
   m_EditorClassIdentifier: 
   foodType: 1
-  foodName: 4
-  foodMesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
-  calorieGainOnHit: 5
-  calorieToleranceDecrease: 5
+  foodName: 2
+  foodMesh: {fileID: 0}
+  calorieGainOnHit: 0
+  calorieToleranceDecrease: 0
   calorieGainOverTime: 0
