@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.43667978, g: 0.48427367, b: 0.564524, a: 1}
+  m_IndirectSpecularColor: {r: 0.4366794, g: 0.48427284, b: 0.5645231, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2171,7 +2171,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &407009485
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9573,6 +9573,7 @@ MonoBehaviour:
   sceneLoader: {fileID: 0}
   inputManager: {fileID: 0}
   selectedLobbyPlayers: 
+  isDeathAnimOnGoing: 0
 --- !u!4 &2083247767 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 7ac66eb45ff0bb64685fa12ba2de5ef6, type: 3}
