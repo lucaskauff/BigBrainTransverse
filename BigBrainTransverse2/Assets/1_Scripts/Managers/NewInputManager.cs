@@ -7,6 +7,8 @@ public class NewInputManager : MonoBehaviour
     [Header("Public variables")]
     public float smoothFactor = 60f;
 
+    public KinectWrapper.NuiSkeletonPositionIndex gestureJoint;
+
     [Header("Serializable variables")]
     [SerializeField] KinectWrapper.NuiSkeletonPositionIndex[] TrackedJoints;
 
@@ -15,27 +17,30 @@ public class NewInputManager : MonoBehaviour
     GestureListener gestureListener;
 
     int[] iJointIndexes;
-    PlayerKnob playerKnobExample;
+    PlayerController playerKnobExample;
     float distanceToCamera;
 
     //Kinect inputs
     //Player 1
     public Vector3 cursor1Pos;
-
+    public bool swipeLeftP1;
+    public bool swipeRightP1;
     public bool swipeDownP1;
-
 
     //Player 2
     public Vector3 cursor2Pos;
-
+    public bool swipeLeftP2;
+    public bool swipeRightP2;
     public bool swipeDownP2;
 
     //Mouse clicks
-    public bool leftClick;
+    public bool mouseLeftClick;
     public bool mouseWheelClick;
-    public bool rightClick;
+    public bool mouseRightClick;
 
     //Keyboard keys
+    public bool weaponMinusKey;
+    public bool weaponPlusKey;
     public bool switchCameraOnOff;
 
     void Start()
@@ -44,7 +49,7 @@ public class NewInputManager : MonoBehaviour
         gestureListener = FindObjectOfType<GestureListener>();
 
         iJointIndexes = new int[TrackedJoints.Length];
-        playerKnobExample = FindObjectOfType<PlayerKnob>();
+        playerKnobExample = FindObjectOfType<PlayerController>();
 
         distanceToCamera = (playerKnobExample.transform.position - Camera.main.transform.position).magnitude;
     }
@@ -64,21 +69,25 @@ public class NewInputManager : MonoBehaviour
 
             if (gestureListener)
             {
+                swipeLeftP1 = gestureListener.IsSwipeLeftP1();
+                swipeRightP1 = gestureListener.IsSwipeRightP1();
                 swipeDownP1 = gestureListener.IsSwipeDownP1();
 
-
+                swipeLeftP2 = gestureListener.IsSwipeLeftP2();
+                swipeRightP2 = gestureListener.IsSwipeRightP2();
                 swipeDownP2 = gestureListener.IsSwipeDownP2();
-
             }
         }
 
         //Mouse clicks
-        leftClick = Input.GetMouseButton(0);
-        rightClick = Input.GetMouseButton(1); ;
+        mouseLeftClick = Input.GetMouseButton(0);
+        mouseRightClick = Input.GetMouseButton(1); ;
         mouseWheelClick = Input.GetMouseButton(2);
 
         //Keyboard keys
         switchCameraOnOff = Input.GetKeyDown(KeyCode.C);
+        weaponMinusKey = Input.GetKeyDown(KeyCode.Alpha1);
+        weaponPlusKey = Input.GetKeyDown(KeyCode.Alpha2);
     }
 
     void Player1JointsPositions(bool isPlayerOne)

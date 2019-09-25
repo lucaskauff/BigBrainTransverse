@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 23628687266477958}
   - component: {fileID: 54270539666276120}
   m_Layer: 9
-  m_Name: Food_Sweet
+  m_Name: Food_Energy
   m_TagString: Food
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -39,7 +39,7 @@ Transform:
   m_GameObject: {fileID: 1668910094014942}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 10, y: 10, z: 10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -85,7 +85,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1668910094014942}
-  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!54 &54270539666276120
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -124,6 +124,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2452faa5ff84d54ebbbbec7a377d203, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  foodData: {fileID: 11400000, guid: 7cc053aa2265bf54ab700377711e4f1b, type: 2}
-  foodMoveSpeed: 9
+  foodData: {fileID: 11400000, guid: fce48df94ef56da438c80c8fb68cf9be, type: 2}
+  foodMoveSpeed: 6
   timeToSelfDestruct: 3

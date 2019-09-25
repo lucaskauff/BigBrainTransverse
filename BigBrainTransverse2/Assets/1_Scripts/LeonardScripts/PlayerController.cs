@@ -7,50 +7,96 @@ using System.Diagnostics;
 
 public class PlayerController : MonoBehaviour
 {
-    KinectManager kinectManager;
-    [SerializeField] GestureListener gestureListener;
+    //GameManager
+    NewInputManager inputManager;
+
+    [Header("Public variables")]
+    public bool ultimateEnabled;
+
+    [Header("Serializable variables")]
+    [SerializeField] bool isPlayerOne;
 
     [FoldoutGroup("Debug Variables")] [SerializeField] GameObject equippedFood;
     [FoldoutGroup("Debug Variables")] [SerializeField] int currentlySelectedFood;
 
     [FoldoutGroup("Internal Variables")] [SerializeField] List<GameObject> foodWeapons = new List<GameObject>();
-    [FoldoutGroup("Internal Variables")] [SerializeField] Transform spawnPoint;
+    [FoldoutGroup("Internal Variables")] //[SerializeField] Transform spawnPoint;
     GameObject cloneProj;
 
     void Start()
     {
-        kinectManager = KinectManager.Instance;
+        inputManager = NewGameManager.Instance.inputManager;
 
         currentlySelectedFood = 0;
     }
 
     void Update()
     {
-        if (kinectManager && kinectManager.IsInitialized() && kinectManager.IsUserDetected())
-        {
-            //if (gestureListener.IsSwipeDown())
-                //ShootProjectile();
-        }
-        else
-        {
-            if (Input.GetMouseButtonDown(0))
-                ShootProjectile();
-        }
+        UpdatePosition();
 
         WeaponSwitch();
+
+        if (inputManager.mouseLeftClick)
+            ShootProjectile();
+        else
+        {
+            if (isPlayerOne && inputManager.swipeDownP1)
+                ShootProjectile();
+            else if (!isPlayerOne && inputManager.swipeDownP2)
+                ShootProjectile();
+        }
+    }
+
+    void UpdatePosition()
+    {
+        if (isPlayerOne)
+            transform.position = Vector3.Lerp(transform.position, inputManager.cursor1Pos, inputManager.smoothFactor * Time.deltaTime);
+        else
+            transform.position = Vector3.Lerp(transform.position, inputManager.cursor2Pos, inputManager.smoothFactor * Time.deltaTime);
     }
 
     void ShootProjectile()
     {
-        cloneProj = Instantiate(equippedFood, spawnPoint.position, Quaternion.identity);
-        cloneProj.gameObject.SendMessage("MoveToPosition");
+        cloneProj = Instantiate(equippedFood, transform.position, Quaternion.identity);
+        cloneProj.gameObject.SendMessage("MoveToPosition", transform.position);
     }
 
-    void WeaponSwitch() 
+    void WeaponSwitch()
     {
-        if (Input.GetKeyDown(KeyCode.LeftShift)) currentlySelectedFood++;
-        if (Input.GetKeyDown(KeyCode.Space)) currentlySelectedFood--;
-        if (currentlySelectedFood > foodWeapons.Count - 1 || currentlySelectedFood < 0) currentlySelectedFood = 0;
+        if (inputManager.weaponMinusKey)
+            currentlySelectedFood--;
+        else
+        {
+            if (isPlayerOne && inputManager.swipeLeftP1)
+                currentlySelectedFood--;
+            else if (!isPlayerOne && inputManager.swipeLeftP2)
+                currentlySelectedFood--;
+        }
+
+        if (inputManager.weaponPlusKey)
+            currentlySelectedFood++;
+        else
+        {
+            if (isPlayerOne && inputManager.swipeRightP1)
+                currentlySelectedFood++;
+            else if (!isPlayerOne && inputManager.swipeRightP2)
+                currentlySelectedFood++;
+        }
+
+        if (!ultimateEnabled)
+        {
+            if (currentlySelectedFood < 0)
+                currentlySelectedFood = foodWeapons.Count - 2;
+            else if (currentlySelectedFood > foodWeapons.Count - 2)
+                currentlySelectedFood = 0;
+        }
+        else
+        {
+            if (currentlySelectedFood < 0)
+                currentlySelectedFood = foodWeapons.Count - 1;
+            else if (currentlySelectedFood > foodWeapons.Count - 1)
+                currentlySelectedFood = 0;
+        }
 
         equippedFood = foodWeapons[currentlySelectedFood];
     }

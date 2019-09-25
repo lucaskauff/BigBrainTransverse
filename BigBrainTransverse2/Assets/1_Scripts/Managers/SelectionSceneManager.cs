@@ -67,11 +67,11 @@ public class SelectionSceneManager : MonoBehaviour
             userId = kinectManager.GetPlayer1ID();
             if (gestureListener)
             {
-                if (gestureListener.IsSwipeLeft())
+                if (gestureListener.IsSwipeLeftP1())
                 {
                     currentlySelectedLobby[0] = ChangeSelection(0, -1);
                 }
-                else if (gestureListener.IsSwipeRight())
+                else if (gestureListener.IsSwipeRightP1())
                 {
                     currentlySelectedLobby[0] = ChangeSelection(0, 1);
                 }
@@ -87,11 +87,11 @@ public class SelectionSceneManager : MonoBehaviour
 
     void MouseBackupForSceneMan()
     {
-        if (inputManager.leftClick)
+        if (inputManager.mouseLeftClick)
             sceneLoader.ChangeScene(previousSceneName);
         else if (inputManager.mouseWheelClick)
             sceneLoader.ReloadScene();
-        else if (inputManager.rightClick)
+        else if (inputManager.mouseRightClick)
             sceneLoader.ChangeScene(nextSceneName);
     }
 
