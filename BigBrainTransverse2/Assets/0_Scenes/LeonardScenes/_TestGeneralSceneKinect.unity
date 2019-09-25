@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.43667978, g: 0.48427367, b: 0.564524, a: 1}
+  m_IndirectSpecularColor: {r: 0.4366794, g: 0.48427284, b: 0.5645231, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -857,6 +857,48 @@ Transform:
   m_PrefabParentObject: {fileID: 4099644068363636, guid: b436d85764cb8314f98b33909d474229,
     type: 2}
   m_PrefabInternal: {fileID: 166581691}
+--- !u!1001 &167737859
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4464755880383204, guid: 864276bff10f39a409b121e133b01323, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4464755880383204, guid: 864276bff10f39a409b121e133b01323, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4464755880383204, guid: 864276bff10f39a409b121e133b01323, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4464755880383204, guid: 864276bff10f39a409b121e133b01323, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4464755880383204, guid: 864276bff10f39a409b121e133b01323, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4464755880383204, guid: 864276bff10f39a409b121e133b01323, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4464755880383204, guid: 864276bff10f39a409b121e133b01323, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4464755880383204, guid: 864276bff10f39a409b121e133b01323, type: 2}
+      propertyPath: m_RootOrder
+      value: 12
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 864276bff10f39a409b121e133b01323, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &187801845
 GameObject:
   m_ObjectHideFlags: 0
@@ -2129,7 +2171,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &407009485
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6058,6 +6100,12 @@ MonoBehaviour:
   timeToSpawnScientist: 0
   minTimeToScientist: 0
   maxTimeToScientist: 0
+  baseSpawnRateInSeconds: 0
+  currentSpawnRateMultiplier: 0
+  maxNumberToSpawnInScene: 0
+  currentNumberInScene: 0
+  percentInScene: 0
+  percentSpawnSpeed: 0
 --- !u!114 &1462735055
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9525,6 +9573,7 @@ MonoBehaviour:
   sceneLoader: {fileID: 0}
   inputManager: {fileID: 0}
   selectedLobbyPlayers: 
+  isDeathAnimOnGoing: 0
 --- !u!4 &2083247767 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 7ac66eb45ff0bb64685fa12ba2de5ef6, type: 3}

@@ -13,6 +13,8 @@ public class NewGameManager : Singleton<NewGameManager>
 
     public int[] selectedLobbyPlayers;
 
+    public bool isDeathAnimOnGoing = false;
+
     private void Awake()
     {
         sceneLoader = GetComponent<SceneLoader>();
