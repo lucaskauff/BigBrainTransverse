@@ -25,6 +25,11 @@ class FoodBehavior : MonoBehaviour
         //Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
 
+        if(Physics.Raycast(ray, out hit))
+        {
+            UnityEngine.Debug.Log(hit.collider.gameObject.name);
+        }
+
         if (Physics.Raycast(ray, out hit) && hit.collider.gameObject.layer == LayerMask.NameToLayer("BoundsLayer"))
         {
             hitPointCoord = new Vector3(hit.point.x, hit.point.y, hit.point.z);
