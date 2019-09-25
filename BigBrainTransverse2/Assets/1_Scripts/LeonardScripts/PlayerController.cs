@@ -32,6 +32,8 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        //UnityEngine.Debug.DrawRay(Camera.main.transform.position, transform.position);
+
         UpdatePosition();
 
         WeaponSwitch();

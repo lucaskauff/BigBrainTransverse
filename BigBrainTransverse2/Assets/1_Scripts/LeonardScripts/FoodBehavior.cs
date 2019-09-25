@@ -21,14 +21,14 @@ class FoodBehavior : MonoBehaviour
 
     void MoveToPosition(Vector3 rayOrigin)
     {
-        Ray ray = Camera.main.ScreenPointToRay(rayOrigin);
+        Ray ray = Camera.main.ViewportPointToRay(rayOrigin);
         //Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        UnityEngine.Debug.DrawRay(Camera.main.transform.position, rayOrigin);
         RaycastHit hit;
 
         if (Physics.Raycast(ray, out hit) && hit.collider.gameObject.layer == LayerMask.NameToLayer("BoundsLayer"))
         {
             hitPointCoord = new Vector3(hit.point.x, hit.point.y, hit.point.z);
+            UnityEngine.Debug.Log(hitPointCoord);
 
             rb = GetComponent<Rigidbody>();
             rb.useGravity = true;
