@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using UnityEngine;
 
-
 class FoodBehavior : MonoBehaviour
 {
     [SerializeField] FoodData foodData;
@@ -15,26 +14,21 @@ class FoodBehavior : MonoBehaviour
 
     Stopwatch timer = new Stopwatch();
 
-    // Use this for initialization
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
     void Update()
     {
         SelfDestruct();
     }
 
-    void MoveToPosition()
+    void MoveToPosition(Vector3 rayOrigin)
     {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Ray ray = Camera.main.ViewportPointToRay(rayOrigin);
+        //Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
 
         if (Physics.Raycast(ray, out hit) && hit.collider.gameObject.layer == LayerMask.NameToLayer("BoundsLayer"))
         {
             hitPointCoord = new Vector3(hit.point.x, hit.point.y, hit.point.z);
+            UnityEngine.Debug.Log(hitPointCoord);
 
             rb = GetComponent<Rigidbody>();
             rb.useGravity = true;
