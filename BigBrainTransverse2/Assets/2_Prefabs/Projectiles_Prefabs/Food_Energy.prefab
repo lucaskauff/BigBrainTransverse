@@ -127,3 +127,4 @@ MonoBehaviour:
   foodData: {fileID: 11400000, guid: fce48df94ef56da438c80c8fb68cf9be, type: 2}
   foodMoveSpeed: 6
   timeToSelfDestruct: 3
+  Target: {fileID: 0}
