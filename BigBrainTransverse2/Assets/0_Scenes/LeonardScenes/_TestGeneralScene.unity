@@ -323,7 +323,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 54280469036598484, guid: bc6fc7f8e0daffc40b1f0617336144b4, type: 2}
+    - {fileID: 54258058526800678, guid: bc6fc7f8e0daffc40b1f0617336144b4, type: 2}
+    - {fileID: 54942311361731240, guid: bc6fc7f8e0daffc40b1f0617336144b4, type: 2}
+    - {fileID: 54358679370374416, guid: bc6fc7f8e0daffc40b1f0617336144b4, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: bc6fc7f8e0daffc40b1f0617336144b4, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &820975536
@@ -380,6 +384,10 @@ Prefab:
       propertyPath: GestureListeners.Array.data[0]
       value: 
       objectReference: {fileID: 820975538}
+    - target: {fileID: 1463374684144222, guid: 488a57c31c3dc6e4cb1392d1edd86dad, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 488a57c31c3dc6e4cb1392d1edd86dad, type: 2}
   m_IsPrefabParent: 0
@@ -497,6 +505,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114847533780147552, guid: 0a59a014e1d0f70499bec451e07252c8,
+        type: 2}
+      propertyPath: people.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4110707216951004, guid: 0a59a014e1d0f70499bec451e07252c8, type: 2}
       propertyPath: m_LocalPosition.x
       value: -5.7461305
@@ -558,6 +571,32 @@ Prefab:
         type: 2}
       propertyPath: maxNumberOfEntitiesToSpawn
       value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 114847533780147552, guid: 0a59a014e1d0f70499bec451e07252c8,
+        type: 2}
+      propertyPath: intervalToSpawnInSeconds
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114847533780147552, guid: 0a59a014e1d0f70499bec451e07252c8,
+        type: 2}
+      propertyPath: people.Array.data[0]
+      value: 
+      objectReference: {fileID: 1187548129409664, guid: 9f11eddfcd80f27418a71ade2abbb6dd,
+        type: 2}
+    - target: {fileID: 114847533780147552, guid: 0a59a014e1d0f70499bec451e07252c8,
+        type: 2}
+      propertyPath: timeToSpawnScientist
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 114847533780147552, guid: 0a59a014e1d0f70499bec451e07252c8,
+        type: 2}
+      propertyPath: minTimeToScientist
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114847533780147552, guid: 0a59a014e1d0f70499bec451e07252c8,
+        type: 2}
+      propertyPath: maxTimeToScientist
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0a59a014e1d0f70499bec451e07252c8, type: 2}

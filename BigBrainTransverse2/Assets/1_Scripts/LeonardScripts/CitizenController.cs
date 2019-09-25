@@ -9,7 +9,8 @@ public class CitizenController : MonoBehaviour
 {
 
     #region VARIABLE DECLARATIONS
-    
+    [FoldoutGroup("Debug Variables")] public bool isScientist;
+
     [FoldoutGroup("Debug Variables")] [SerializeField] float currentCalories;
     [FoldoutGroup("Debug Variables")] [SerializeField] float currentMaxCalorieTol; //maximum calorie tolerance at any given time
     bool isHitByEnergy = false;
@@ -36,7 +37,7 @@ public class CitizenController : MonoBehaviour
         currentMaxCalorieTol = baseMaxCalorieTol;
         rb = GetComponent<Rigidbody>();
         intervalToRandomizeRotation = Random.Range(0f, 5f);
-        cubeRenderer = GetComponent<Renderer>();
+        cubeRenderer = GetComponentInChildren<Renderer>();
     }
 
     // Update is called once per frame
@@ -71,8 +72,6 @@ public class CitizenController : MonoBehaviour
 
         if (collision.gameObject.tag == "Food")
         {
-            Physics.IgnoreCollision(collision.gameObject.GetComponent<Collider>(), GetComponent<Collider>()); //ignore the collision between food and citizen
-
             switch (foodData.FoodType)
             {
                 case FoodType.greasy:
@@ -91,6 +90,8 @@ public class CitizenController : MonoBehaviour
                 default:
                     break;
             }
+
+            if(isScientist) UnityEngine.Debug.Log("You just hit a scientist");//AnimationManager.DeathCamManager(this.gameObject, "Scientist");
         }
     }
     #endregion
@@ -145,6 +146,15 @@ public class CitizenController : MonoBehaviour
         {
             Dead();
         }
+    }
+
+    void FoodHits(string whichFood)
+    {
+        int greasy = 0;
+        int sweet = 0;
+        float greasePercentage = greasy / (greasy + sweet);
+        float sweetPercentage = sweet / (greasy + sweet);
+        float highestPercentage = Mathf.Max(greasePercentage, sweetPercentage);
     }
 
     void Dead()
