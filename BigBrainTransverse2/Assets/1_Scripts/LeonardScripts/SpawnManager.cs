@@ -22,15 +22,28 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] float timeToSpawnScientist;
     [SerializeField] int minTimeToScientist;
     [SerializeField] int maxTimeToScientist;
+    
+	public float baseSpawnRateInSeconds; //in seconds
+	public float currentSpawnRateMultiplier;
+
+	[Range(0, 100)] public float maxNumberToSpawnInScene;
+	[Range(0, 100)] public float currentNumberInScene;
+
+	[Range(0, 100)] public float percentInScene;	
+	[Range(0, 100)] public float percentSpawnSpeed;
 
     void Start()
     {
         citizensInScene.Clear();
+        baseSpawnRateInSeconds = intervalToSpawnInSeconds;
     }
 	void Update ()
     {
         if (citizensInScene.Count < maxNumberOfEntitiesToSpawn) SpawnMobs();
         else return;
+
+        currentNumberInScene = citizensInScene.Count;
+        maxNumberToSpawnInScene = maxNumberOfEntitiesToSpawn;
     }
 
     void SpawnMobs() 
@@ -50,17 +63,19 @@ public class SpawnManager : MonoBehaviour
                         spawnScientistTimer.Stop();
                         spawnScientistTimer.Reset();
                         timeToSpawnScientist = Random.Range(minTimeToScientist, maxTimeToScientist);
-                    }     
-                    Instantiate(people[Random.Range(0, people.Length-1)], citizenSpawner.transform.position, Quaternion.identity);
+                    }
+                    else Instantiate(people[Random.Range(0, people.Length-1)], citizenSpawner.transform.position, Quaternion.identity);
+
+                    percentInScene = currentNumberInScene/maxNumberToSpawnInScene * 100f;
+                    percentSpawnSpeed = 100f - percentInScene;
+
+                    currentSpawnRateMultiplier = percentSpawnSpeed * 1f/100;
                 }
             }
             spawnTimer.Stop();
             spawnTimer.Reset();
+            intervalToSpawnInSeconds = baseSpawnRateInSeconds;
+            intervalToSpawnInSeconds /= currentSpawnRateMultiplier;	
         }
-    }
-
-    void RandomizeSpawnerRotations() 
-    {
-        
     }
 }
