@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 33561544284797234}
   - component: {fileID: 23326478290651874}
   - component: {fileID: 65025953464580056}
+  - component: {fileID: 54358679370374416}
   m_Layer: 11
   m_Name: EastWall
   m_TagString: Walls
@@ -40,6 +41,7 @@ GameObject:
   - component: {fileID: 33822762481996216}
   - component: {fileID: 23209850569218284}
   - component: {fileID: 65729334735465704}
+  - component: {fileID: 54942311361731240}
   m_Layer: 11
   m_Name: WestWall
   m_TagString: Walls
@@ -106,6 +108,7 @@ GameObject:
   - component: {fileID: 33720656045312410}
   - component: {fileID: 23127606458061374}
   - component: {fileID: 65903311010921110}
+  - component: {fileID: 54280469036598484}
   m_Layer: 11
   m_Name: SouthWall
   m_TagString: Walls
@@ -124,6 +127,7 @@ GameObject:
   - component: {fileID: 33938548153597852}
   - component: {fileID: 23230923300865858}
   - component: {fileID: 65431904806984880}
+  - component: {fileID: 54258058526800678}
   m_Layer: 11
   m_Name: NorthWall
   m_TagString: Walls
@@ -438,6 +442,66 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1815164768850920}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!54 &54258058526800678
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1815164768850920}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 1
+--- !u!54 &54280469036598484
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1811795491159916}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 1
+--- !u!54 &54358679370374416
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1032890251501960}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 1
+--- !u!54 &54942311361731240
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1504637107492794}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 1
 --- !u!64 &64926067862418306
 MeshCollider:
   m_ObjectHideFlags: 1

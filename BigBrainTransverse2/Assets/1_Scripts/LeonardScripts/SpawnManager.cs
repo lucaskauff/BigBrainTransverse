@@ -11,11 +11,17 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] List<GameObject> spawnPointsList = new List<GameObject>();
     [ShowInInspector] public static List<GameObject> citizensInScene = new List<GameObject>();
     [SerializeField] GameObject[] people;
-    [SerializeField] GameObject scientist;
     [SerializeField] float numberToSpawn;
+
+    [SerializeField] Stopwatch spawnTimer = new Stopwatch();
     [SerializeField] float intervalToSpawnInSeconds;
-    [SerializeField] Stopwatch timer = new Stopwatch();
-    [SerializeField] bool hasSpawnedScientist = false;
+
+    //Scientist Spawning Values
+    [SerializeField] GameObject scientist;
+    [SerializeField] Stopwatch spawnScientistTimer = new Stopwatch();
+    [SerializeField] float timeToSpawnScientist;
+    [SerializeField] int minTimeToScientist;
+    [SerializeField] int maxTimeToScientist;
 
     void Start()
     {
@@ -29,25 +35,27 @@ public class SpawnManager : MonoBehaviour
 
     void SpawnMobs() 
     {
-        timer.Start();
+        spawnTimer.Start();
+        spawnScientistTimer.Start();
 
-        if (timer.Elapsed.TotalSeconds >= intervalToSpawnInSeconds) {
+        if (spawnTimer.Elapsed.TotalSeconds >= intervalToSpawnInSeconds) {
             for (int i = 0; i < numberToSpawn; i++) 
             {
                 foreach (GameObject citizenSpawner in spawnPointsList) 
                 {
-                    if (!hasSpawnedScientist)
+                    if (spawnScientistTimer.Elapsed.TotalSeconds >= timeToSpawnScientist)
                     {
                         scientist = Instantiate(people[Random.Range(0, people.Length-1)], citizenSpawner.transform.position, Quaternion.identity);
                         scientist.GetComponent<CitizenController>().isScientist = true;
-                        hasSpawnedScientist = true;                      
+                        spawnScientistTimer.Stop();
+                        spawnScientistTimer.Reset();
+                        timeToSpawnScientist = Random.Range(minTimeToScientist, maxTimeToScientist);
                     }     
                     Instantiate(people[Random.Range(0, people.Length-1)], citizenSpawner.transform.position, Quaternion.identity);
                 }
             }
-            timer.Stop();
-            timer.Reset();
-            hasSpawnedScientist = false;
+            spawnTimer.Stop();
+            spawnTimer.Reset();
         }
     }
 

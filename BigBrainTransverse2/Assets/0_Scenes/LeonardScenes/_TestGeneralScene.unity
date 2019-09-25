@@ -323,27 +323,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 65025953464580056, guid: bc6fc7f8e0daffc40b1f0617336144b4,
-        type: 2}
-      propertyPath: m_IsTrigger
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 65431904806984880, guid: bc6fc7f8e0daffc40b1f0617336144b4,
-        type: 2}
-      propertyPath: m_IsTrigger
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 65729334735465704, guid: bc6fc7f8e0daffc40b1f0617336144b4,
-        type: 2}
-      propertyPath: m_IsTrigger
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 65903311010921110, guid: bc6fc7f8e0daffc40b1f0617336144b4,
-        type: 2}
-      propertyPath: m_IsTrigger
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 54280469036598484, guid: bc6fc7f8e0daffc40b1f0617336144b4, type: 2}
+    - {fileID: 54258058526800678, guid: bc6fc7f8e0daffc40b1f0617336144b4, type: 2}
+    - {fileID: 54942311361731240, guid: bc6fc7f8e0daffc40b1f0617336144b4, type: 2}
+    - {fileID: 54358679370374416, guid: bc6fc7f8e0daffc40b1f0617336144b4, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: bc6fc7f8e0daffc40b1f0617336144b4, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &820975536
@@ -591,7 +575,7 @@ Prefab:
     - target: {fileID: 114847533780147552, guid: 0a59a014e1d0f70499bec451e07252c8,
         type: 2}
       propertyPath: intervalToSpawnInSeconds
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 114847533780147552, guid: 0a59a014e1d0f70499bec451e07252c8,
         type: 2}
@@ -599,6 +583,21 @@ Prefab:
       value: 
       objectReference: {fileID: 1187548129409664, guid: 9f11eddfcd80f27418a71ade2abbb6dd,
         type: 2}
+    - target: {fileID: 114847533780147552, guid: 0a59a014e1d0f70499bec451e07252c8,
+        type: 2}
+      propertyPath: timeToSpawnScientist
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 114847533780147552, guid: 0a59a014e1d0f70499bec451e07252c8,
+        type: 2}
+      propertyPath: minTimeToScientist
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114847533780147552, guid: 0a59a014e1d0f70499bec451e07252c8,
+        type: 2}
+      propertyPath: maxTimeToScientist
+      value: 30
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0a59a014e1d0f70499bec451e07252c8, type: 2}
   m_IsPrefabParent: 0
