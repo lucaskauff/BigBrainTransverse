@@ -75,9 +75,9 @@ public class PresentationScript : MonoBehaviour
 			
 			if(slideChangeWithGestures && gestureListener)
 			{
-				if(gestureListener.IsSwipeLeft())
+				if(gestureListener.IsSwipeLeftP1())
 					RotateToNext();
-				else if(gestureListener.IsSwipeRight())
+				else if(gestureListener.IsSwipeRightP1())
 					RotateToPrevious();
 			}
 			
