@@ -5,14 +5,22 @@ using UnityEngine;
 
 class FoodBehavior : MonoBehaviour
 {
+    //GameManager
+    NewInputManager inputManager;
+
     [SerializeField] FoodData foodData;
     [FoldoutGroup("Food Variables")] [SerializeField] float foodMoveSpeed;
-    [FoldoutGroup("Internal Variables")] [SerializeField] float timeToSelfDestruct;
+    [FoldoutGroup("Internal Variables")][SerializeField] float timeToSelfDestruct;
 
     Rigidbody rb;
     Vector3 hitPointCoord;
 
     Stopwatch timer = new Stopwatch();
+
+    private void Start()
+    {
+        inputManager = NewGameManager.Instance.inputManager;
+    }
 
     void Update()
     {
@@ -21,7 +29,9 @@ class FoodBehavior : MonoBehaviour
 
     void MoveToPosition(Vector3 rayOrigin)
     {
-        Ray ray = Camera.main.ViewportPointToRay(rayOrigin);
+        Vector3 relative = new Vector3(0, -1, 1);
+        //Vector3 relative = transform.InverseTransformDirection(Vector3.forward);
+        Ray ray = new Ray(transform.position, relative);
         //Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
 
