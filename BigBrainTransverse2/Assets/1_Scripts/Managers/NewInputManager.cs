@@ -4,8 +4,17 @@ using UnityEngine;
 
 public class NewInputManager : MonoBehaviour
 {
+    [Header("Objects to serialize")]
+    [SerializeField] PlayerKnob[] playerKnobs;
+
+    [Header("Serializable variables")]
+    [SerializeField] KinectWrapper.NuiSkeletonPositionIndex[] TrackedJoints;
+    [SerializeField] float smoothFactor = 5f;
+
     //Private
     GestureListener gestureListener;
+
+    float distanceToCamera;
 
     //Kinect inputs
     //Player 1
@@ -24,6 +33,8 @@ public class NewInputManager : MonoBehaviour
     void Start()
     {
         gestureListener = FindObjectOfType<GestureListener>();
+
+
     }
 
     void Update ()
@@ -32,6 +43,13 @@ public class NewInputManager : MonoBehaviour
         KinectManager kinectManager = KinectManager.Instance;
         if (kinectManager && kinectManager.IsInitialized() && kinectManager.IsUserDetected())
         {
+            /*
+            for (int i = 0; i < iJointIndexes.Length; i++)
+            {
+                iJointIndexes[i] = (int)TrackedJoints[i];
+            }
+            */
+
             if (gestureListener)
             {
                 if (gestureListener.IsSwipeDownP1())
