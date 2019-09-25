@@ -34,6 +34,8 @@ public class PlayerController : MonoBehaviour
     {
         //UnityEngine.Debug.DrawRay(Camera.main.transform.position, transform.position);
 
+        if (Input.GetKeyDown(KeyCode.Space)) ShootProjectile();
+
         UpdatePosition();
 
         WeaponSwitch();

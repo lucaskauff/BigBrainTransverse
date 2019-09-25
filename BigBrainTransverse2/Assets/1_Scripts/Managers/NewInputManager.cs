@@ -18,7 +18,7 @@ public class NewInputManager : MonoBehaviour
 
     int[] iJointIndexes;
     PlayerController playerKnobExample;
-    float distanceToCamera;
+    public float distanceToCamera;
 
     //Kinect inputs
     //Player 1
