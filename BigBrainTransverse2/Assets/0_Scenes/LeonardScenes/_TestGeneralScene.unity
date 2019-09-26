@@ -203,6 +203,48 @@ GameObject:
   m_PrefabParentObject: {fileID: 1444169008444252, guid: bc355aa629c81e5449223483fd538ad4,
     type: 2}
   m_PrefabInternal: {fileID: 2096667394}
+--- !u!1001 &435938846
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4772566922784102, guid: 69fbc086f6263184f96e5dbec051310f, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4772566922784102, guid: 69fbc086f6263184f96e5dbec051310f, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4772566922784102, guid: 69fbc086f6263184f96e5dbec051310f, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4772566922784102, guid: 69fbc086f6263184f96e5dbec051310f, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4772566922784102, guid: 69fbc086f6263184f96e5dbec051310f, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4772566922784102, guid: 69fbc086f6263184f96e5dbec051310f, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4772566922784102, guid: 69fbc086f6263184f96e5dbec051310f, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4772566922784102, guid: 69fbc086f6263184f96e5dbec051310f, type: 2}
+      propertyPath: m_RootOrder
+      value: 12
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 69fbc086f6263184f96e5dbec051310f, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &520862628
 GameObject:
   m_ObjectHideFlags: 0
@@ -581,7 +623,7 @@ Prefab:
         type: 2}
       propertyPath: people.Array.data[0]
       value: 
-      objectReference: {fileID: 1187548129409664, guid: 9f11eddfcd80f27418a71ade2abbb6dd,
+      objectReference: {fileID: 1257406427523670, guid: 69fbc086f6263184f96e5dbec051310f,
         type: 2}
     - target: {fileID: 114847533780147552, guid: 0a59a014e1d0f70499bec451e07252c8,
         type: 2}
@@ -598,6 +640,12 @@ Prefab:
       propertyPath: maxTimeToScientist
       value: 30
       objectReference: {fileID: 0}
+    - target: {fileID: 114847533780147552, guid: 0a59a014e1d0f70499bec451e07252c8,
+        type: 2}
+      propertyPath: people.Array.data[1]
+      value: 
+      objectReference: {fileID: 1187548129409664, guid: 9f11eddfcd80f27418a71ade2abbb6dd,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0a59a014e1d0f70499bec451e07252c8, type: 2}
   m_IsPrefabParent: 0
