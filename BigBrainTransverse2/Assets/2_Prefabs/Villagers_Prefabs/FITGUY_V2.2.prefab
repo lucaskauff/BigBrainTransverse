@@ -832,10 +832,12 @@ MonoBehaviour:
   isScientist: 0
   currentCalories: 0
   currentMaxCalorieTol: 1
-  baseMaxCalorieTol: 20
-  citizenMoveSpeed: 3
+  baseMaxCalorieTol: 1
+  citizenMoveSpeed: 1.5
   intervalToRandomizeRotation: 0
   speedDecreaseMultiplier: 1
+  greasy: 0
+  sweet: 0
 --- !u!114 &114309927066219474
 MonoBehaviour:
   m_ObjectHideFlags: 1

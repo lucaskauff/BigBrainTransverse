@@ -38,19 +38,23 @@ public class CitizenController : MonoBehaviour
     Stopwatch timer = new Stopwatch();
     Rigidbody rb;
     Vector3 baseRotationVector;
+
+    Vector3 theCamera;
     #endregion
 
     #region //BASE UNITY CALLBACKS
     // Use this for initialization
     void Start()
     {
-        NewGameManager gameManager;
+        gameManager = NewGameManager.Instance;
 
         SpawnManager.citizensInScene.Add(this.gameObject);
         currentMaxCalorieTol = baseMaxCalorieTol;
         rb = GetComponent<Rigidbody>();
         intervalToRandomizeRotation = Random.Range(0f, 5f);
         cubeRenderer = GetComponentInChildren<Renderer>();
+
+        theCamera = Camera.main.transform.position;
     }
 
     // Update is called once per frame
@@ -163,6 +167,8 @@ public class CitizenController : MonoBehaviour
         //if(isHitByEnergy) play Energy kill anim;
         SpawnManager.citizensInScene.Remove(this.gameObject);
         myCol.enabled = false;
+
+        bubble.transform.LookAt(theCamera);
 
         if (!gameManager.isDeathAnimOnGoing)
             bubble.SetTrigger("FadeIn");
