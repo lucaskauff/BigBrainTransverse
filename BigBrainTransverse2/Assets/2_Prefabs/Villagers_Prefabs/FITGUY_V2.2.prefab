@@ -836,6 +836,8 @@ MonoBehaviour:
   citizenMoveSpeed: 3
   intervalToRandomizeRotation: 0
   speedDecreaseMultiplier: 1
+  greasy: 0
+  sweet: 0
 --- !u!114 &114309927066219474
 MonoBehaviour:
   m_ObjectHideFlags: 1
