@@ -20,7 +20,10 @@ public class RetourCamera : MonoBehaviour
 
     private void Update()
     {
-        RenderRealtimeCamera(kinectManager);
+        if (kinectManager && kinectManager.IsInitialized())
+        {
+            RenderRealtimeCamera(kinectManager);
+        }
 
         if (inputManager.switchCameraOnOff)
         {

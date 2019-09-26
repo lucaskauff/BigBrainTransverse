@@ -14,13 +14,16 @@ public class UIManager : MonoBehaviour
     [SerializeField] Image[] playerGauges; 
 
     [Header("Serializable variables")]
-    [SerializeField, Range(60, 300)] int maxTimer;
+    [SerializeField, Range(60, 300)] float maxTimer;
     [SerializeField, Range(1, 25)] int maxPeopleDead;
     [SerializeField] string nextSceneName;
 
     //Private
-    float timer;
-    string finaltext;
+    float currentTimer;
+    int minutes;
+    float seconds;
+    float deciSeconds;
+    float centiSeconds;
 
     private void Start()
     {
@@ -41,15 +44,21 @@ public class UIManager : MonoBehaviour
     //To update with minutes and seconds
     void TimerTranslation()
     {
-        timer = Time.time;
-        timer = (int)timer;
+        currentTimer = maxTimer - Time.time;
+        
+        seconds = (int)currentTimer - minutes*60;
+        deciSeconds = (int)((currentTimer - minutes*60 - seconds) * 10);
+        centiSeconds = (int)((currentTimer - minutes*60 - seconds - (deciSeconds / 10)) * 100);
 
-        finaltext = timer.ToString();
+        if (seconds >= 60)
+            minutes += 1;
 
-        timerText.text = finaltext;
+        timerText.text = minutes.ToString()
+            + "'" + (seconds).ToString()
+            + "''" + deciSeconds.ToString() + centiSeconds.ToString();
 
         //Timer over
-        if (timer >= maxTimer)
+        if (currentTimer <= 0)
         {
             Debug.Log("Game Over");
             //sceneLoader.ChangeScene(nextSceneName);
@@ -59,8 +68,11 @@ public class UIManager : MonoBehaviour
     void UpdateGauges(int playerIndex)
     {
         playerGauges[playerIndex].fillAmount = gameManager.peopleKilled[playerIndex] / maxPeopleDead;
-
-        Debug.Log("Game Over");
-        //sceneLoader.ChangeScene(nextSceneName);
+        
+        if (gameManager.peopleKilled[playerIndex] >= maxPeopleDead)
+        {
+            Debug.Log("Game Over");
+            //sceneLoader.ChangeScene(nextSceneName);
+        }        
     }
 }
