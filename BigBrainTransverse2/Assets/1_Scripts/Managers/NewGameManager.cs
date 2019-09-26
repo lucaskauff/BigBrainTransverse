@@ -12,6 +12,7 @@ public class NewGameManager : Singleton<NewGameManager>
     public NewInputManager inputManager;
 
     public int[] selectedLobbyPlayers;
+    public int[] peopleKilled;
 
     public bool isDeathAnimOnGoing = false;
 
