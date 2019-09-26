@@ -1,52 +1,57 @@
 fileFormatVersion: 2
-guid: f8fcc5ede8d85e6428cc66a24374a494
+guid: 7adbdfcb00c256640bbad6f4af1a1930
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: ARM_LEFT002
-    100002: ARM_RIGHT003
-    100004: BODY_004
-    100006: BOTTLE002
-    100008: //RootNode
-    100010: HEAD_004
-    100012: HEADSET002
-    100014: LEG_LEFT002
-    100016: LEG_RIGHT_004
-    400000: ARM_LEFT002
-    400002: ARM_RIGHT003
-    400004: BODY_004
-    400006: BOTTLE002
-    400008: //RootNode
-    400010: HEAD_004
-    400012: HEADSET002
-    400014: LEG_LEFT002
-    400016: LEG_RIGHT_004
+    100000: BODY_004
+    100002: boneNUB_spine_HEAD
+    100004: bones_L_biceps
+    100006: bones_L_biceps 1
+    100008: bones_L_calf
+    100010: bones_L_foot
+    100012: bones_L_forearm
+    100014: bones_L_forearm 1
+    100016: bones_L_hand
+    100018: bones_L_hand 1
+    100020: bones_L_thigh
+    100022: bones_R_calf
+    100024: bones_R_foot
+    100026: bones_R_thigh
+    100028: bones_spine_HEAD
+    100030: bones_spine_HIGH
+    100032: bones_spine_LOW
+    100034: bonesNUB_L_foot
+    100036: bonesNUB_L_hand
+    100038: bonesNUB_L_hand 1
+    100040: bonesNUB_R_foot
+    100042: //RootNode
+    400000: BODY_004
+    400002: boneNUB_spine_HEAD
+    400004: bones_L_biceps
+    400006: bones_L_biceps 1
+    400008: bones_L_calf
+    400010: bones_L_foot
+    400012: bones_L_forearm
+    400014: bones_L_forearm 1
+    400016: bones_L_hand
+    400018: bones_L_hand 1
+    400020: bones_L_thigh
+    400022: bones_R_calf
+    400024: bones_R_foot
+    400026: bones_R_thigh
+    400028: bones_spine_HEAD
+    400030: bones_spine_HIGH
+    400032: bones_spine_LOW
+    400034: bonesNUB_L_foot
+    400036: bonesNUB_L_hand
+    400038: bonesNUB_L_hand 1
+    400040: bonesNUB_R_foot
+    400042: //RootNode
     2100000: NIGGA
-    2300000: ARM_LEFT002
-    2300002: ARM_RIGHT003
-    2300004: BODY_004
-    2300006: BOTTLE002
-    2300008: HEAD_004
-    2300010: HEADSET002
-    2300012: LEG_LEFT002
-    2300014: LEG_RIGHT_004
-    3300000: ARM_LEFT002
-    3300002: ARM_RIGHT003
-    3300004: BODY_004
-    3300006: BOTTLE002
-    3300008: HEAD_004
-    3300010: HEADSET002
-    3300012: LEG_LEFT002
-    3300014: LEG_RIGHT_004
-    4300000: ARM_LEFT002
-    4300002: ARM_RIGHT003
-    4300004: BODY_004
-    4300006: BOTTLE002
-    4300008: HEADSET002
-    4300010: HEAD_004
-    4300012: LEG_LEFT002
-    4300014: LEG_RIGHT_004
-    11100000: //RootNode
+    4300000: BODY_004
+    7400000: Run
+    9500000: //RootNode
+    13700000: BODY_004
   externalObjects:
   - first:
       type: UnityEngine:Material
@@ -79,7 +84,35 @@ ModelImporter:
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Run
+      takeName: Take 001
+      firstFrame: 0
+      lastFrame: 30
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 1
   meshes:
     lODScreenPercentages: []
@@ -124,10 +157,10 @@ ModelImporter:
     rootMotionBoneName: 
     rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
-    hasExtraRoot: 1
+    hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 1
+  animationType: 2
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
