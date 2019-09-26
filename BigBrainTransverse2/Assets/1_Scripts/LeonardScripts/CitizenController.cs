@@ -51,7 +51,7 @@ public class CitizenController : MonoBehaviour
         SpawnManager.citizensInScene.Add(this.gameObject);
         currentMaxCalorieTol = baseMaxCalorieTol;
         rb = GetComponent<Rigidbody>();
-        intervalToRandomizeRotation = Random.Range(0f, 5f);
+        intervalToRandomizeRotation = Random.Range(2f, 5f);
         cubeRenderer = GetComponentInChildren<Renderer>();
 
         theCamera = Camera.main.transform.position;

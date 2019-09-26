@@ -274,10 +274,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d54ac63906b951e448bbf4208c21b3dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ultimateEnabled: 0
+  isPlayerOne: 0
   equippedFood: {fileID: 0}
   currentlySelectedFood: 0
   foodWeapons: []
-  spawnPoint: {fileID: 0}
 --- !u!114 &114773522086206466
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -303,12 +304,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7dffc57a8fb2a24280ba5d6e7684b2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myCol: {fileID: 0}
+  myAnim: {fileID: 0}
+  bubble: {fileID: 0}
+  isScientist: 0
   currentCalories: 0
   currentMaxCalorieTol: 0
   baseMaxCalorieTol: 0
   citizenMoveSpeed: 0
   intervalToRandomizeRotation: 0
   speedDecreaseMultiplier: 0
+  greasy: 0
+  sweet: 0
 --- !u!114 &114913516362588890
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -322,9 +329,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxNumberOfEntitiesToSpawn: 0
   spawnPointsList: []
-  people: {fileID: 0}
+  people:
+  - {fileID: 0}
   numberToSpawn: 0
-  intervalToSpawnInSeconds: 0
+  intervalToSpawnInSeconds: 20
+  scientist: {fileID: 0}
+  timeToSpawnScientist: 0
+  minTimeToScientist: 15
+  maxTimeToScientist: 30
+  baseSpawnRateInSeconds: 0
+  currentSpawnRateMultiplier: 0
+  maxNumberToSpawnInScene: 0
+  currentNumberInScene: 0
+  percentInScene: 0
+  percentSpawnSpeed: 0
 --- !u!114 &114968838651169642
 MonoBehaviour:
   m_ObjectHideFlags: 1
