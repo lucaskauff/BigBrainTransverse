@@ -12,9 +12,10 @@ public class CitizenController : MonoBehaviour
     NewGameManager gameManager;
 
     [FoldoutGroup("Internal Components")] [SerializeField] Collider myCol;
+    [FoldoutGroup("Internal Components")] [SerializeField] Rigidbody myRb;
     [FoldoutGroup("Internal Components")] [SerializeField] Animator myAnim;
 
-    [FoldoutGroup("Objects to serialize")] [SerializeField] Animator bubble;
+    [FoldoutGroup("Objects to serialize")] [SerializeField] TheBubble bubble;
     //[FoldoutGroup("Objects to serialize")] [SerializeField] Animator reason;
 
     [FoldoutGroup("Debug Variables")] public bool isScientist;
@@ -23,6 +24,7 @@ public class CitizenController : MonoBehaviour
     [FoldoutGroup("Debug Variables")] [SerializeField] float currentMaxCalorieTol; //maximum calorie tolerance at any given time
     bool isHitByEnergy = false;
 
+    [FoldoutGroup("Internal Variables")] bool isDead = false;
     [FoldoutGroup("Internal Variables")] [SerializeField] float baseMaxCalorieTol; //maximum calorie tolerance when game starts
     [FoldoutGroup("Internal Variables")] [SerializeField] float citizenMoveSpeed;
     [FoldoutGroup("Internal Variables")] [SerializeField] float intervalToRandomizeRotation;
@@ -60,6 +62,8 @@ public class CitizenController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (isDead) return;
+
         Movement();
 
         timer.Start();
@@ -89,6 +93,8 @@ public class CitizenController : MonoBehaviour
 
         if (collision.gameObject.tag == "Food")
         {
+            myAnim.SetTrigger("Hit");
+
             switch (foodData.FoodType)
             {
                 case FoodType.greasy:
@@ -162,18 +168,24 @@ public class CitizenController : MonoBehaviour
 
     void Dead()
     {
-        //if(greasy > sweet) play Greasy anim;
-        //if(greasy < sweet) play Sweet Anim;
-        //if(isHitByEnergy) play Energy kill anim;
+        isDead = true;
+
         SpawnManager.citizensInScene.Remove(this.gameObject);
         myCol.enabled = false;
-
-        bubble.transform.LookAt(theCamera);
+        myRb.constraints = RigidbodyConstraints.FreezeAll;
+        
+        if (greasy > sweet) myAnim.SetInteger("DeadType", 1);
+        else if (greasy < sweet) myAnim.SetInteger("DeadType", 2);
+        else if (isHitByEnergy) myAnim.SetInteger("DeadType", 3);
 
         if (!gameManager.isDeathAnimOnGoing)
-            bubble.SetTrigger("FadeIn");
-
-        //Lock Animation on last frame
+        {
+            bubble.transform.LookAt(theCamera);
+            if (greasy > sweet) bubble.whichDeath = 0;
+            else if (greasy < sweet) bubble.whichDeath = 1;
+            else if(isHitByEnergy) bubble.whichDeath = 2;
+            bubble.GetComponent<Animator>().SetTrigger("FadeIn");
+        }
     }
     #endregion
 }

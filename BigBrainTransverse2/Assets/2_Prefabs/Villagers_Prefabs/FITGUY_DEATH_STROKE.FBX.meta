@@ -50,6 +50,7 @@ ModelImporter:
     2100000: NIGGA
     4300000: BODY_004
     7400000: Hit
+    7400002: DeathStroke
     9500000: //RootNode
     13700000: BODY_004
   externalObjects: {}
@@ -81,7 +82,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Hit
+      name: DeathStroke
       takeName: Take 001
       firstFrame: 0
       lastFrame: 35
