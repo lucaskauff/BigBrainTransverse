@@ -22,6 +22,9 @@ public class CitizenController : MonoBehaviour
     float step;
     FoodData foodData;
 
+    [FoldoutGroup("Food Hit Values")] [SerializeField] int greasy = 0;
+    [FoldoutGroup("Food Hit Values")] [SerializeField] int sweet = 0;
+
     //Components
     Renderer cubeRenderer;
     Stopwatch timer = new Stopwatch();
@@ -77,10 +80,12 @@ public class CitizenController : MonoBehaviour
                 case FoodType.greasy:
                     GreaseEffect(foodData.CalorieGainOnHit);
                     cubeRenderer.material.SetColor("_Color", Color.red);
+                    greasy++;
                     break;
                 case FoodType.sweet:
                     SweetEffect(foodData.CalorieGainOnHit, foodData.CalorieToleranceDecrease);
                     cubeRenderer.material.SetColor("_Color", Color.blue);
+                    sweet++;
                     break;
                 case FoodType.energy:
                     EnergyEffect(foodData.CalorieGainOnHit, foodData.CalorieGainOverTime);
@@ -118,25 +123,18 @@ public class CitizenController : MonoBehaviour
 
     void GreaseEffect(int caloriesGained)
     {
-        UnityEngine.Debug.Log("I just gained " + caloriesGained + " calories");
-
         currentCalories += caloriesGained;
-
         citizenMoveSpeed /= speedDecreaseMultiplier;
     }
 
     void SweetEffect(int caloriesGained, int toleranceDecrease)
     {
-        UnityEngine.Debug.Log("I just gained " + caloriesGained + " calories and my tolerance went down by " + toleranceDecrease);
-
         currentCalories += caloriesGained;
         currentMaxCalorieTol -= toleranceDecrease;
     }
 
     void EnergyEffect(int caloriesGained, int overTimeCalGain)
     {
-        UnityEngine.Debug.Log("I just gained " + caloriesGained + " calories and i'm gaining " + overTimeCalGain + " calories over time");
-
         currentCalories += overTimeCalGain * Time.deltaTime;
     }
 
@@ -148,21 +146,13 @@ public class CitizenController : MonoBehaviour
         }
     }
 
-    void FoodHits(string whichFood)
-    {
-        int greasy = 0;
-        int sweet = 0;
-        float greasePercentage = greasy / (greasy + sweet);
-        float sweetPercentage = sweet / (greasy + sweet);
-        float highestPercentage = Mathf.Max(greasePercentage, sweetPercentage);
-    }
-
     void Dead()
     {
+        //if(greasy > sweet) play Greasy anim;
+        //if(greasy < sweet) play Sweet Anim;
+        //if(isHitByEnergy) play Energy kill anim;
         SpawnManager.citizensInScene.Remove(this.gameObject);
         Destroy(gameObject);
-        //Destroy Colliders
-        //Lock Animation on last frame
     }
     #endregion
 }
