@@ -7,30 +7,33 @@ public class GestureListener : MonoBehaviour, KinectGestures.GestureListenerInte
 	// GUI Text to display the gesture messages.
 	public GUIText GestureInfo;
 
+    NewInputManager inputManager;
     KinectManager manager;
 
-    private bool swipeLeft;
-	private bool swipeRight;
+    private bool swipeLeftP1;
+	private bool swipeRightP1;
     private bool swipeDownP1;
 
+    private bool swipeLeftP2;
+    private bool swipeRightP2;
     private bool swipeDownP2;
 	
-	public bool IsSwipeLeft()
+	public bool IsSwipeLeftP1()
 	{
-		if(swipeLeft)
+		if(swipeLeftP1)
 		{
-			swipeLeft = false;
+			swipeLeftP1 = false;
 			return true;
 		}
 		
 		return false;
 	}
 	
-	public bool IsSwipeRight()
+	public bool IsSwipeRightP1()
 	{
-		if(swipeRight)
+		if(swipeRightP1)
 		{
-			swipeRight = false;
+			swipeRightP1 = false;
 			return true;
 		}
 		
@@ -42,6 +45,28 @@ public class GestureListener : MonoBehaviour, KinectGestures.GestureListenerInte
         if (swipeDownP1)
         {
             swipeDownP1 = false;
+            return true;
+        }
+
+        return false;
+    }
+
+    public bool IsSwipeLeftP2()
+    {
+        if (swipeLeftP2)
+        {
+            swipeLeftP2 = false;
+            return true;
+        }
+
+        return false;
+    }
+
+    public bool IsSwipeRightP2()
+    {
+        if (swipeRightP2)
+        {
+            swipeRightP2 = false;
             return true;
         }
 
@@ -61,6 +86,7 @@ public class GestureListener : MonoBehaviour, KinectGestures.GestureListenerInte
 
     private void Start()
     {
+        inputManager = NewGameManager.Instance.inputManager;
         manager = KinectManager.Instance;
     }
 
@@ -103,21 +129,29 @@ public class GestureListener : MonoBehaviour, KinectGestures.GestureListenerInte
 		}
 		
         if (userId == manager.GetPlayer1ID())
-        {
-            /*
-            if (gesture == KinectGestures.Gestures.SwipeLeft)
-                swipeLeft = true;
-            else if (gesture == KinectGestures.Gestures.SwipeRight)
-                swipeRight = true;
-            */
-            if (gesture == KinectGestures.Gestures.SwipeDown)
-                swipeDownP1 = true;
+        {            
+            if (joint == inputManager.gestureJoint)
+            {
+                if (gesture == KinectGestures.Gestures.SwipeLeft)
+                    swipeLeftP1 = true;
+                else if (gesture == KinectGestures.Gestures.SwipeRight)
+                    swipeRightP1 = true;
+                else if (gesture == KinectGestures.Gestures.SwipeDown)
+                    swipeDownP1 = true;
+            }
         }
 
         if (userId == manager.GetPlayer2ID())
         {
-            if (gesture == KinectGestures.Gestures.SwipeDown)
-                swipeDownP2 = true;
+            if (joint == inputManager.gestureJoint)
+            {
+                if (gesture == KinectGestures.Gestures.SwipeLeft)
+                    swipeLeftP2 = true;
+                else if (gesture == KinectGestures.Gestures.SwipeRight)
+                    swipeRightP2 = true;
+                else if (gesture == KinectGestures.Gestures.SwipeDown)
+                    swipeDownP2 = true;
+            }
         }
 
         return true;

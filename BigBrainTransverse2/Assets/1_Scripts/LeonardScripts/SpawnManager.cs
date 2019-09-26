@@ -22,11 +22,6 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] float timeToSpawnScientist;
     [SerializeField] int minTimeToScientist;
     [SerializeField] int maxTimeToScientist;
-
-
-
-
-
     
 	public float baseSpawnRateInSeconds; //in seconds
 	public float currentSpawnRateMultiplier;
