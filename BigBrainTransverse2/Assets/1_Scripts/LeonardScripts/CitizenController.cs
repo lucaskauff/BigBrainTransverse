@@ -7,8 +7,16 @@ using System.Diagnostics;
 
 public class CitizenController : MonoBehaviour
 {
-
     #region VARIABLE DECLARATIONS
+    //GameManager
+    NewGameManager gameManager;
+
+    [FoldoutGroup("Internal Components")] [SerializeField] Collider myCol;
+    [FoldoutGroup("Internal Components")] [SerializeField] Animator myAnim;
+
+    [FoldoutGroup("Objects to serialize")] [SerializeField] Animator bubble;
+    //[FoldoutGroup("Objects to serialize")] [SerializeField] Animator reason;
+
     [FoldoutGroup("Debug Variables")] public bool isScientist;
 
     [FoldoutGroup("Debug Variables")] [SerializeField] float currentCalories;
@@ -36,6 +44,8 @@ public class CitizenController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        NewGameManager gameManager;
+
         SpawnManager.citizensInScene.Add(this.gameObject);
         currentMaxCalorieTol = baseMaxCalorieTol;
         rb = GetComponent<Rigidbody>();
@@ -152,7 +162,12 @@ public class CitizenController : MonoBehaviour
         //if(greasy < sweet) play Sweet Anim;
         //if(isHitByEnergy) play Energy kill anim;
         SpawnManager.citizensInScene.Remove(this.gameObject);
-        Destroy(gameObject);
+        myCol.enabled = false;
+
+        if (!gameManager.isDeathAnimOnGoing)
+            bubble.SetTrigger("FadeIn");
+
+        //Lock Animation on last frame
     }
     #endregion
 }

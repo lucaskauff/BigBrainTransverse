@@ -1,0 +1,254 @@
+fileFormatVersion: 2
+guid: d79eb0c5870531c45b230e916f1e5890
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: ARM_LEFT
+    100002: ARM_LEFT001
+    100004: ARM_RIGHT
+    100006: ARM_RIGHT001
+    100008: ARM_RIGHT002
+    100010: BODY_002
+    100012: BODY_003
+    100014: BODY_004
+    100016: boneNUB_spine_HEAD
+    100018: bones_L_biceps
+    100020: bones_L_biceps 1
+    100022: bones_L_calf
+    100024: bones_L_foot
+    100026: bones_L_forearm
+    100028: bones_L_forearm 1
+    100030: bones_L_hand
+    100032: bones_L_hand 1
+    100034: bones_L_thigh
+    100036: bones_R_calf
+    100038: bones_R_foot
+    100040: bones_R_thigh
+    100042: bones_spine_HEAD
+    100044: bones_spine_HIGH
+    100046: bones_spine_LOW
+    100048: bonesNUB_L_foot
+    100050: bonesNUB_L_hand
+    100052: bonesNUB_L_hand 1
+    100054: bonesNUB_R_foot
+    100056: BOTTLE
+    100058: BOTTLE001
+    100060: //RootNode
+    100062: HEAD_002
+    100064: HEAD_003
+    100066: HEADSET
+    100068: HEADSET001
+    100070: LEG_LEFT
+    100072: LEG_LEFT001
+    100074: LEG_RIGHT_002
+    100076: LEG_RIGHT_003
+    400000: ARM_LEFT
+    400002: ARM_LEFT001
+    400004: ARM_RIGHT
+    400006: ARM_RIGHT001
+    400008: ARM_RIGHT002
+    400010: BODY_002
+    400012: BODY_003
+    400014: BODY_004
+    400016: boneNUB_spine_HEAD
+    400018: bones_L_biceps
+    400020: bones_L_biceps 1
+    400022: bones_L_calf
+    400024: bones_L_foot
+    400026: bones_L_forearm
+    400028: bones_L_forearm 1
+    400030: bones_L_hand
+    400032: bones_L_hand 1
+    400034: bones_L_thigh
+    400036: bones_R_calf
+    400038: bones_R_foot
+    400040: bones_R_thigh
+    400042: bones_spine_HEAD
+    400044: bones_spine_HIGH
+    400046: bones_spine_LOW
+    400048: bonesNUB_L_foot
+    400050: bonesNUB_L_hand
+    400052: bonesNUB_L_hand 1
+    400054: bonesNUB_R_foot
+    400056: BOTTLE
+    400058: BOTTLE001
+    400060: //RootNode
+    400062: HEAD_002
+    400064: HEAD_003
+    400066: HEADSET
+    400068: HEADSET001
+    400070: LEG_LEFT
+    400072: LEG_LEFT001
+    400074: LEG_RIGHT_002
+    400076: LEG_RIGHT_003
+    2100000: NIGGA
+    2100002: No Name
+    2300000: ARM_LEFT
+    2300002: ARM_LEFT001
+    2300004: ARM_RIGHT
+    2300006: ARM_RIGHT001
+    2300008: ARM_RIGHT002
+    2300010: BODY_002
+    2300012: BODY_003
+    2300014: BOTTLE
+    2300016: BOTTLE001
+    2300018: HEAD_002
+    2300020: HEAD_003
+    2300022: HEADSET
+    2300024: HEADSET001
+    2300026: LEG_LEFT
+    2300028: LEG_LEFT001
+    2300030: LEG_RIGHT_002
+    2300032: LEG_RIGHT_003
+    3300000: ARM_LEFT
+    3300002: ARM_LEFT001
+    3300004: ARM_RIGHT
+    3300006: ARM_RIGHT001
+    3300008: ARM_RIGHT002
+    3300010: BODY_002
+    3300012: BODY_003
+    3300014: BOTTLE
+    3300016: BOTTLE001
+    3300018: HEAD_002
+    3300020: HEAD_003
+    3300022: HEADSET
+    3300024: HEADSET001
+    3300026: LEG_LEFT
+    3300028: LEG_LEFT001
+    3300030: LEG_RIGHT_002
+    3300032: LEG_RIGHT_003
+    4300000: HEAD_002
+    4300002: BODY_002
+    4300004: LEG_RIGHT_002
+    4300006: ARM_RIGHT
+    4300008: BOTTLE
+    4300010: HEADSET
+    4300012: ARM_LEFT
+    4300014: LEG_LEFT
+    4300016: ARM_RIGHT001
+    4300018: ARM_LEFT001
+    4300020: ARM_RIGHT002
+    4300022: BODY_003
+    4300024: BOTTLE001
+    4300026: HEADSET001
+    4300028: HEAD_003
+    4300030: LEG_LEFT001
+    4300032: LEG_RIGHT_003
+    4300034: BODY_004
+    7400000: Run
+    9500000: //RootNode
+    13700000: BODY_004
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: NIGGA
+    second: {fileID: 2100000, guid: 12cd28bc3eb9ba24c8d6d407ae2b71bf, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Run
+      takeName: Take 001
+      firstFrame: 0
+      lastFrame: 30
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
