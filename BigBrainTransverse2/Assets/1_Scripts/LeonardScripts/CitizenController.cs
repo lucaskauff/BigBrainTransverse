@@ -42,6 +42,8 @@ public class CitizenController : MonoBehaviour
     Vector3 baseRotationVector;
 
     Vector3 theCamera;
+    ParticleSystem particleSystem;
+    
     #endregion
 
     #region //BASE UNITY CALLBACKS
@@ -49,6 +51,7 @@ public class CitizenController : MonoBehaviour
     void Start()
     {
         gameManager = NewGameManager.Instance;
+        particleSystem = GetComponentInChildren<ParticleSystem>();
 
         SpawnManager.citizensInScene.Add(this.gameObject);
         currentMaxCalorieTol = baseMaxCalorieTol;
@@ -101,21 +104,18 @@ public class CitizenController : MonoBehaviour
                     GreaseEffect(foodData.CalorieGainOnHit);
                     cubeRenderer.material.SetColor("_Color", Color.red);
                     greasy++;
-                    break;
+                break;
                 case FoodType.sweet:
                     SweetEffect(foodData.CalorieGainOnHit, foodData.CalorieToleranceDecrease);
                     cubeRenderer.material.SetColor("_Color", Color.blue);
                     sweet++;
-                    break;
+                break;
                 case FoodType.energy:
                     EnergyEffect(foodData.CalorieGainOnHit, foodData.CalorieGainOverTime);
                     cubeRenderer.material.SetColor("_Color", Color.green);
                     isHitByEnergy = true;
-                    break;
-                default:
-                    break;
+                break;
             }
-
             if(isScientist) UnityEngine.Debug.Log("You just hit a scientist");//AnimationManager.DeathCamManager(this.gameObject, "Scientist");
         }
     }
@@ -145,6 +145,7 @@ public class CitizenController : MonoBehaviour
     {
         currentCalories += caloriesGained;
         citizenMoveSpeed /= speedDecreaseMultiplier;
+        particleSystem.Play();
     }
 
     void SweetEffect(int caloriesGained, int toleranceDecrease)
