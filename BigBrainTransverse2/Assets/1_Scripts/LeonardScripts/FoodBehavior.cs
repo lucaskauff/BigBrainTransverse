@@ -5,7 +5,7 @@ using UnityEngine;
 
 class FoodBehavior : MonoBehaviour
 {
-    [SerializeField] FoodData foodData;
+    public FoodData foodData;
     [FoldoutGroup("Food Variables")] [SerializeField] float foodMoveSpeed;
     [FoldoutGroup("Internal Variables")][SerializeField] float timeToSelfDestruct;
 

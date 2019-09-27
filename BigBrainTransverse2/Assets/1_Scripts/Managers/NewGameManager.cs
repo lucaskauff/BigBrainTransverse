@@ -20,11 +20,16 @@ public class NewGameManager : Singleton<NewGameManager>
     {
         sceneLoader = GetComponent<SceneLoader>();
         inputManager = GetComponent<NewInputManager>();
+
+        //Quite some things to fix there !
+        selectedLobbyPlayers = new int[2];
+        peopleKilled = new int[2];
+
+        selectedLobbyPlayers[0] = 1;
     }
 
     private void Start()
     {
-        selectedLobbyPlayers = new int[2];
-        peopleKilled = new int[2];
+
     }
 }

@@ -24,9 +24,9 @@ GameObject:
   - component: {fileID: 54228252388518174}
   - component: {fileID: 65942967191910898}
   - component: {fileID: 114513079881962222}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Food_RedBullProj
-  m_TagString: Untagged
+  m_TagString: Food
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

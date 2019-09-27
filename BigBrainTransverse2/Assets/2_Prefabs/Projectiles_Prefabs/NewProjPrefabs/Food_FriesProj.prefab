@@ -24,9 +24,9 @@ GameObject:
   - component: {fileID: 54535568380708782}
   - component: {fileID: 65392706542661460}
   - component: {fileID: 114658794603203258}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Food_FriesProj
-  m_TagString: Untagged
+  m_TagString: Food
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

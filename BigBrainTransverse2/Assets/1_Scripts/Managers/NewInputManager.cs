@@ -83,7 +83,7 @@ public class NewInputManager : MonoBehaviour
 
         //Mouse clicks
         mouseLeftClick = Input.GetMouseButton(0);
-        mouseRightClick = Input.GetMouseButton(1); ;
+        mouseRightClick = Input.GetMouseButton(1);
         mouseWheelClick = Input.GetMouseButton(2);
 
         //Keyboard keys

@@ -98,7 +98,7 @@ public class CitizenController : MonoBehaviour
         {
             myAnim.SetTrigger("Hit");
 
-            switch (foodData.FoodType)
+            switch (collision.gameObject.GetComponent<FoodBehavior>().foodData.FoodType)
             {
                 case FoodType.greasy:
                     GreaseEffect(foodData.CalorieGainOnHit);

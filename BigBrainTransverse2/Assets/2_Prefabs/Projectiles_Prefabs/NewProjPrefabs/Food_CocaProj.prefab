@@ -24,9 +24,9 @@ GameObject:
   - component: {fileID: 54037375604738254}
   - component: {fileID: 65784335401564068}
   - component: {fileID: 114424890712500334}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Food_CocaProj
-  m_TagString: Untagged
+  m_TagString: Food
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

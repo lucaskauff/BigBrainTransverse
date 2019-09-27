@@ -24,9 +24,9 @@ GameObject:
   - component: {fileID: 54502279602809486}
   - component: {fileID: 65122740059108318}
   - component: {fileID: 114875005251068922}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Food_TacoProj
-  m_TagString: Untagged
+  m_TagString: Food
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
