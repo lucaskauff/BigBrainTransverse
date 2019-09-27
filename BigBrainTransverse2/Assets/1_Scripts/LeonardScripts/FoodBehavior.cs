@@ -14,6 +14,11 @@ class FoodBehavior : MonoBehaviour
 
     Stopwatch timer = new Stopwatch();
 
+    private void Start()
+    {
+        
+    }
+
     void Update()
     {
         SelfDestruct();

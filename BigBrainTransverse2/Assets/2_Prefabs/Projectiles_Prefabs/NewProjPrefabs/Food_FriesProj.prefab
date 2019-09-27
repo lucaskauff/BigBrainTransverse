@@ -9,47 +9,47 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1668910094014942}
+  m_RootGameObject: {fileID: 1359409931422052}
   m_IsPrefabParent: 1
---- !u!1 &1668910094014942
+--- !u!1 &1359409931422052
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4417537895800578}
-  - component: {fileID: 65807420916731768}
-  - component: {fileID: 114150325409142666}
-  - component: {fileID: 33666290584412226}
-  - component: {fileID: 23628687266477958}
-  - component: {fileID: 54270539666276120}
-  m_Layer: 9
-  m_Name: Food_Greasy
-  m_TagString: Food
+  - component: {fileID: 4752295665358204}
+  - component: {fileID: 33705710184810788}
+  - component: {fileID: 23326993147620442}
+  - component: {fileID: 54535568380708782}
+  - component: {fileID: 65392706542661460}
+  - component: {fileID: 114658794603203258}
+  m_Layer: 0
+  m_Name: Food_FriesProj
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4417537895800578
+--- !u!4 &4752295665358204
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1668910094014942}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_GameObject: {fileID: 1359409931422052}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalScale: {x: 0.632851, y: 0.746931, z: 0.903743}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &23628687266477958
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!23 &23326993147620442
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1668910094014942}
+  m_GameObject: {fileID: 1359409931422052}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -59,7 +59,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: be78523bb7f43de48a1f753fbcf0c2c2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -79,19 +79,19 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!33 &33666290584412226
+--- !u!33 &33705710184810788
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1668910094014942}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!54 &54270539666276120
+  m_GameObject: {fileID: 1359409931422052}
+  m_Mesh: {fileID: 4300000, guid: 3a26d06dde866714598269c38d9c297d, type: 3}
+--- !u!54 &54535568380708782
 Rigidbody:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1668910094014942}
+  m_GameObject: {fileID: 1359409931422052}
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
@@ -101,24 +101,24 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!65 &65807420916731768
+--- !u!65 &65392706542661460
 BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1668910094014942}
+  m_GameObject: {fileID: 1359409931422052}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &114150325409142666
+  m_Size: {x: 0.87154114, y: 0.5391212, z: 0.9418731}
+  m_Center: {x: 0.06576401, y: 0.0025026805, z: 0.47093654}
+--- !u!114 &114658794603203258
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1668910094014942}
+  m_GameObject: {fileID: 1359409931422052}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f2452faa5ff84d54ebbbbec7a377d203, type: 3}
@@ -127,4 +127,3 @@ MonoBehaviour:
   foodData: {fileID: 11400000, guid: eccb042bc7c6f4741be2f0f7062143fa, type: 2}
   foodMoveSpeed: 6
   timeToSelfDestruct: 3
-  Target: {fileID: 0}

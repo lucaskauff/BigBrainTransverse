@@ -39,8 +39,10 @@ public class NewInputManager : MonoBehaviour
     public bool mouseRightClick;
 
     //Keyboard keys
-    public bool weaponMinusKey;
-    public bool weaponPlusKey;
+    public bool weaponMinusKeyP1;
+    public bool weaponPlusKeyP1;
+    public bool weaponMinusKeyP2;
+    public bool weaponPlusKeyP2;
     public bool switchCameraOnOff;
 
     void Start()
@@ -86,8 +88,10 @@ public class NewInputManager : MonoBehaviour
 
         //Keyboard keys
         switchCameraOnOff = Input.GetKeyDown(KeyCode.C);
-        weaponMinusKey = Input.GetKeyDown(KeyCode.Alpha1);
-        weaponPlusKey = Input.GetKeyDown(KeyCode.Alpha2);
+        weaponMinusKeyP1 = Input.GetKeyDown(KeyCode.Alpha1);
+        weaponPlusKeyP1 = Input.GetKeyDown(KeyCode.Alpha2);
+        weaponMinusKeyP2 = Input.GetKeyDown(KeyCode.Alpha3);
+        weaponPlusKeyP2 = Input.GetKeyDown(KeyCode.Alpha4);
     }
 
     void Player1JointsPositions(bool isPlayerOne)

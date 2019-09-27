@@ -86,12 +86,12 @@ TextureImporter:
       name: Redbull_0
       rect:
         serializedVersion: 2
-        x: 340
-        y: 134
-        width: 397
-        height: 1038
+        x: 0
+        y: 111
+        width: 1087
+        height: 1087
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
