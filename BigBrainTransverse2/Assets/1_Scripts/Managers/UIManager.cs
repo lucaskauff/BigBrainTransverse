@@ -124,7 +124,7 @@ public class UIManager : MonoBehaviour
 
     void UpdateGauges(int playerIndex)
     {
-        playerGauges[playerIndex].fillAmount = gameManager.peopleKilled[playerIndex] / maxPeopleDead;
+        playerGauges[playerIndex].fillAmount = (float)gameManager.peopleKilled[playerIndex] / maxPeopleDead;
         
         if (gameManager.peopleKilled[playerIndex] >= maxPeopleDead)
         {

@@ -5,6 +5,7 @@ using UnityEngine;
 
 class FoodBehavior : MonoBehaviour
 {
+    public int shotByPlayerIndex;
     public FoodData foodData;
     [FoldoutGroup("Food Variables")] [SerializeField] float foodMoveSpeed;
     [FoldoutGroup("Internal Variables")][SerializeField] float timeToSelfDestruct;
@@ -14,21 +15,16 @@ class FoodBehavior : MonoBehaviour
 
     Stopwatch timer = new Stopwatch();
 
-    private void Start()
-    {
-        
-    }
-
     void Update()
     {
         SelfDestruct();
     }
 
-    void MoveToPosition(Vector3 rayOrigin)
+    void MoveToPosition(Vector3 yetReceive)
     {
         Vector3 relative = new Vector3(0, -1, 1);
         //Vector3 relative = transform.InverseTransformDirection(Vector3.forward);
-        Ray ray = new Ray(transform.position, relative);
+        Ray ray = new Ray(yetReceive, Vector3.down);
 
         //Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 

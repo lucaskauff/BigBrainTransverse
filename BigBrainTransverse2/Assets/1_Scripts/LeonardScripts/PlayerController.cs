@@ -8,6 +8,7 @@ using System.Diagnostics;
 public class PlayerController : MonoBehaviour
 {
     //GameManager
+    public GameObject yet;
     NewGameManager gameManager;
     NewInputManager inputManager;
 
@@ -108,7 +109,11 @@ public class PlayerController : MonoBehaviour
     void ShootProjectile()
     {
         cloneProj = Instantiate(equippedFood, transform.position, Quaternion.identity);
-        cloneProj.gameObject.SendMessage("MoveToPosition", transform.position);
+        if (isPlayerOne)
+            cloneProj.gameObject.GetComponent<FoodBehavior>().shotByPlayerIndex = 0;
+        else
+            cloneProj.gameObject.GetComponent<FoodBehavior>().shotByPlayerIndex = 1;
+        cloneProj.gameObject.SendMessage("MoveToPosition", yet.transform.position);
     }
 
     void WeaponSwitch()
