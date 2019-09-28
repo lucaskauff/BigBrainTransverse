@@ -10,10 +10,6 @@ public class FoodData : ScriptableObject
 {
     [SerializeField] private FoodType foodType;
     [SerializeField] private FoodName foodName;
-    /*[SerializeField] private Mesh mesh;
-    [SerializeField] private List<Mesh> foodMeshList = new List<Mesh>();
-    [SerializeField] private Mesh foodMesh;
-    [SerializeField] private Material foodMate;*/
     [SerializeField] private int calorieGainOnHit;
     [SerializeField] private int calorieToleranceDecrease;
     [SerializeField] private int calorieGainOverTime;
@@ -29,35 +25,6 @@ public class FoodData : ScriptableObject
             this.foodType = value;
         }
     }
-
-    public FoodName FoodName
-    {
-        get
-        {
-            return foodName;
-        }
-    }
-
-    /*public List<Mesh> FoodMeshList
-    {
-        get
-        {
-            return foodMeshList;
-        }
-    }
-
-    public Mesh FoodMesh
-    {
-        get
-        {
-            return foodMesh;
-        }
-
-        set
-        {
-           this.foodMesh = value;
-        }
-    }*/
 
     public int CalorieGainOnHit
     {
