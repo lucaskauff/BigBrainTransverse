@@ -145,7 +145,7 @@ public class CitizenController : MonoBehaviour
     {
         currentCalories += caloriesGained;
         citizenMoveSpeed /= speedDecreaseMultiplier;
-        particleSystem.Play();
+        //particleSystem.Play();
     }
 
     void SweetEffect(int caloriesGained, int toleranceDecrease)

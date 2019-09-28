@@ -67,7 +67,7 @@ public class UIManager : MonoBehaviour
         }
         else
         {
-            if (gameManager.selectedLobbyPlayers[0] == 0)
+            if (gameManager.selectedLobbyPlayers[1] == 0)
             {
                 weaponsPlayer2[0].GetComponent<Image>().sprite = allWeapons[0];
                 weaponsPlayer2[1].GetComponent<Image>().sprite = allWeapons[2];
