@@ -20,7 +20,8 @@ public class CitizenController : MonoBehaviour
 
     [FoldoutGroup("Gameplay")][SerializeField] float citizenMoveSpeed;
     [FoldoutGroup("Gameplay")][SerializeField] float speedDecreaseMultiplier;
-    [FoldoutGroup("Gameplay")][SerializeField] float baseMaxCalorieTol; //maximum calorie tolerance when game starts   
+    [FoldoutGroup("Gameplay")][SerializeField] float baseMaxCalorieTol; //maximum calorie tolerance when game starts
+    [FoldoutGroup("Gameplay")][SerializeField] float timeFreezedOnHit;
 
     [FoldoutGroup("Debugging")] public bool isScientist;
     [FoldoutGroup("Debugging")][SerializeField] bool hitWall = false;
@@ -37,6 +38,7 @@ public class CitizenController : MonoBehaviour
     Stopwatch timer = new Stopwatch();
     Vector3 baseRotationVector;
     Vector3 theCamera;
+    int pointsForPlayerIndex;
     #endregion
 
     #region //BASE UNITY CALLBACKS
@@ -46,12 +48,12 @@ public class CitizenController : MonoBehaviour
         gameManager = NewGameManager.Instance;
         particleSystem = GetComponentInChildren<ParticleSystem>();
 
-        SpawnManager.citizensInScene.Add(this.gameObject);
+        SpawnManager.citizensInScene.Add(gameObject);
         currentMaxCalorieTol = baseMaxCalorieTol;
         intervalToRandomizeRotation = Random.Range(2f, 5f);
         cubeRenderer = GetComponentInChildren<Renderer>();
 
-        if(isScientist) this.gameObject.name = "SCIENTIST";
+        if(isScientist) gameObject.name = "SCIENTIST";
 
         theCamera = Camera.main.transform.position;
         
