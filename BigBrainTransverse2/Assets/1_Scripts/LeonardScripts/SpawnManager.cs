@@ -7,41 +7,43 @@ using System.Diagnostics;
 
 public class SpawnManager : MonoBehaviour
 {
-    [SerializeField] int maxNumberOfEntitiesToSpawn;
-    [SerializeField] List<GameObject> spawnPointsList = new List<GameObject>();
-    [ShowInInspector] public static List<GameObject> citizensInScene = new List<GameObject>();
-    [SerializeField] GameObject[] people;
-    [SerializeField] float numberToSpawn;
+    [FoldoutGroup("Gameplay Variables")][SerializeField] int maxNumberOfEntitiesToSpawn;
+    [FoldoutGroup("Gameplay Variables")][SerializeField] List<GameObject> spawnPointsList = new List<GameObject>();
+    [FoldoutGroup("Gameplay Variables")][SerializeField] GameObject[] people;
+    [FoldoutGroup("Gameplay Variables")][SerializeField] float simultaneousSpawnNumber;
+	[FoldoutGroup("Gameplay Variables")][SerializeField] float baseSpawnRate; //in seconds
+    [FoldoutGroup("Gameplay Variables")][SerializeField] float currentSpawnRate;
 
     [SerializeField] Stopwatch spawnTimer = new Stopwatch();
-    [SerializeField] float intervalToSpawnInSeconds;
 
     //Scientist Spawning Values
-    [SerializeField] GameObject scientist;
-    [SerializeField] Stopwatch spawnScientistTimer = new Stopwatch();
-    [SerializeField] float timeToSpawnScientist;
-    [SerializeField] int minTimeToScientist;
-    [SerializeField] int maxTimeToScientist;
+    [FoldoutGroup("Scientist Debugging")][SerializeField] GameObject scientist;
+    [FoldoutGroup("Scientist Debugging")][SerializeField] Stopwatch spawnScientistTimer = new Stopwatch();
+    [FoldoutGroup("Scientist Debugging")][SerializeField] float timeToSpawnScientist;
+    [FoldoutGroup("Scientist Debugging")][SerializeField] int minTimeToScientist;
+    [FoldoutGroup("Scientist Debugging")][SerializeField] int maxTimeToScientist;
     
-	public float baseSpawnRateInSeconds; //in seconds
-	public float currentSpawnRateMultiplier;
-
-	[Range(0, 100)] public float maxNumberToSpawnInScene;
-	[Range(0, 100)] public float currentNumberInScene;
-
-	[Range(0, 100)] public float percentInScene;	
-	[Range(0, 100)] public float percentSpawnSpeed;
+    [FoldoutGroup("Debugging")][ShowInInspector] public static List<GameObject> citizensInScene = new List<GameObject>();
+	[FoldoutGroup("Debugging")][SerializeField]  float currentSpawnRateMultiplier;
+	[FoldoutGroup("Debugging")][SerializeField] [Range(0, 100)] float maxNumberToSpawnInScene;
+	[FoldoutGroup("Debugging")][SerializeField][Range(0, 100)] float currentNumberInScene;
+	[FoldoutGroup("Debugging")][SerializeField][Range(0, 100)] float percentInScene;	
+	[FoldoutGroup("Debugging")][SerializeField][Range(0, 100)] float percentSpawnSpeed;
 
     void Start()
     {
         citizensInScene.Clear();
-        baseSpawnRateInSeconds = intervalToSpawnInSeconds;
+        currentSpawnRate = baseSpawnRate;
     }
 	void Update ()
     {
         if (citizensInScene.Count < maxNumberOfEntitiesToSpawn) SpawnMobs();
-        else return;
 
+        UpdateVariables();
+    }
+
+    void UpdateVariables()
+    {
         currentNumberInScene = citizensInScene.Count;
         maxNumberToSpawnInScene = maxNumberOfEntitiesToSpawn;
     }
@@ -51,8 +53,8 @@ public class SpawnManager : MonoBehaviour
         spawnTimer.Start();
         spawnScientistTimer.Start();
 
-        if (spawnTimer.Elapsed.TotalSeconds >= intervalToSpawnInSeconds) {
-            for (int i = 0; i < numberToSpawn; i++) 
+        if (spawnTimer.Elapsed.TotalSeconds >= currentSpawnRate) {
+            for (int i = 0; i < simultaneousSpawnNumber; i++) 
             {
                 foreach (GameObject citizenSpawner in spawnPointsList) 
                 {
@@ -74,8 +76,8 @@ public class SpawnManager : MonoBehaviour
             }
             spawnTimer.Stop();
             spawnTimer.Reset();
-            intervalToSpawnInSeconds = baseSpawnRateInSeconds;
-            intervalToSpawnInSeconds /= currentSpawnRateMultiplier;	
+            currentSpawnRate = baseSpawnRate;
+            currentSpawnRate /= currentSpawnRateMultiplier;	
         }
     }
 }

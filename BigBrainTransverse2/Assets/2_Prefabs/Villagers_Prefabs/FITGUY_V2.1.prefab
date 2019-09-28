@@ -766,7 +766,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myCol: {fileID: 65717907830052780}
   myAnim: {fileID: 0}
-  bubble: {fileID: 95786940540812958}
+  rb: {fileID: 54874575109907886}
+  cubeRenderer: {fileID: 0}
+  particleSystem: {fileID: 0}
+  bubble: {fileID: 0}
   isScientist: 0
   currentCalories: 0
   currentMaxCalorieTol: 1
@@ -774,6 +777,8 @@ MonoBehaviour:
   citizenMoveSpeed: 3
   intervalToRandomizeRotation: 0
   speedDecreaseMultiplier: 1
+  greasy: 0
+  sweet: 0
 --- !u!114 &114650863426933624
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -797,6 +802,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 446bcd1a05133674ab98a5909e588eb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  whichDeath: 0
   deathReason: {fileID: 95189788022767306}
 --- !u!212 &212047880436790128
 SpriteRenderer:
