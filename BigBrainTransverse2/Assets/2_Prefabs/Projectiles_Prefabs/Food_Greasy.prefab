@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 23628687266477958}
   - component: {fileID: 54270539666276120}
   m_Layer: 9
-  m_Name: Food_Sweet 1
+  m_Name: Food_Greasy
   m_TagString: Food
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -85,7 +85,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1668910094014942}
-  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!54 &54270539666276120
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -124,10 +124,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2452faa5ff84d54ebbbbec7a377d203, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  foodData: {fileID: 11400000, guid: 7cc053aa2265bf54ab700377711e4f1b, type: 2}
+  foodData: {fileID: 11400000, guid: eccb042bc7c6f4741be2f0f7062143fa, type: 2}
   foodMoveSpeed: 6
-<<<<<<< HEAD:BigBrainTransverse2/Assets/2_Prefabs/Projectiles_Prefabs/Food_Sweet.prefab
   timeToSelfDestruct: 20000
-=======
-  timeToSelfDestruct: 3
->>>>>>> Lucas_Dev:BigBrainTransverse2/Assets/2_Prefabs/Projectiles_Prefabs/OldProjPrefabs/Food_Sweet 1.prefab

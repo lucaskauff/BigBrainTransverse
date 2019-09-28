@@ -828,8 +828,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myCol: {fileID: 65008414520550832}
-  myRb: {fileID: 54155517869574678}
   myAnim: {fileID: 95447028447824136}
+  rb: {fileID: 54155517869574678}
+  cubeRenderer: {fileID: 0}
+  particleSystem: {fileID: 0}
   bubble: {fileID: 114309927066219474}
   reason: {fileID: 4947719998275304}
   isScientist: 0
