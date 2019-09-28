@@ -12,8 +12,13 @@ public class CitizenController : MonoBehaviour
     NewGameManager gameManager;
 
     [FoldoutGroup("Internal Components")] [SerializeField] Collider myCol;
-    [FoldoutGroup("Internal Components")] [SerializeField] Rigidbody myRb;
     [FoldoutGroup("Internal Components")] [SerializeField] Animator myAnim;
+    [FoldoutGroup("Internal Components")] [SerializeField] Rigidbody rb;
+    [FoldoutGroup("Internal Components")] [SerializeField] Renderer cubeRenderer;
+    [FoldoutGroup("Internal Components")] [SerializeField] ParticleSystem particleSystem;
+    Stopwatch timer = new Stopwatch();
+    Vector3 baseRotationVector;
+    Vector3 theCamera;
 
     [FoldoutGroup("Objects to serialize")] [SerializeField] TheBubble bubble;
     //[FoldoutGroup("Objects to serialize")] [SerializeField] Animator reason;
@@ -36,13 +41,6 @@ public class CitizenController : MonoBehaviour
     [FoldoutGroup("Food Hit Values")] [SerializeField] int sweet = 0;
 
     //Components
-    Renderer cubeRenderer;
-    Stopwatch timer = new Stopwatch();
-    Rigidbody rb;
-    Vector3 baseRotationVector;
-
-    Vector3 theCamera;
-    ParticleSystem particleSystem;
     
     #endregion
 
@@ -55,11 +53,14 @@ public class CitizenController : MonoBehaviour
 
         SpawnManager.citizensInScene.Add(this.gameObject);
         currentMaxCalorieTol = baseMaxCalorieTol;
-        rb = GetComponent<Rigidbody>();
         intervalToRandomizeRotation = Random.Range(2f, 5f);
         cubeRenderer = GetComponentInChildren<Renderer>();
 
+        if(isScientist) this.gameObject.name = "SCIENTIST";
+
         theCamera = Camera.main.transform.position;
+        
+        particleSystem.Stop();
     }
 
     // Update is called once per frame
@@ -96,6 +97,7 @@ public class CitizenController : MonoBehaviour
 
         if (collision.gameObject.tag == "Food")
         {
+            rb.constraints = RigidbodyConstraints.FreezeAll;
             myAnim.SetTrigger("Hit");
 
             switch (foodData.FoodType)
@@ -116,7 +118,45 @@ public class CitizenController : MonoBehaviour
                     isHitByEnergy = true;
                 break;
             }
+
             if(isScientist) UnityEngine.Debug.Log("You just hit a scientist");//AnimationManager.DeathCamManager(this.gameObject, "Scientist");
+        }
+    }
+
+    /*void OnTriggerEnter(Collider collider)
+    {
+        if (collider.gameObject.tag == "Food")
+        {
+            myAnim.SetTrigger("Hit");
+
+            switch (foodData.FoodType)
+            {
+                case FoodType.greasy:
+                    GreaseEffect(foodData.CalorieGainOnHit);
+                    cubeRenderer.material.SetColor("_Color", Color.red);
+                    greasy++;
+                break;
+                case FoodType.sweet:
+                    SweetEffect(foodData.CalorieGainOnHit, foodData.CalorieToleranceDecrease);
+                    cubeRenderer.material.SetColor("_Color", Color.blue);
+                    sweet++;
+                break;
+                case FoodType.energy:
+                    EnergyEffect(foodData.CalorieGainOnHit, foodData.CalorieGainOverTime);
+                    cubeRenderer.material.SetColor("_Color", Color.green);
+                    isHitByEnergy = true;
+                break;
+            }
+
+            if(isScientist) UnityEngine.Debug.Log("You just hit a scientist");//AnimationManager.DeathCamManager(this.gameObject, "Scientist");
+        }
+    }*/
+
+    void OnCollisionExit(Collision collision)
+    {   
+        if (collision.gameObject.tag == "Food")
+        {
+            rb.constraints = RigidbodyConstraints.None;
         }
     }
     #endregion
@@ -137,8 +177,11 @@ public class CitizenController : MonoBehaviour
     void RandomizeRotation()
     {
         baseRotationVector = transform.rotation.eulerAngles;
-        transform.rotation = Quaternion.Euler(baseRotationVector.x, Random.Range(-180, 180), baseRotationVector.z);
-        intervalToRandomizeRotation = Random.Range(0f, 1f);
+        //transform.rotation = Quaternion.Euler(baseRotationVector.x, Random.Range(210, 330), baseRotationVector.z);
+        
+        transform.rotation = Quaternion.Euler(baseRotationVector.x, Random.Range(120, 240), baseRotationVector.z);
+        //intervalToRandomizeRotation = Random.Range(0f, 1f);
+        intervalToRandomizeRotation = 2f;
     }
 
     void GreaseEffect(int caloriesGained)
@@ -173,7 +216,7 @@ public class CitizenController : MonoBehaviour
 
         SpawnManager.citizensInScene.Remove(this.gameObject);
         myCol.enabled = false;
-        myRb.constraints = RigidbodyConstraints.FreezeAll;
+        rb.constraints = RigidbodyConstraints.FreezeAll;
         
         if (greasy > sweet) myAnim.SetInteger("DeadType", 1);
         else if (greasy < sweet) myAnim.SetInteger("DeadType", 2);
