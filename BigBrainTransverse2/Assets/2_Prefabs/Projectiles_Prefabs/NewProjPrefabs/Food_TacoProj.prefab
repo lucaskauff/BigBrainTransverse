@@ -126,4 +126,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   foodData: {fileID: 11400000, guid: deb12e67fe9ca3d429d1760f05bce29a, type: 2}
   foodMoveSpeed: 6
-  timeToSelfDestruct: 3
+  timeToSelfDestruct: 5000

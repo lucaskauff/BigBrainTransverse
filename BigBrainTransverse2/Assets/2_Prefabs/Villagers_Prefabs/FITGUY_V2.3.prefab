@@ -864,16 +864,18 @@ MonoBehaviour:
   particleSystem: {fileID: 0}
   bubble: {fileID: 0}
   reason: {fileID: 0}
-  isScientist: 0
-  currentCalories: 0
-  currentMaxCalorieTol: 1
-  hitWall: 0
-  baseMaxCalorieTol: 20
   citizenMoveSpeed: 3
-  intervalToRandomizeRotation: 0
   speedDecreaseMultiplier: 2
-  greasy: 0
-  sweet: 0
+  baseMaxCalorieTol: 3
+  isScientist: 0
+  hitWall: 0
+  isHitByEnergy: 0
+  isDead: 0
+  currentMaxCalorieTol: 1
+  currentCalories: 0
+  intervalToRandomizeRotation: 0
+  greasyHits: 0
+  sweetHits: 0
 --- !u!114 &114533681410056506
 MonoBehaviour:
   m_ObjectHideFlags: 1
