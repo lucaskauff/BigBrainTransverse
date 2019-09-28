@@ -61,6 +61,6 @@ class FoodBehavior : MonoBehaviour
             collision.gameObject.SendMessage("WhichFoodType", foodData);
         }
 
-        //if (collision.gameObject.layer == LayerMask.NameToLayer("BoundsLayer")) Destroy(this.gameObject);
+        if (collision.gameObject.layer == LayerMask.NameToLayer("BoundsLayer")) Destroy(this.gameObject);
     }
 }

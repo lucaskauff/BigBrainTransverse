@@ -37,13 +37,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1359409931422052}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 0.632851, y: 0.746931, z: 0.903743}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!23 &23326993147620442
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -125,5 +125,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   foodData: {fileID: 11400000, guid: eccb042bc7c6f4741be2f0f7062143fa, type: 2}
-  foodMoveSpeed: 5
-  timeToSelfDestruct: 2
+  foodMoveSpeed: 6
+  timeToSelfDestruct: 5000

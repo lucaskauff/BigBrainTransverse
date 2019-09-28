@@ -38,7 +38,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1796677089103278}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalPosition: {x: -0, y: 0.425, z: 0}
   m_LocalScale: {x: 2.0044384, y: 1.6507701, z: 2.7343633}
   m_Children: []
   m_Father: {fileID: 0}
@@ -125,5 +125,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   foodData: {fileID: 11400000, guid: deb12e67fe9ca3d429d1760f05bce29a, type: 2}
-  foodMoveSpeed: 5
-  timeToSelfDestruct: 2
+  foodMoveSpeed: 6
+  timeToSelfDestruct: 5000
