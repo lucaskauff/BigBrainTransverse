@@ -34,14 +34,14 @@ public class CitizenController : MonoBehaviour
     [FoldoutGroup("Internal Variables")] [SerializeField] float citizenMoveSpeed;
     [FoldoutGroup("Internal Variables")] [SerializeField] float intervalToRandomizeRotation;
     [FoldoutGroup("Internal Variables")] [SerializeField] float speedDecreaseMultiplier;
+    [FoldoutGroup("Internal Variables")] [SerializeField] float timeFreezedOnHit;
     float step;
     FoodData foodData;
 
     [FoldoutGroup("Food Hit Values")] [SerializeField] int greasy = 0;
     [FoldoutGroup("Food Hit Values")] [SerializeField] int sweet = 0;
 
-    //Components
-    
+    int pointsForPlayerIndex;
     #endregion
 
     #region //BASE UNITY CALLBACKS
@@ -60,7 +60,7 @@ public class CitizenController : MonoBehaviour
 
         theCamera = Camera.main.transform.position;
         
-        particleSystem.Stop();
+        //particleSystem.Stop();
     }
 
     // Update is called once per frame
@@ -82,11 +82,6 @@ public class CitizenController : MonoBehaviour
         if (isHitByEnergy) EnergyEffect(foodData.CalorieGainOnHit, foodData.CalorieGainOverTime);
     }
 
-    void LateUpdate()
-    {
-        CheckCitizenStatus();
-    }
-
     void OnCollisionEnter(Collision collision)
     {
         //use to detect collision against wall and change the facing direction
@@ -97,10 +92,7 @@ public class CitizenController : MonoBehaviour
 
         if (collision.gameObject.tag == "Food")
         {
-            rb.constraints = RigidbodyConstraints.FreezeAll;
-            myAnim.SetTrigger("Hit");
-
-            switch (foodData.FoodType)
+            switch (collision.gameObject.GetComponent<FoodBehavior>().foodData.FoodType)
             {
                 case FoodType.greasy:
                     GreaseEffect(foodData.CalorieGainOnHit);
@@ -119,7 +111,18 @@ public class CitizenController : MonoBehaviour
                 break;
             }
 
-            if(isScientist) UnityEngine.Debug.Log("You just hit a scientist");//AnimationManager.DeathCamManager(this.gameObject, "Scientist");
+            pointsForPlayerIndex = collision.gameObject.GetComponent<FoodBehavior>().shotByPlayerIndex;
+            if (currentCalories >= currentMaxCalorieTol)
+            {
+                Dead(pointsForPlayerIndex);
+                return;
+            }
+
+            StartCoroutine(FreezeOnHit());
+            myAnim.SetTrigger("Hit");
+            
+            //if (isScientist) UnityEngine.Debug.Log("You just hit a scientist");
+            //AnimationManager.DeathCamManager(this.gameObject, "Scientist");
         }
     }
 
@@ -202,6 +205,7 @@ public class CitizenController : MonoBehaviour
         currentCalories += overTimeCalGain * Time.deltaTime;
     }
 
+    /*
     void CheckCitizenStatus()
     {
         if (currentCalories >= currentMaxCalorieTol)
@@ -209,18 +213,30 @@ public class CitizenController : MonoBehaviour
             Dead();
         }
     }
+    */
 
-    void Dead()
+    void Dead(int playerIndex)
     {
         isDead = true;
 
-        SpawnManager.citizensInScene.Remove(this.gameObject);
+        gameManager.peopleKilled[playerIndex] += 1;
+
+        SpawnManager.citizensInScene.Remove(gameObject);
         myCol.enabled = false;
         rb.constraints = RigidbodyConstraints.FreezeAll;
         
-        if (greasy > sweet) myAnim.SetInteger("DeadType", 1);
-        else if (greasy < sweet) myAnim.SetInteger("DeadType", 2);
-        else if (isHitByEnergy) myAnim.SetInteger("DeadType", 3);
+        if (greasy > sweet)
+        {
+            myAnim.SetInteger("DeadType", 1);
+        }
+        else if (greasy < sweet)
+        {
+            myAnim.SetInteger("DeadType", 2);
+        }            
+        else if (isHitByEnergy)
+        {
+            myAnim.SetInteger("DeadType", 3);
+        }
 
         if (!gameManager.isDeathAnimOnGoing)
         {
@@ -234,4 +250,15 @@ public class CitizenController : MonoBehaviour
         }
     }
     #endregion
+
+    IEnumerator FreezeOnHit()
+    {
+        rb.constraints = RigidbodyConstraints.FreezeAll;
+        yield return new WaitForSeconds(timeFreezedOnHit);
+        rb.constraints = RigidbodyConstraints.None;
+        rb.constraints = RigidbodyConstraints.FreezePositionY 
+            | RigidbodyConstraints.FreezeRotationX
+            | RigidbodyConstraints.FreezeRotationZ;
+        StopCoroutine(FreezeOnHit());
+    }
 }

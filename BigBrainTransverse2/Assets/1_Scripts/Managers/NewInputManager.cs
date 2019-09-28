@@ -19,6 +19,7 @@ public class NewInputManager : MonoBehaviour
     int[] iJointIndexes;
     PlayerController playerKnobExample;
     public float distanceToCamera;
+    public float taposiSion;
 
     //Kinect inputs
     //Player 1
@@ -119,9 +120,9 @@ public class NewInputManager : MonoBehaviour
                         float scaleY = 1.0f - posColor.y / KinectWrapper.Constants.ColorImageHeight;
 
                         if (isPlayerOne)
-                            cursor1Pos = Camera.main.ViewportToWorldPoint(new Vector3(scaleX, scaleY, distanceToCamera));
+                            cursor1Pos = Camera.main.ViewportToWorldPoint(new Vector3(scaleX, scaleY, taposiSion));
                         else
-                            cursor2Pos = Camera.main.ViewportToWorldPoint(new Vector3(scaleX, scaleY, distanceToCamera));
+                            cursor2Pos = Camera.main.ViewportToWorldPoint(new Vector3(scaleX, scaleY, taposiSion));
                     }
                 }
             }
