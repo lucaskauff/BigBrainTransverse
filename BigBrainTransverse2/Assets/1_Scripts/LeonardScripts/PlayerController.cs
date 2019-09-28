@@ -8,10 +8,15 @@ using System.Diagnostics;
 public class PlayerController : MonoBehaviour
 {
     //GameManager
+    NewGameManager gameManager;
     NewInputManager inputManager;
 
     [Header("Public variables")]
     public bool ultimateEnabled;
+
+    [Header("Objects to serialize")]
+    [SerializeField] UIManager uIManager;
+    [SerializeField] GameObject[] allFoodWeapons;
 
     [Header("Serializable variables")]
     [SerializeField] bool isPlayerOne;
@@ -19,15 +24,51 @@ public class PlayerController : MonoBehaviour
     [FoldoutGroup("Debug Variables")] [SerializeField] GameObject equippedFood;
     [FoldoutGroup("Debug Variables")] [SerializeField] int currentlySelectedFood;
 
-    [FoldoutGroup("Internal Variables")] [SerializeField] List<GameObject> foodWeapons = new List<GameObject>();
-    [FoldoutGroup("Internal Variables")] //[SerializeField] Transform spawnPoint;
+    GameObject[] foodWeapons;
+
     GameObject cloneProj;
 
     void Start()
     {
-        inputManager = NewGameManager.Instance.inputManager;
+        gameManager = NewGameManager.Instance;
+        inputManager = gameManager.inputManager;
+
+        ChooseWeaponsForRightLobby();
 
         currentlySelectedFood = 0;
+    }
+
+    void ChooseWeaponsForRightLobby()
+    {
+        foodWeapons = new GameObject[3];
+        foodWeapons[2] = allFoodWeapons[4];
+
+        if (isPlayerOne)
+        {
+            if (gameManager.selectedLobbyPlayers[0] == 0)
+            {
+                foodWeapons[0] = allFoodWeapons[0];
+                foodWeapons[1] = allFoodWeapons[2];
+            }
+            else
+            {
+                foodWeapons[0] = allFoodWeapons[1];
+                foodWeapons[1] = allFoodWeapons[3];
+            }
+        }
+        else
+        {
+            if (gameManager.selectedLobbyPlayers[1] == 0)
+            {
+                foodWeapons[0] = allFoodWeapons[0];
+                foodWeapons[1] = allFoodWeapons[2];
+            }
+            else
+            {
+                foodWeapons[0] = allFoodWeapons[1];
+                foodWeapons[1] = allFoodWeapons[3];
+            }
+        }
     }
 
     void Update()
@@ -49,6 +90,11 @@ public class PlayerController : MonoBehaviour
             else if (!isPlayerOne && inputManager.swipeDownP2)
                 ShootProjectile();
         }
+
+        if (isPlayerOne)
+            InfosToUI(0);
+        else
+            InfosToUI(1);
     }
 
     void UpdatePosition()
@@ -67,7 +113,8 @@ public class PlayerController : MonoBehaviour
 
     void WeaponSwitch()
     {
-        if (inputManager.weaponMinusKey)
+        if ((isPlayerOne && inputManager.weaponMinusKeyP1)
+            || (!isPlayerOne && inputManager.weaponMinusKeyP2))
             currentlySelectedFood--;
         else
         {
@@ -77,7 +124,8 @@ public class PlayerController : MonoBehaviour
                 currentlySelectedFood--;
         }
 
-        if (inputManager.weaponPlusKey)
+        if ((isPlayerOne && inputManager.weaponPlusKeyP1)
+            || (!isPlayerOne && inputManager.weaponPlusKeyP2))
             currentlySelectedFood++;
         else
         {
@@ -90,18 +138,24 @@ public class PlayerController : MonoBehaviour
         if (!ultimateEnabled)
         {
             if (currentlySelectedFood < 0)
-                currentlySelectedFood = foodWeapons.Count - 2;
-            else if (currentlySelectedFood > foodWeapons.Count - 2)
+                currentlySelectedFood = foodWeapons.Length - 2;
+            else if (currentlySelectedFood > foodWeapons.Length - 2)
                 currentlySelectedFood = 0;
         }
         else
         {
             if (currentlySelectedFood < 0)
-                currentlySelectedFood = foodWeapons.Count - 1;
-            else if (currentlySelectedFood > foodWeapons.Count - 1)
+                currentlySelectedFood = foodWeapons.Length - 1;
+            else if (currentlySelectedFood > foodWeapons.Length - 1)
                 currentlySelectedFood = 0;
         }
 
         equippedFood = foodWeapons[currentlySelectedFood];
+    }
+
+    void InfosToUI(int playerIndex)
+    {
+        uIManager.doesPlayerHaveUlt[playerIndex] = ultimateEnabled;
+        uIManager.playerSelection[playerIndex] = currentlySelectedFood;
     }
 }
