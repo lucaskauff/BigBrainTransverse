@@ -11,11 +11,13 @@ public class UIManager : MonoBehaviour
 
     [Header("Objects to serialize")]
     [SerializeField] SuperTextMesh timerText;
+    [SerializeField] Image[] playerBlasons;
     [SerializeField] Image[] playerGauges;
     [SerializeField] RectTransform[] selectors;
     [SerializeField] RectTransform[] weaponsPlayer1;
     [SerializeField] RectTransform[] weaponsPlayer2;
     [SerializeField] Sprite[] allWeapons;
+    [SerializeField] Sprite[] allBlasons;
 
     [Header("Serializable variables")]
     [SerializeField, Range(10, 300)] float maxTimer;
@@ -46,8 +48,14 @@ public class UIManager : MonoBehaviour
 
         for (int i = 0; i < doesPlayerHaveUlt.Length; i++)
         {
+            TurnBlasonsForRightLobby(i);
             TurnWeaponsForRightLobby(i);
         }
+    }
+
+    void TurnBlasonsForRightLobby(int playerIndex)
+    {
+        playerBlasons[playerIndex].sprite = allBlasons[gameManager.selectedLobbyPlayers[playerIndex]];
     }
 
     void TurnWeaponsForRightLobby(int playerIndex)
@@ -111,9 +119,18 @@ public class UIManager : MonoBehaviour
 
         if (currentTimer > 0)
         {
-            timerText.text = minutes.ToString()
-            + "'" + seconds.ToString()
-            + "''" + deciSeconds.ToString() + centiSeconds.ToString();
+            if (seconds >= 10)
+            {
+                timerText.text = minutes.ToString()
+                + "'" + seconds.ToString()
+                + "''" + deciSeconds.ToString() + centiSeconds.ToString();
+            }
+            else
+            {
+                timerText.text = minutes.ToString()
+                + "'0" + seconds.ToString()
+                + "''" + deciSeconds.ToString() + centiSeconds.ToString();
+            }
         }
         else
         {

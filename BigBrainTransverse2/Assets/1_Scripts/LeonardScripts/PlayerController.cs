@@ -12,6 +12,8 @@ public class PlayerController : MonoBehaviour
     NewGameManager gameManager;
     NewInputManager inputManager;
 
+    KinectManager kinectManager;
+
     [Header("Public variables")]
     public bool ultimateEnabled;
 
@@ -21,12 +23,13 @@ public class PlayerController : MonoBehaviour
 
     [Header("Serializable variables")]
     [SerializeField] bool isPlayerOne;
+    [SerializeField] float decalWithoutKinect;
 
     [FoldoutGroup("Debug Variables")] [SerializeField] GameObject equippedFood;
     [FoldoutGroup("Debug Variables")] [SerializeField] int currentlySelectedFood;
 
+    Vector3 startPos;
     GameObject[] foodWeapons;
-
     GameObject cloneProj;
 
     void Start()
@@ -34,8 +37,11 @@ public class PlayerController : MonoBehaviour
         gameManager = NewGameManager.Instance;
         inputManager = gameManager.inputManager;
 
-        ChooseWeaponsForRightLobby();
+        kinectManager = KinectManager.Instance;
 
+        startPos = transform.position;
+
+        ChooseWeaponsForRightLobby();
         currentlySelectedFood = 0;
     }
 
@@ -74,23 +80,19 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        //UnityEngine.Debug.DrawRay(Camera.main.transform.position, transform.position);
-
-        if (Input.GetKeyDown(KeyCode.Space)) ShootProjectile();
-
         UpdatePosition();
 
         WeaponSwitch();
 
-        if (inputManager.mouseLeftClick)
+        if (isPlayerOne && inputManager.mouseLeftClick)
+            ShootProjectile();
+        else if (!isPlayerOne && inputManager.mouseRightClick)
             ShootProjectile();
         else
-        {
             if (isPlayerOne && inputManager.swipeDownP1)
                 ShootProjectile();
             else if (!isPlayerOne && inputManager.swipeDownP2)
                 ShootProjectile();
-        }
 
         if (isPlayerOne)
             InfosToUI(0);
@@ -101,18 +103,29 @@ public class PlayerController : MonoBehaviour
     void UpdatePosition()
     {
         if (isPlayerOne)
-            transform.position = Vector3.Lerp(transform.position, inputManager.cursor1Pos, inputManager.smoothFactor * Time.deltaTime);
+            if (kinectManager)
+                transform.position = Vector3.Lerp(transform.position, inputManager.cursor1Pos, inputManager.smoothFactor * Time.deltaTime);
+            else
+                transform.position = new Vector3(startPos.x + decalWithoutKinect, startPos.y, startPos.z);
         else
-            transform.position = Vector3.Lerp(transform.position, inputManager.cursor2Pos, inputManager.smoothFactor * Time.deltaTime);
+            if (kinectManager)
+                transform.position = Vector3.Lerp(transform.position, inputManager.cursor2Pos, inputManager.smoothFactor * Time.deltaTime);
+            else
+                transform.position = new Vector3(startPos.x + decalWithoutKinect, startPos.y, startPos.z);
     }
 
     void ShootProjectile()
     {
+        if (currentlySelectedFood == 2)
+            ultimateEnabled = false;
+
         cloneProj = Instantiate(equippedFood, transform.position, Quaternion.identity);
+
         if (isPlayerOne)
             cloneProj.gameObject.GetComponent<FoodBehavior>().shotByPlayerIndex = 0;
         else
             cloneProj.gameObject.GetComponent<FoodBehavior>().shotByPlayerIndex = 1;
+
         cloneProj.gameObject.SendMessage("MoveToPosition", yet.transform.position);
     }
 

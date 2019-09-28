@@ -5,6 +5,8 @@ using UnityEngine;
 
 class FoodBehavior : MonoBehaviour
 {
+    KinectManager kinectManager;
+
     public int shotByPlayerIndex;
     public FoodData foodData;
     [FoldoutGroup("Food Variables")] [SerializeField] float foodMoveSpeed;
@@ -14,6 +16,11 @@ class FoodBehavior : MonoBehaviour
     Vector3 hitPointCoord;
 
     Stopwatch timer = new Stopwatch();
+
+    private void Start()
+    {
+        kinectManager = KinectManager.Instance;
+    }
 
     void Update()
     {
@@ -26,15 +33,16 @@ class FoodBehavior : MonoBehaviour
         //Vector3 relative = transform.InverseTransformDirection(Vector3.forward);
         Ray ray = new Ray(yetReceive, Vector3.down);
 
-        //Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if (!kinectManager)
+        {
+            ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        }
 
         RaycastHit hit;
 
         if (Physics.Raycast(ray, out hit) && hit.collider.gameObject.layer == LayerMask.NameToLayer("BoundsLayer"))
         {
             hitPointCoord = new Vector3(hit.point.x, hit.point.y, hit.point.z);
-            //UnityEngine.Debug.Log(hitPointCoord);
-
             rb = GetComponent<Rigidbody>();
             rb.useGravity = true;
             Vector3 dir = hitPointCoord - transform.position;

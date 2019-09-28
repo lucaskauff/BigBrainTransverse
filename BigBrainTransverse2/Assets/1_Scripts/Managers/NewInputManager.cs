@@ -34,12 +34,13 @@ public class NewInputManager : MonoBehaviour
     public bool swipeRightP2;
     public bool swipeDownP2;
 
-    //Mouse clicks
+    //Mouse inputs
+    public Vector3 mouseCursorPos;
     public bool mouseLeftClick;
     public bool mouseWheelClick;
     public bool mouseRightClick;
 
-    //Keyboard keys
+    //Keyboard inputs
     public bool weaponMinusKeyP1;
     public bool weaponPlusKeyP1;
     public bool weaponMinusKeyP2;
@@ -67,8 +68,8 @@ public class NewInputManager : MonoBehaviour
                 iJointIndexes[i] = (int)TrackedJoints[i];
             }
 
-            Player1JointsPositions(true);
-            Player1JointsPositions(false);
+            PlayerJointsPositions(true);
+            PlayerJointsPositions(false);
 
             if (gestureListener)
             {
@@ -83,9 +84,10 @@ public class NewInputManager : MonoBehaviour
         }
 
         //Mouse clicks
-        mouseLeftClick = Input.GetMouseButton(0);
-        mouseRightClick = Input.GetMouseButton(1);
-        mouseWheelClick = Input.GetMouseButton(2);
+        mouseCursorPos = Input.mousePosition;
+        mouseLeftClick = Input.GetMouseButtonDown(0);
+        mouseRightClick = Input.GetMouseButtonDown(1);
+        mouseWheelClick = Input.GetMouseButtonDown(2);
 
         //Keyboard keys
         switchCameraOnOff = Input.GetKeyDown(KeyCode.C);
@@ -95,7 +97,7 @@ public class NewInputManager : MonoBehaviour
         weaponPlusKeyP2 = Input.GetKeyDown(KeyCode.Alpha4);
     }
 
-    void Player1JointsPositions(bool isPlayerOne)
+    void PlayerJointsPositions(bool isPlayerOne)
     {
         uint userId;
         if (isPlayerOne)

@@ -124,6 +124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2452faa5ff84d54ebbbbec7a377d203, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shotByPlayerIndex: 0
   foodData: {fileID: 11400000, guid: 1cb38b85f0811524399f373502d5d203, type: 2}
   foodMoveSpeed: 6
-  timeToSelfDestruct: 5000
+  timeToSelfDestruct: 3
