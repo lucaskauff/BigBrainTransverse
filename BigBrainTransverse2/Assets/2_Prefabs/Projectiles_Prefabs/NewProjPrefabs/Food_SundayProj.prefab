@@ -125,5 +125,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   foodData: {fileID: 11400000, guid: 1cb38b85f0811524399f373502d5d203, type: 2}
+<<<<<<< HEAD
   foodMoveSpeed: 5
   timeToSelfDestruct: 2
+=======
+  foodMoveSpeed: 6
+  timeToSelfDestruct: 5000
+>>>>>>> develop
