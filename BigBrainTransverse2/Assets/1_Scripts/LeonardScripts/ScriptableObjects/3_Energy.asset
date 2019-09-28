@@ -13,7 +13,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   foodType: 2
   foodName: 4
-  foodMesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+  foodMesh: {fileID: 4300000, guid: 55a0970fa58c906418d7f70cf0d33449, type: 3}
+  foodMate: {fileID: 2100000, guid: f6bda8d428bbe4647a5418a6e88f3c85, type: 2}
   calorieGainOnHit: 5
   calorieToleranceDecrease: 0
   calorieGainOverTime: 10

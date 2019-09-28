@@ -21,7 +21,7 @@ public class CitizenController : MonoBehaviour
     Vector3 theCamera;
 
     [FoldoutGroup("Objects to serialize")] [SerializeField] TheBubble bubble;
-    //[FoldoutGroup("Objects to serialize")] [SerializeField] Animator reason;
+    [FoldoutGroup("Objects to serialize")] [SerializeField] Transform reason;
 
     [FoldoutGroup("Debug Variables")] public bool isScientist;
 
@@ -129,7 +129,7 @@ public class CitizenController : MonoBehaviour
         {
             myAnim.SetTrigger("Hit");
 
-            switch (foodData.FoodType)
+            switch (collision.gameObject.GetComponent<FoodBehavior>().foodData.FoodType)
             {
                 case FoodType.greasy:
                     GreaseEffect(foodData.CalorieGainOnHit);
@@ -188,7 +188,7 @@ public class CitizenController : MonoBehaviour
     {
         currentCalories += caloriesGained;
         citizenMoveSpeed /= speedDecreaseMultiplier;
-        particleSystem.Play();
+        //particleSystem.Play();
     }
 
     void SweetEffect(int caloriesGained, int toleranceDecrease)
@@ -225,6 +225,8 @@ public class CitizenController : MonoBehaviour
         if (!gameManager.isDeathAnimOnGoing)
         {
             bubble.transform.LookAt(theCamera);
+            reason.LookAt(theCamera);
+            reason.localPosition = new Vector3(reason.localPosition.x, reason.localPosition.y, reason.localPosition.z+0.01f);
             if (greasy > sweet) bubble.whichDeath = 0;
             else if (greasy < sweet) bubble.whichDeath = 1;
             else if(isHitByEnergy) bubble.whichDeath = 2;

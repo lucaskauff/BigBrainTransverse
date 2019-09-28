@@ -12,6 +12,7 @@ public class NewGameManager : Singleton<NewGameManager>
     public NewInputManager inputManager;
 
     public int[] selectedLobbyPlayers;
+    public int[] peopleKilled;
 
     public bool isDeathAnimOnGoing = false;
 
@@ -19,5 +20,18 @@ public class NewGameManager : Singleton<NewGameManager>
     {
         sceneLoader = GetComponent<SceneLoader>();
         inputManager = GetComponent<NewInputManager>();
+
+        //Quite some things to fix there !
+        selectedLobbyPlayers = new int[2];
+        peopleKilled = new int[2];
+
+        //Debug
+        selectedLobbyPlayers[0] = 0;
+        selectedLobbyPlayers[1] = 1;
+    }
+
+    private void Start()
+    {
+        //
     }
 }
