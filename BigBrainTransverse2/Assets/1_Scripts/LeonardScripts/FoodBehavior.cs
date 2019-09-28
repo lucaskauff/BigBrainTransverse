@@ -60,10 +60,7 @@ class FoodBehavior : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
         //use to detect collision against wall and change the facing direction
-        if (collision.gameObject.tag == "Citizens")
-        {
-            collision.gameObject.SendMessage("WhichFoodType", foodData);
-        }
+        if (collision.gameObject.tag == "Citizens") collision.gameObject.SendMessage("WhichFoodType", foodData);
 
         if (collision.gameObject.layer == LayerMask.NameToLayer("BoundsLayer")) Destroy(this.gameObject);
     }
