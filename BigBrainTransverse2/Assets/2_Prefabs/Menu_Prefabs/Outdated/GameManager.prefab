@@ -113,13 +113,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41f0cafc57736904aa80401720fbd5f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxNumberOfEntitiesToSpawn: 50
   spawnPointsList:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  people: {fileID: 1187548129409664, guid: 9f11eddfcd80f27418a71ade2abbb6dd, type: 2}
-  numberToSpawn: 1
-  intervalToSpawnInSeconds: 3
+  people:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  maxNumberOfEntitiesToSpawn: 50
+  simultaneousSpawnNumber: 0
+  baseSpawnRate: 0
+  scientist: {fileID: 0}
+  baseWaitForScientist: 0
+  timeToSpawnScientist: 0
+  minTimeToScientist: 0
+  maxTimeToScientist: 0
+  currentSpawnRateMultiplier: 0
+  currentSpawnRate: 0
+  maxNumberToSpawnInScene: 0
+  currentNumberInScene: 0
+  percentInScene: 0
+  percentSpawnSpeed: 0

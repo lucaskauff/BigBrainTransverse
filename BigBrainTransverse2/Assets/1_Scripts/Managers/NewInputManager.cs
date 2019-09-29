@@ -5,8 +5,8 @@ using UnityEngine;
 public class NewInputManager : MonoBehaviour
 {
     [Header("Public variables")]
+    public bool isUsingKinectInputs = true;
     public float smoothFactor = 60f;
-
     public KinectWrapper.NuiSkeletonPositionIndex gestureJoint;
 
     [Header("Serializable variables")]
@@ -27,12 +27,19 @@ public class NewInputManager : MonoBehaviour
     public bool swipeLeftP1;
     public bool swipeRightP1;
     public bool swipeDownP1;
+    public bool pushP1;
+    public bool throwP1;
 
     //Player 2
     public Vector3 cursor2Pos;
     public bool swipeLeftP2;
     public bool swipeRightP2;
     public bool swipeDownP2;
+    public bool pushP2;
+    public bool throwP2;
+
+    //AnyKey
+    public bool anyKeyDown;
 
     //Mouse inputs
     public Vector3 mouseCursorPos;
@@ -55,7 +62,7 @@ public class NewInputManager : MonoBehaviour
         iJointIndexes = new int[TrackedJoints.Length];
         playerKnobExample = FindObjectOfType<PlayerController>();
 
-        distanceToCamera = (playerKnobExample.transform.position - Camera.main.transform.position).magnitude;
+        //distanceToCamera = (playerKnobExample.transform.position - Camera.main.transform.position).magnitude;
     }
 
     void Update ()
@@ -76,12 +83,19 @@ public class NewInputManager : MonoBehaviour
                 swipeLeftP1 = gestureListener.IsSwipeLeftP1();
                 swipeRightP1 = gestureListener.IsSwipeRightP1();
                 swipeDownP1 = gestureListener.IsSwipeDownP1();
+                pushP1 = gestureListener.IsPushP1();
+                throwP1 = gestureListener.IsThrowP1();
 
                 swipeLeftP2 = gestureListener.IsSwipeLeftP2();
                 swipeRightP2 = gestureListener.IsSwipeRightP2();
                 swipeDownP2 = gestureListener.IsSwipeDownP2();
+                pushP2 = gestureListener.IsPushP2();
+                throwP2 = gestureListener.IsThrowP2();
             }
         }
+
+        //Any key pressed
+        anyKeyDown = Input.anyKeyDown;
 
         //Mouse clicks
         mouseCursorPos = Input.mousePosition;

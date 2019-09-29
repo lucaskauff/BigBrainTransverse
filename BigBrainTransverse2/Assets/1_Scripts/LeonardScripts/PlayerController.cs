@@ -8,7 +8,6 @@ using System.Diagnostics;
 public class PlayerController : MonoBehaviour
 {
     //GameManager
-    public GameObject yet;
     NewGameManager gameManager;
     NewInputManager inputManager;
 
@@ -18,6 +17,7 @@ public class PlayerController : MonoBehaviour
     public bool ultimateEnabled;
 
     [Header("Objects to serialize")]
+    public GameObject yet;
     [SerializeField] UIManager uIManager;
     [SerializeField] GameObject[] allFoodWeapons;
 
@@ -89,9 +89,9 @@ public class PlayerController : MonoBehaviour
         else if (!isPlayerOne && inputManager.mouseRightClick)
             ShootProjectile();
         else
-            if (isPlayerOne && inputManager.swipeDownP1)
+            if (isPlayerOne && (/*inputManager.swipeDownP1 ||*/ inputManager.pushP1 || inputManager.throwP1))
                 ShootProjectile();
-            else if (!isPlayerOne && inputManager.swipeDownP2)
+            else if (!isPlayerOne && (inputManager.swipeDownP2 || inputManager.pushP2 || inputManager.throwP2))
                 ShootProjectile();
 
         if (isPlayerOne)

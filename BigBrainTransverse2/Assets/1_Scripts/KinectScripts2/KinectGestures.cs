@@ -53,7 +53,8 @@ public class KinectGestures
 		Jump,
 		Squat,
 		Push,
-		Pull
+		Pull,
+        Throw
 	}
 	
 	
@@ -698,13 +699,13 @@ public class KinectGestures
 				{
 					case 0:  // gesture detection - phase 1
 						if(jointsTracked[rightHandIndex] && jointsTracked[leftShoulderIndex] &&
-					       (jointsPos[rightHandIndex].y - jointsPos[leftShoulderIndex].y) > 0.05f)
+					       (jointsPos[rightHandIndex].y - jointsPos[leftShoulderIndex].y) > 0.01f)
 						{
 							SetGestureJoint(ref gestureData, timestamp, rightHandIndex, jointsPos[rightHandIndex]);
 							gestureData.progress = 0.5f;
 						}
 						else if(jointsTracked[leftHandIndex] && jointsTracked[rightShoulderIndex] &&
-					            (jointsPos[leftHandIndex].y - jointsPos[rightShoulderIndex].y) > 0.05f)
+					            (jointsPos[leftHandIndex].y - jointsPos[rightShoulderIndex].y) > 0.01f)
 						{
 							SetGestureJoint(ref gestureData, timestamp, leftHandIndex, jointsPos[leftHandIndex]);
 							gestureData.progress = 0.5f;
@@ -712,17 +713,17 @@ public class KinectGestures
 						break;
 				
 					case 1:  // gesture phase 2 = complete
-						if((timestamp - gestureData.timestamp) < 1.5f)
-						{
+						if((timestamp - gestureData.timestamp) < 2.5f) //1.5f
+                        {
 							bool isInPose = gestureData.joint == rightHandIndex ?
 								jointsTracked[rightHandIndex] && jointsTracked[leftElbowIndex] &&
-								(jointsPos[rightHandIndex].y - jointsPos[leftElbowIndex].y) < -0.15f && 
-								Mathf.Abs(jointsPos[rightHandIndex].x - gestureData.jointPos.x) <= 0.1f :
-								jointsTracked[leftHandIndex] && jointsTracked[rightElbowIndex] &&
-								(jointsPos[leftHandIndex].y - jointsPos[rightElbowIndex].y) < -0.15f &&
-								Mathf.Abs(jointsPos[leftHandIndex].x - gestureData.jointPos.x) <= 0.1f;
+								(jointsPos[rightHandIndex].y - jointsPos[leftElbowIndex].y) < -0.075f && //-O.15f
+								Mathf.Abs(jointsPos[rightHandIndex].x - gestureData.jointPos.x) <= 0.05f : //0.1f
+                                jointsTracked[leftHandIndex] && jointsTracked[rightElbowIndex] &&
+								(jointsPos[leftHandIndex].y - jointsPos[rightElbowIndex].y) < -0.075f && //-O.15f
+                                Mathf.Abs(jointsPos[leftHandIndex].x - gestureData.jointPos.x) <= 0.05f; //0.1f
 
-							if(isInPose)
+                            if (isInPose)
 							{
 								Vector3 jointPos = jointsPos[gestureData.joint];
 								CheckPoseComplete(ref gestureData, timestamp, jointPos, isInPose, 0f);
@@ -1103,8 +1104,53 @@ public class KinectGestures
 				}
 				break;
 
-			// here come more gesture-cases
-		}
+            // here come more gesture-cases :
+
+            // check for Throw
+            case Gestures.Throw:
+                switch (gestureData.state)
+                {
+                    case 0:  // gesture detection - phase 1
+                        if (jointsTracked[rightHandIndex] && jointsTracked[leftShoulderIndex] &&
+                           (jointsPos[rightHandIndex].y - jointsPos[leftShoulderIndex].y) > 0.01f)
+                        {
+                            SetGestureJoint(ref gestureData, timestamp, rightHandIndex, jointsPos[rightHandIndex]);
+                            gestureData.progress = 0.9f;
+                        }
+                        else if (jointsTracked[leftHandIndex] && jointsTracked[rightShoulderIndex] &&
+                                (jointsPos[leftHandIndex].y - jointsPos[rightShoulderIndex].y) > 0.01f)
+                        {
+                            SetGestureJoint(ref gestureData, timestamp, leftHandIndex, jointsPos[leftHandIndex]);
+                            gestureData.progress = 0.9f;
+                        }
+                        break;
+
+                    case 1:  // gesture phase 2 = complete
+                        if ((timestamp - gestureData.timestamp) < 1f) //1.5f
+                        {
+                            bool isInPose = gestureData.joint == rightHandIndex ?
+                                jointsTracked[rightHandIndex] && jointsTracked[leftElbowIndex] &&
+                                (jointsPos[rightHandIndex].y - jointsPos[leftElbowIndex].y) < -0.075f && //-O.15f
+                                Mathf.Abs(jointsPos[rightHandIndex].x - gestureData.jointPos.x) <= 0.05f : //0.1f
+                                jointsTracked[leftHandIndex] && jointsTracked[rightElbowIndex] &&
+                                (jointsPos[leftHandIndex].y - jointsPos[rightElbowIndex].y) < -0.075f && //-O.15f
+                                Mathf.Abs(jointsPos[leftHandIndex].x - gestureData.jointPos.x) <= 0.05f; //0.1f
+
+                            if (isInPose)
+                            {
+                                Vector3 jointPos = jointsPos[gestureData.joint];
+                                CheckPoseComplete(ref gestureData, timestamp, jointPos, isInPose, 0f);
+                            }
+                        }
+                        else
+                        {
+                            // cancel the gesture
+                            SetGestureCancelled(ref gestureData);
+                        }
+                        break;
+                }
+                break;
+        }
 	}
 
 }

@@ -274,11 +274,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d54ac63906b951e448bbf4208c21b3dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  yet: {fileID: 0}
   ultimateEnabled: 0
+  uIManager: {fileID: 0}
+  allFoodWeapons: []
   isPlayerOne: 0
+  decalWithoutKinect: 0
   equippedFood: {fileID: 0}
   currentlySelectedFood: 0
-  foodWeapons: []
 --- !u!114 &114773522086206466
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -290,6 +293,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2452faa5ff84d54ebbbbec7a377d203, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shotByPlayerIndex: 0
   foodData: {fileID: 0}
   foodMoveSpeed: 0
   timeToSelfDestruct: 0
@@ -306,16 +310,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myCol: {fileID: 0}
   myAnim: {fileID: 0}
+  rb: {fileID: 0}
+  cubeRenderer: {fileID: 0}
+  particleSystem: {fileID: 0}
   bubble: {fileID: 0}
-  isScientist: 0
-  currentCalories: 0
-  currentMaxCalorieTol: 0
-  baseMaxCalorieTol: 0
+  scientistBubble: {fileID: 0}
+  reason: {fileID: 0}
+  reasonDecal: 0
   citizenMoveSpeed: 0
-  intervalToRandomizeRotation: 0
   speedDecreaseMultiplier: 0
-  greasy: 0
-  sweet: 0
+  baseMaxCalorieTol: 0
+  timeFreezedOnHit: 0
+  isScientist: 0
+  hitWall: 0
+  isHitByEnergy: 0
+  isDead: 0
+  currentMaxCalorieTol: 0
+  currentCalories: 0
+  intervalToRandomizeRotation: 0
+  greasyHits: 0
+  sweetHits: 0
 --- !u!114 &114913516362588890
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -327,18 +341,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41f0cafc57736904aa80401720fbd5f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxNumberOfEntitiesToSpawn: 0
   spawnPointsList: []
   people:
   - {fileID: 0}
-  numberToSpawn: 0
-  intervalToSpawnInSeconds: 20
+  maxNumberOfEntitiesToSpawn: 0
+  simultaneousSpawnNumber: 0
+  baseSpawnRate: 0
   scientist: {fileID: 0}
+  baseWaitForScientist: 0
   timeToSpawnScientist: 0
   minTimeToScientist: 15
   maxTimeToScientist: 30
-  baseSpawnRateInSeconds: 0
   currentSpawnRateMultiplier: 0
+  currentSpawnRate: 0
   maxNumberToSpawnInScene: 0
   currentNumberInScene: 0
   percentInScene: 0

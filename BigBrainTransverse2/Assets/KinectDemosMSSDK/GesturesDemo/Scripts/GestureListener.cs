@@ -13,12 +13,16 @@ public class GestureListener : MonoBehaviour, KinectGestures.GestureListenerInte
     private bool swipeLeftP1;
 	private bool swipeRightP1;
     private bool swipeDownP1;
+    private bool pushP1;
+    private bool throwP1;
 
     private bool swipeLeftP2;
     private bool swipeRightP2;
     private bool swipeDownP2;
-	
-	public bool IsSwipeLeftP1()
+    private bool pushP2;
+    private bool throwP2;
+
+    public bool IsSwipeLeftP1()
 	{
 		if(swipeLeftP1)
 		{
@@ -45,6 +49,28 @@ public class GestureListener : MonoBehaviour, KinectGestures.GestureListenerInte
         if (swipeDownP1)
         {
             swipeDownP1 = false;
+            return true;
+        }
+
+        return false;
+    }
+
+    public bool IsPushP1()
+    {
+        if (pushP1)
+        {
+            pushP1 = false;
+            return true;
+        }
+
+        return false;
+    }
+
+    public bool IsThrowP1()
+    {
+        if (throwP1)
+        {
+            throwP1 = false;
             return true;
         }
 
@@ -84,6 +110,28 @@ public class GestureListener : MonoBehaviour, KinectGestures.GestureListenerInte
         return false;
     }
 
+    public bool IsPushP2()
+    {
+        if (pushP2)
+        {
+            pushP2 = false;
+            return true;
+        }
+
+        return false;
+    }
+
+    public bool IsThrowP2()
+    {
+        if (throwP2)
+        {
+            throwP2 = false;
+            return true;
+        }
+
+        return false;
+    }
+
     private void Start()
     {
         inputManager = NewGameManager.Instance.inputManager;
@@ -98,6 +146,8 @@ public class GestureListener : MonoBehaviour, KinectGestures.GestureListenerInte
 		manager.DetectGesture(userId, KinectGestures.Gestures.SwipeLeft);
 		manager.DetectGesture(userId, KinectGestures.Gestures.SwipeRight);
         manager.DetectGesture(userId, KinectGestures.Gestures.SwipeDown);
+        manager.DetectGesture(userId, KinectGestures.Gestures.Push);
+        manager.DetectGesture(userId, KinectGestures.Gestures.Throw);
 
         if (GestureInfo != null)
 		{
@@ -138,6 +188,10 @@ public class GestureListener : MonoBehaviour, KinectGestures.GestureListenerInte
                     swipeRightP1 = true;
                 else if (gesture == KinectGestures.Gestures.SwipeDown)
                     swipeDownP1 = true;
+                else if (gesture == KinectGestures.Gestures.Push)
+                    pushP1 = true;
+                else if (gesture == KinectGestures.Gestures.Throw)
+                    throwP1 = true;
             }
         }
 
@@ -151,6 +205,10 @@ public class GestureListener : MonoBehaviour, KinectGestures.GestureListenerInte
                     swipeRightP2 = true;
                 else if (gesture == KinectGestures.Gestures.SwipeDown)
                     swipeDownP2 = true;
+                else if (gesture == KinectGestures.Gestures.Push)
+                    pushP2 = true;
+                else if (gesture == KinectGestures.Gestures.Throw)
+                    throwP2 = true;
             }
         }
 

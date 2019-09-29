@@ -16,8 +16,9 @@ public class CitizenController : MonoBehaviour
     [FoldoutGroup("Components")][SerializeField] ParticleSystem particleSystem;
 
     [FoldoutGroup("UI")][SerializeField] TheBubble bubble;
-    [FoldoutGroup("UI")] [SerializeField] ScientistBubble scientistBubble;
+    [FoldoutGroup("UI")][SerializeField] ScientistBubble scientistBubble;
     [FoldoutGroup("UI")][SerializeField] Transform reason;
+    [FoldoutGroup("UI")][SerializeField] float reasonDecal;
 
     [FoldoutGroup("Gameplay")][SerializeField] float citizenMoveSpeed;
     [FoldoutGroup("Gameplay")][SerializeField] float speedDecreaseMultiplier;
@@ -222,8 +223,8 @@ public class CitizenController : MonoBehaviour
             if (gameManager.deathAnimsOnGoing <= gameManager.maxDeathAnims)
             {
                 bubble.transform.LookAt(theCamera);
-                reason.LookAt(theCamera);
-                reason.localPosition = new Vector3(reason.localPosition.x, reason.localPosition.y, reason.localPosition.z + 0.01f);
+                //reason.LookAt(theCamera);
+                reason.localPosition = new Vector3(reason.localPosition.x, reason.localPosition.y, reason.localPosition.z + reasonDecal);
 
                 if (greasyHits > sweetHits)
                 {

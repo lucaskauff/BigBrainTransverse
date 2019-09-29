@@ -51,10 +51,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d54ac63906b951e448bbf4208c21b3dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  foodWeapons:
-  - {fileID: 1668910094014942, guid: 64d0520ff69f63e47b620dd183451728, type: 2}
-  - {fileID: 1668910094014942, guid: a6f1fe68e84a24b4ebc15ecfc75ed70d, type: 2}
-  - {fileID: 1668910094014942, guid: 8cbfe37e67a28e44090b0b1771c27a14, type: 2}
-  spawnPoint: {fileID: 4220943813251270}
+  yet: {fileID: 0}
+  ultimateEnabled: 0
+  uIManager: {fileID: 0}
+  allFoodWeapons: []
+  isPlayerOne: 0
+  decalWithoutKinect: 0
   equippedFood: {fileID: 0}
   currentlySelectedFood: 0

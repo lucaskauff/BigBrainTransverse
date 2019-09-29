@@ -5,7 +5,8 @@ using UnityEngine;
 
 class FoodBehavior : MonoBehaviour
 {
-    KinectManager kinectManager;
+    //GameManager
+    NewInputManager inputManager;
 
     public int shotByPlayerIndex;
     public FoodData foodData;
@@ -19,7 +20,7 @@ class FoodBehavior : MonoBehaviour
 
     private void Start()
     {
-        kinectManager = KinectManager.Instance;
+        inputManager = NewGameManager.Instance.inputManager;
     }
 
     void Update()
@@ -33,10 +34,12 @@ class FoodBehavior : MonoBehaviour
         //Vector3 relative = transform.InverseTransformDirection(Vector3.forward);
         Ray ray = new Ray(yetReceive, Vector3.down);
 
-        if (!kinectManager)
+        /*
+        if (!inputManager.isUsingKinectInputs)
         {
+            UnityEngine.Debug.Log("oof");
             ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        }
+        }*/
 
         RaycastHit hit;
 
