@@ -27,8 +27,8 @@ public class NewGameManager : Singleton<NewGameManager>
         peopleKilled = new int[2];
 
         //Debug
-        selectedLobbyPlayers[0] = 1;
-        selectedLobbyPlayers[1] = 1;
+        selectedLobbyPlayers[0] = 0;
+        selectedLobbyPlayers[1] = 0;
     }
 
     private void Start()

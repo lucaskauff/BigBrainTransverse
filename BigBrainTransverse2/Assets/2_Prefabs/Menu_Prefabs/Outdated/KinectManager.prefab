@@ -53,18 +53,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TwoUsers: 1
   ComputeUserMap: 1
-  ComputeColorMap: 1
+  ComputeColorMap: 0
   DisplayUserMap: 0
   DisplayColorMap: 0
   DisplaySkeletonLines: 0
   DisplayMapsWidthPercent: 20
-  SensorHeight: 1
+  SensorHeight: 5
   SensorAngle: 0
   MinUserDistance: 1
   MaxUserDistance: 0
   DetectClosestUser: 1
   IgnoreInferredJoints: 1
-  smoothing: 1
+  smoothing: 2
   UseBoneOrientationsFilter: 0
   UseClippedLegsFilter: 0
   UseBoneOrientationsConstraint: 1
@@ -75,7 +75,7 @@ MonoBehaviour:
   Player2CalibrationPose: 0
   Player1Gestures: 
   Player2Gestures: 
-  MinTimeBetweenGestures: 0.7
+  MinTimeBetweenGestures: 0.5
   GestureListeners: []
   CalibrationText: {fileID: 0}
   HandCursor1: {fileID: 0}
