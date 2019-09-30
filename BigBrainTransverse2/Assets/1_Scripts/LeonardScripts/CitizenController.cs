@@ -74,6 +74,8 @@ public class CitizenController : MonoBehaviour
             timer.Stop();
             timer.Reset();
         }
+        
+        particleSystem.Play();
 
         if (isHitByEnergy) EnergyEffect(foodData.CalorieGainOnHit, foodData.CalorieGainOverTime);
     }
@@ -163,7 +165,7 @@ public class CitizenController : MonoBehaviour
     {
         currentCalories += caloriesGained;
         citizenMoveSpeed /= speedDecreaseMultiplier;
-        //particleSystem.Play();
+        particleSystem.Play();
     }
 
     void SweetEffect(int caloriesGained, int toleranceDecrease)

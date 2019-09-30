@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Name: TestProfile
   m_EditorClassIdentifier: 
   settings:
-  - {fileID: 114775258358386994}
   - {fileID: 114281413436912798}
 --- !u!114 &114281413436912798
 MonoBehaviour:
@@ -1324,30 +1323,3 @@ MonoBehaviour:
       - 0.5
       - 0.5
       - 0.5
---- !u!114 &114775258358386994
-MonoBehaviour:
-  m_ObjectHideFlags: 3
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 556797029e73b2347956b6579e77e05b, type: 3}
-  m_Name: DepthOfField
-  m_EditorClassIdentifier: 
-  active: 1
-  enabled:
-    overrideState: 1
-    value: 0
-  focusDistance:
-    overrideState: 1
-    value: 27
-  aperture:
-    overrideState: 1
-    value: 3.2
-  focalLength:
-    overrideState: 1
-    value: 257
-  kernelSize:
-    overrideState: 1
-    value: 0
