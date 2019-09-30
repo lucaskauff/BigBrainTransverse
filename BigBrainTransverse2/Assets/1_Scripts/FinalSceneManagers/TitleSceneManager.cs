@@ -13,8 +13,11 @@ public class TitleSceneManager : MonoBehaviour
 
     void Start()
     {
-        sceneLoader = NewGameManager.Instance.sceneLoader;
-        inputManager = NewGameManager.Instance.inputManager;
+        //sceneLoader = NewGameManager.Instance.sceneLoader;
+        //inputManager = NewGameManager.Instance.inputManager;
+
+        sceneLoader = FindObjectOfType<SceneLoader>();
+        inputManager = FindObjectOfType<NewInputManager>();
     }
 
     void Update ()

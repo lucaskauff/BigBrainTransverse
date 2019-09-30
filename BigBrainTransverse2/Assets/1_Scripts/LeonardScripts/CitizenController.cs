@@ -47,7 +47,8 @@ public class CitizenController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        gameManager = NewGameManager.Instance;
+        //gameManager = NewGameManager.Instance;
+        gameManager = FindObjectOfType<NewGameManager>();
         particleSystem = GetComponentInChildren<ParticleSystem>();
 
         SpawnManager.citizensInScene.Add(gameObject);

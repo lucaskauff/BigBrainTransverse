@@ -11,7 +11,8 @@ public class TheBubble : MonoBehaviour
 
     private void Start()
     {
-        gameManager = NewGameManager.Instance;
+        //gameManager = NewGameManager.Instance;
+        gameManager = FindObjectOfType<NewGameManager>();
     }
 
     void TriggerDeathAnimation()

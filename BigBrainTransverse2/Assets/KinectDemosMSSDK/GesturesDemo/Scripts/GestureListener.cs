@@ -134,7 +134,8 @@ public class GestureListener : MonoBehaviour, KinectGestures.GestureListenerInte
 
     private void Start()
     {
-        inputManager = NewGameManager.Instance.inputManager;
+        //inputManager = NewGameManager.Instance.inputManager;
+        inputManager = FindObjectOfType<NewInputManager>();
         manager = KinectManager.Instance;
     }
 

@@ -20,7 +20,8 @@ class FoodBehavior : MonoBehaviour
 
     private void Start()
     {
-        inputManager = NewGameManager.Instance.inputManager;
+        //inputManager = NewGameManager.Instance.inputManager;
+        inputManager = FindObjectOfType<NewInputManager>();
     }
 
     void Update()

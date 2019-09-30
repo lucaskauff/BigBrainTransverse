@@ -15,7 +15,8 @@ public class PlayerKnob : MonoBehaviour
 
     private void Start()
     {
-        inputManager = NewGameManager.Instance.inputManager;
+        //inputManager = NewGameManager.Instance.inputManager;
+        inputManager = FindObjectOfType<NewInputManager>();
     }
 
     private void Update()

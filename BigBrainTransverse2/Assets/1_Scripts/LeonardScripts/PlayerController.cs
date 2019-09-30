@@ -34,8 +34,10 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        gameManager = NewGameManager.Instance;
-        inputManager = gameManager.inputManager;
+        //gameManager = NewGameManager.Instance;
+        //inputManager = gameManager.inputManager;
+        gameManager = FindObjectOfType<NewGameManager>();
+        inputManager = gameManager.GetComponent<NewInputManager>();
 
         kinectManager = KinectManager.Instance;
 

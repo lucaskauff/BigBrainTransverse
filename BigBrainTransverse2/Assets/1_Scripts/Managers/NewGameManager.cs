@@ -4,9 +4,9 @@ using UnityEngine;
 
 [RequireComponent(typeof(SceneLoader))]
 [RequireComponent(typeof(NewInputManager))]
-public class NewGameManager : Singleton<NewGameManager>
+public class NewGameManager : /*Singleton<NewGameManager>*/ MonoBehaviour
 {
-    protected NewGameManager() { }
+    //protected NewGameManager() { }
 
     public SceneLoader sceneLoader;
     public NewInputManager inputManager;

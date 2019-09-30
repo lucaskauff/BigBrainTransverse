@@ -6,8 +6,8 @@ Material:
   m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: UIDefault
-  m_Shader: {fileID: 4800000, guid: c61f339ade7b3e849938050354b1c448, type: 3}
+  m_Name: UIDefault1
+  m_Shader: {fileID: 4800000, guid: 6764d8d98906cb94780ac4ff16477da0, type: 3}
   m_ShaderKeywords: _EMISSION
   m_LightmapFlags: 1
   m_EnableInstancingVariants: 0
@@ -84,7 +84,7 @@ Material:
     - _SDFMode: 0
     - _ShadowAngle: 135
     - _ShadowCutoff: 0.5
-    - _ShadowDistance: 5.33
+    - _ShadowDistance: 5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
@@ -95,4 +95,4 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _OutlineColor: {r: 1, g: 1, b: 1, a: 1}
-    - _ShadowColor: {r: 1, g: 0, b: 0, a: 1}
+    - _ShadowColor: {r: 0.4528302, g: 0, b: 0, a: 1}
