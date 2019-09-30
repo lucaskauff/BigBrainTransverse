@@ -89,9 +89,9 @@ public class PlayerController : MonoBehaviour
         else if (!isPlayerOne && inputManager.mouseRightClick)
             ShootProjectile();
         else
-            if (isPlayerOne && (/*inputManager.swipeDownP1 ||*/ inputManager.pushP1 || inputManager.throwP1))
+            if (isPlayerOne && (/*inputManager.swipeDownP1 || inputManager.pushP1 ||*/ inputManager.throwP1))
                 ShootProjectile();
-            else if (!isPlayerOne && (inputManager.swipeDownP2 || inputManager.pushP2 || inputManager.throwP2))
+            else if (!isPlayerOne && (/*inputManager.swipeDownP2 || inputManager.pushP2 ||*/ inputManager.throwP2))
                 ShootProjectile();
 
         if (isPlayerOne)

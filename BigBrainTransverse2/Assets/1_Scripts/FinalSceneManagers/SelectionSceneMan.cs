@@ -14,13 +14,18 @@ public class SelectionSceneMan : MonoBehaviour
 
     private void Start()
     {
+        /*
         gameManager = NewGameManager.Instance;
         sceneLoader = gameManager.sceneLoader;
+        */
+
+        gameManager = FindObjectOfType<NewGameManager>();
+        sceneLoader = gameManager.GetComponent<SceneLoader>();
     }
 
     void Update ()
     {
-		if (connectionBoxes[0].isSelected && connectionBoxes[1].isSelected)
+        if (connectionBoxes[0].isSelected && connectionBoxes[1].isSelected)
         {
             for (int i = 0; i < connectionBoxes.Length; i++)
             {

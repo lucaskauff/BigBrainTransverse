@@ -16,7 +16,8 @@ public class PlayerMenuController : MonoBehaviour
 
     void Start()
     {
-        inputManager = NewGameManager.Instance.inputManager;
+        //inputManager = NewGameManager.Instance.inputManager;
+        inputManager = FindObjectOfType<NewInputManager>();
 
         distanceToCam = (transform.position - Camera.main.transform.position).magnitude;
     }

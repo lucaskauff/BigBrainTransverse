@@ -15,8 +15,11 @@ EditorBuildSettings:
     path: Assets/0_Scenes/_FINALSCENES/03_ExplanationScene.unity
     guid: 46f3b78c9b65155489a2a1e16dead57d
   - enabled: 1
-    path: Assets/0_Scenes/LeonardScenes/_TestGeneralSceneKinect.unity
-    guid: c01dd9b302c0f0847a4b7cebc5d461ae
+    path: Assets/0_Scenes/_FINALSCENES/04_GameScene.unity
+    guid: 5c9edba11739c044e8a152fff6f0e920
+  - enabled: 0
+    path: Assets/0_Scenes/_FINALSCENES/05_RecapScene.unity
+    guid: 756d043cfc2c02b439f3db0ea98070c2
   - enabled: 0
     path: Assets/0_Scenes/LeonardScenes/_TestGeneralSceneKinect 1.unity
     guid: 6d36d26647a53a1429a6fae3d1e73810

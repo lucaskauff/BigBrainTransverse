@@ -71,6 +71,7 @@ MonoBehaviour:
   swipeDownP2: 0
   pushP2: 0
   throwP2: 0
+  anyKeyDown: 0
   mouseCursorPos: {x: 0, y: 0, z: 0}
   mouseLeftClick: 0
   mouseWheelClick: 0
@@ -102,8 +103,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98011f43087827546bd80ef556f02082, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneLoader: {fileID: 0}
-  inputManager: {fileID: 0}
+  sceneLoader: {fileID: 114771126739835396}
+  inputManager: {fileID: 114759077353755752}
   selectedLobbyPlayers: 
   peopleKilled: 
   maxDeathAnims: 5
