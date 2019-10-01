@@ -53,7 +53,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TwoUsers: 1
   ComputeUserMap: 1
-  ComputeColorMap: 0
+  ComputeColorMap: 1
   DisplayUserMap: 0
   DisplayColorMap: 0
   DisplaySkeletonLines: 0

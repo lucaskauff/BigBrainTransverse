@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerMenuController : MonoBehaviour
 {
     //GameManager
-    NewInputManager inputManager;
+    public NewInputManager inputManager;
 
     [SerializeField] bool isPlayerOne;
 

@@ -13,6 +13,8 @@ public class NewInputManager : MonoBehaviour
     [SerializeField] KinectWrapper.NuiSkeletonPositionIndex[] TrackedJoints;
 
     //Private
+    SceneLoader sceneLoader;
+
     KinectManager kinectManager;
     GestureListener gestureListener;
 
@@ -54,19 +56,31 @@ public class NewInputManager : MonoBehaviour
     public bool weaponPlusKeyP2;
     public bool switchCameraOnOff;
 
-    void Start()
+    private void Awake()
     {
+        sceneLoader = FindObjectOfType<SceneLoader>();
+
         kinectManager = KinectManager.Instance;
-        gestureListener = FindObjectOfType<GestureListener>();
 
         iJointIndexes = new int[TrackedJoints.Length];
-        playerKnobExample = FindObjectOfType<PlayerController>();
 
-        //distanceToCamera = (playerKnobExample.transform.position - Camera.main.transform.position).magnitude;
+        if (sceneLoader.actualSceneName == "04_GameScene")
+        {
+            gestureListener = FindObjectOfType<GestureListener>();
+
+            playerKnobExample = FindObjectOfType<PlayerController>();
+        }
+    }
+
+    void Start()
+    {
+        //
     }
 
     void Update ()
     {
+        //kinectManager = KinectManager.Instance;
+
         //KinectInputs
         if (kinectManager && kinectManager.IsInitialized() && kinectManager.IsUserDetected())
         {            
