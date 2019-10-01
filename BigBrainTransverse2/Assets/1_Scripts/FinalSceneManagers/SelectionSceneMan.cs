@@ -12,7 +12,7 @@ public class SelectionSceneMan : MonoBehaviour
     [SerializeField] ConnectionBoxes[] connectionBoxes;
     [SerializeField] string nextSceneName;
 
-    private void Start()
+    private void Awake()
     {
         /*
         gameManager = NewGameManager.Instance;

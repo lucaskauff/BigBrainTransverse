@@ -7,7 +7,7 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: NewMaterial
-  m_Shader: {fileID: 4800000, guid: c61f339ade7b3e849938050354b1c448, type: 3}
+  m_Shader: {fileID: 4800000, guid: 6764d8d98906cb94780ac4ff16477da0, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -38,6 +38,9 @@ Material:
     - _ReadMask: 255
     - _SDFCutoff: 0.5
     - _SDFMode: 0
+    - _ShadowAngle: 135
     - _ShadowCutoff: 0.5
+    - _ShadowDistance: 5
     - _WriteMask: 255
-    m_Colors: []
+    m_Colors:
+    - _ShadowColor: {r: 0.10588236, g: 0.019607844, b: 0.10980393, a: 1}

@@ -19,11 +19,13 @@ public class RetourCamera : MonoBehaviour
         */
 
         inputManager = FindObjectOfType<NewInputManager>();
-        kinectManager = KinectManager.Instance;
+
     }
 
     private void Update()
     {
+        kinectManager = KinectManager.Instance;
+
         if (kinectManager && kinectManager.IsInitialized())
         {
             RenderRealtimeCamera(kinectManager);
