@@ -863,10 +863,13 @@ MonoBehaviour:
   cubeRenderer: {fileID: 0}
   particleSystem: {fileID: 0}
   bubble: {fileID: 0}
+  scientistBubble: {fileID: 0}
   reason: {fileID: 0}
+  reasonDecal: 0
   citizenMoveSpeed: 3
   speedDecreaseMultiplier: 2
   baseMaxCalorieTol: 3
+  timeFreezedOnHit: 0
   isScientist: 0
   hitWall: 0
   isHitByEnergy: 0

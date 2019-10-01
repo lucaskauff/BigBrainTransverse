@@ -58,8 +58,8 @@ MonoBehaviour:
   DisplayColorMap: 0
   DisplaySkeletonLines: 0
   DisplayMapsWidthPercent: 20
-  SensorHeight: 5
-  SensorAngle: 0
+  SensorHeight: 1
+  SensorAngle: 5
   MinUserDistance: 1
   MaxUserDistance: 0
   DetectClosestUser: 1

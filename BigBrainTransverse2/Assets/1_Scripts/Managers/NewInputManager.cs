@@ -60,7 +60,7 @@ public class NewInputManager : MonoBehaviour
     {
         sceneLoader = FindObjectOfType<SceneLoader>();
 
-        kinectManager = KinectManager.Instance;
+        //kinectManager = KinectManager.Instance;
 
         iJointIndexes = new int[TrackedJoints.Length];
 
@@ -79,7 +79,7 @@ public class NewInputManager : MonoBehaviour
 
     void Update ()
     {
-        //kinectManager = KinectManager.Instance;
+        kinectManager = KinectManager.Instance;
 
         //KinectInputs
         if (kinectManager && kinectManager.IsInitialized() && kinectManager.IsUserDetected())

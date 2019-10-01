@@ -4,29 +4,31 @@ using UnityEngine;
 
 public class ExplanationSceneMan : MonoBehaviour
 {
+    //GameManager
+    SceneLoader sceneLoader;
+
     [Header("Serializable variables")]
     [SerializeField] float secondsGugusAreOnScreen;
+    [SerializeField] string nextSceneName;
 
     [Header("Objects to serialize")]
-    [SerializeField] Animator[] controls;
-    [SerializeField] GameObject[] gugus;
+    [SerializeField] GameObject gugus;
 
 	void Start ()
     {
-		
+        sceneLoader = FindObjectOfType<SceneLoader>();
 	}
 
-	void Update ()
+    public void ShowTheGuys()
     {
-		
-	}
+        gugus.SetActive(true);
+
+        StartCoroutine(ShowGugus());
+    }
 
     IEnumerator ShowGugus()
     {
         yield return new WaitForSeconds(secondsGugusAreOnScreen);
-        foreach (var guy in gugus)
-        {
-            guy.SetActive(false);
-        }
+        sceneLoader.ChangeScene(nextSceneName);
     }
 }
