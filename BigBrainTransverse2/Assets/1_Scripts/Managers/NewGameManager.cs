@@ -4,9 +4,9 @@ using UnityEngine;
 
 [RequireComponent(typeof(SceneLoader))]
 [RequireComponent(typeof(NewInputManager))]
-public class NewGameManager : Singleton<NewGameManager>
+public class NewGameManager : /*Singleton<NewGameManager>*/ MonoBehaviour
 {
-    protected NewGameManager() { }
+    //protected NewGameManager() { }
 
     public SceneLoader sceneLoader;
     public NewInputManager inputManager;
@@ -14,7 +14,8 @@ public class NewGameManager : Singleton<NewGameManager>
     public int[] selectedLobbyPlayers;
     public int[] peopleKilled;
 
-    public bool isDeathAnimOnGoing = false;
+    public int maxDeathAnims = 5;
+    public int deathAnimsOnGoing;
 
     private void Awake()
     {
@@ -26,8 +27,8 @@ public class NewGameManager : Singleton<NewGameManager>
         peopleKilled = new int[2];
 
         //Debug
-        selectedLobbyPlayers[0] = 1;
-        selectedLobbyPlayers[1] = 1;
+        selectedLobbyPlayers[0] = 0;
+        selectedLobbyPlayers[1] = 0;
     }
 
     private void Start()

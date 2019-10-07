@@ -9,6 +9,7 @@ TagManager:
   - Food
   - Buildings
   - Floor
+  - ConnectionBox
   layers:
   - Default
   - TransparentFX

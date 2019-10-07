@@ -11,11 +11,16 @@ public class UIManager : MonoBehaviour
 
     [Header("Objects to serialize")]
     [SerializeField] SuperTextMesh timerText;
+    [SerializeField] Image[] playerBlasons;
     [SerializeField] Image[] playerGauges;
     [SerializeField] RectTransform[] selectors;
     [SerializeField] RectTransform[] weaponsPlayer1;
     [SerializeField] RectTransform[] weaponsPlayer2;
+    [SerializeField] Image[] weaponSlots1;
+    [SerializeField] Image[] weaponSlots2;
+    [SerializeField] Sprite[] allWeaponSlots;
     [SerializeField] Sprite[] allWeapons;
+    [SerializeField] Sprite[] allBlasons;
 
     [Header("Serializable variables")]
     [SerializeField, Range(10, 300)] float maxTimer;
@@ -36,7 +41,8 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
-        gameManager = NewGameManager.Instance;
+        //gameManager = NewGameManager.Instance;
+        gameManager = FindObjectOfType<NewGameManager>();
         sceneLoader = gameManager.sceneLoader;
 
         doesPlayerHaveUlt = new bool[2];
@@ -46,8 +52,14 @@ public class UIManager : MonoBehaviour
 
         for (int i = 0; i < doesPlayerHaveUlt.Length; i++)
         {
+            TurnBlasonsForRightLobby(i);
             TurnWeaponsForRightLobby(i);
         }
+    }
+
+    void TurnBlasonsForRightLobby(int playerIndex)
+    {
+        playerBlasons[playerIndex].sprite = allBlasons[gameManager.selectedLobbyPlayers[playerIndex]];
     }
 
     void TurnWeaponsForRightLobby(int playerIndex)
@@ -111,9 +123,18 @@ public class UIManager : MonoBehaviour
 
         if (currentTimer > 0)
         {
-            timerText.text = minutes.ToString()
-            + "'" + seconds.ToString()
-            + "''" + deciSeconds.ToString() + centiSeconds.ToString();
+            if (seconds >= 10)
+            {
+                timerText.text = minutes.ToString()
+                + "'" + seconds.ToString()
+                + "''" + deciSeconds.ToString() + centiSeconds.ToString();
+            }
+            else
+            {
+                timerText.text = minutes.ToString()
+                + "'0" + seconds.ToString()
+                + "''" + deciSeconds.ToString() + centiSeconds.ToString();
+            }
         }
         else
         {
@@ -137,7 +158,19 @@ public class UIManager : MonoBehaviour
     {
         if (playerIndex == 0)
         {
-            selectors[playerIndex].position = weaponsPlayer1[playerSelection[playerIndex]].position;
+            //selectors[playerIndex].position = weaponsPlayer1[playerSelection[playerIndex]].position;
+
+            for (int s = 0; s < weaponSlots1.Length; s++)
+            {
+                if (s == playerSelection[playerIndex])
+                {
+                    weaponSlots1[s].sprite = allWeaponSlots[0];
+                }
+                else
+                {
+                    weaponSlots1[s].sprite = allWeaponSlots[2];
+                }
+            }
 
             if (!doesPlayerHaveUlt[playerIndex])
                 weaponsPlayer1[2].GetComponent<Image>().color = cacheColor;
@@ -146,7 +179,19 @@ public class UIManager : MonoBehaviour
         }
         else
         {
-            selectors[playerIndex].position = weaponsPlayer2[playerSelection[playerIndex]].position;
+            //selectors[playerIndex].position = weaponsPlayer2[playerSelection[playerIndex]].position;
+
+            for (int s = 0; s < weaponSlots2.Length; s++)
+            {
+                if (s == playerSelection[playerIndex])
+                {
+                    weaponSlots2[s].sprite = allWeaponSlots[1];
+                }
+                else
+                {
+                    weaponSlots2[s].sprite = allWeaponSlots[3];
+                }
+            }
 
             if (!doesPlayerHaveUlt[playerIndex])
                 weaponsPlayer2[2].GetComponent<Image>().color = cacheColor;

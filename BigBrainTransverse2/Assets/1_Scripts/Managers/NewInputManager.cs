@@ -5,14 +5,16 @@ using UnityEngine;
 public class NewInputManager : MonoBehaviour
 {
     [Header("Public variables")]
+    public bool isUsingKinectInputs = true;
     public float smoothFactor = 60f;
-
     public KinectWrapper.NuiSkeletonPositionIndex gestureJoint;
 
     [Header("Serializable variables")]
     [SerializeField] KinectWrapper.NuiSkeletonPositionIndex[] TrackedJoints;
 
     //Private
+    SceneLoader sceneLoader;
+
     KinectManager kinectManager;
     GestureListener gestureListener;
 
@@ -27,38 +29,58 @@ public class NewInputManager : MonoBehaviour
     public bool swipeLeftP1;
     public bool swipeRightP1;
     public bool swipeDownP1;
+    public bool pushP1;
+    public bool throwP1;
 
     //Player 2
     public Vector3 cursor2Pos;
     public bool swipeLeftP2;
     public bool swipeRightP2;
     public bool swipeDownP2;
+    public bool pushP2;
+    public bool throwP2;
 
-    //Mouse clicks
+    //AnyKey
+    public bool anyKeyDown;
+
+    //Mouse inputs
+    public Vector3 mouseCursorPos;
     public bool mouseLeftClick;
     public bool mouseWheelClick;
     public bool mouseRightClick;
 
-    //Keyboard keys
+    //Keyboard inputs
     public bool weaponMinusKeyP1;
     public bool weaponPlusKeyP1;
     public bool weaponMinusKeyP2;
     public bool weaponPlusKeyP2;
     public bool switchCameraOnOff;
 
-    void Start()
+    private void Awake()
     {
-        kinectManager = KinectManager.Instance;
-        gestureListener = FindObjectOfType<GestureListener>();
+        sceneLoader = FindObjectOfType<SceneLoader>();
+
+        //kinectManager = KinectManager.Instance;
 
         iJointIndexes = new int[TrackedJoints.Length];
-        playerKnobExample = FindObjectOfType<PlayerController>();
 
-        distanceToCamera = (playerKnobExample.transform.position - Camera.main.transform.position).magnitude;
+        if (sceneLoader.actualSceneName == "04_GameScene")
+        {
+            gestureListener = FindObjectOfType<GestureListener>();
+
+            playerKnobExample = FindObjectOfType<PlayerController>();
+        }
+    }
+
+    void Start()
+    {
+        //
     }
 
     void Update ()
     {
+        kinectManager = KinectManager.Instance;
+
         //KinectInputs
         if (kinectManager && kinectManager.IsInitialized() && kinectManager.IsUserDetected())
         {            
@@ -67,25 +89,33 @@ public class NewInputManager : MonoBehaviour
                 iJointIndexes[i] = (int)TrackedJoints[i];
             }
 
-            Player1JointsPositions(true);
-            Player1JointsPositions(false);
+            PlayerJointsPositions(true);
+            PlayerJointsPositions(false);
 
             if (gestureListener)
             {
                 swipeLeftP1 = gestureListener.IsSwipeLeftP1();
                 swipeRightP1 = gestureListener.IsSwipeRightP1();
                 swipeDownP1 = gestureListener.IsSwipeDownP1();
+                pushP1 = gestureListener.IsPushP1();
+                throwP1 = gestureListener.IsThrowP1();
 
                 swipeLeftP2 = gestureListener.IsSwipeLeftP2();
                 swipeRightP2 = gestureListener.IsSwipeRightP2();
                 swipeDownP2 = gestureListener.IsSwipeDownP2();
+                pushP2 = gestureListener.IsPushP2();
+                throwP2 = gestureListener.IsThrowP2();
             }
         }
 
+        //Any key pressed
+        anyKeyDown = Input.anyKeyDown;
+
         //Mouse clicks
-        mouseLeftClick = Input.GetMouseButton(0);
-        mouseRightClick = Input.GetMouseButton(1);
-        mouseWheelClick = Input.GetMouseButton(2);
+        mouseCursorPos = Input.mousePosition;
+        mouseLeftClick = Input.GetMouseButtonDown(0);
+        mouseRightClick = Input.GetMouseButtonDown(1);
+        mouseWheelClick = Input.GetMouseButtonDown(2);
 
         //Keyboard keys
         switchCameraOnOff = Input.GetKeyDown(KeyCode.C);
@@ -95,7 +125,7 @@ public class NewInputManager : MonoBehaviour
         weaponPlusKeyP2 = Input.GetKeyDown(KeyCode.Alpha4);
     }
 
-    void Player1JointsPositions(bool isPlayerOne)
+    void PlayerJointsPositions(bool isPlayerOne)
     {
         uint userId;
         if (isPlayerOne)

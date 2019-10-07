@@ -37,7 +37,8 @@ public class SelectionSceneManager : MonoBehaviour
 
     void Start()
     {
-        gameManager = NewGameManager.Instance;
+        //gameManager = NewGameManager.Instance;
+        gameManager = FindObjectOfType<NewGameManager>();
         sceneLoader = gameManager.sceneLoader;
         inputManager = gameManager.inputManager;
 

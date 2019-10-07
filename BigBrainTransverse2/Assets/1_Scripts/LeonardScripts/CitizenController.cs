@@ -16,7 +16,9 @@ public class CitizenController : MonoBehaviour
     [FoldoutGroup("Components")][SerializeField] ParticleSystem particleSystem;
 
     [FoldoutGroup("UI")][SerializeField] TheBubble bubble;
+    [FoldoutGroup("UI")][SerializeField] ScientistBubble scientistBubble;
     [FoldoutGroup("UI")][SerializeField] Transform reason;
+    [FoldoutGroup("UI")][SerializeField] float reasonDecal;
 
     [FoldoutGroup("Gameplay")][SerializeField] float citizenMoveSpeed;
     [FoldoutGroup("Gameplay")][SerializeField] float speedDecreaseMultiplier;
@@ -45,7 +47,8 @@ public class CitizenController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        gameManager = NewGameManager.Instance;
+        //gameManager = NewGameManager.Instance;
+        gameManager = FindObjectOfType<NewGameManager>();
         particleSystem = GetComponentInChildren<ParticleSystem>();
 
         SpawnManager.citizensInScene.Add(gameObject);
@@ -91,20 +94,21 @@ public class CitizenController : MonoBehaviour
 
         if (collision.gameObject.tag == "Food")
         {
-            switch (collision.gameObject.GetComponent<FoodBehavior>().foodData.FoodType)
+            FoodData switchCondition = collision.gameObject.GetComponent<FoodBehavior>().foodData;
+            switch (switchCondition.FoodType)
             {
                 case FoodType.greasy:
-                    GreaseEffect(foodData.CalorieGainOnHit);
+                    GreaseEffect(switchCondition.CalorieGainOnHit);
                     cubeRenderer.material.SetColor("_Color", Color.red);
                     greasyHits++;
                 break;
                 case FoodType.sweet:
-                    SweetEffect(foodData.CalorieGainOnHit, foodData.CalorieToleranceDecrease);
+                    SweetEffect(switchCondition.CalorieGainOnHit, switchCondition.CalorieToleranceDecrease);
                     cubeRenderer.material.SetColor("_Color", Color.blue);
                     sweetHits++;
                 break;
                 case FoodType.energy:
-                    EnergyEffect(foodData.CalorieGainOnHit, foodData.CalorieGainOverTime);
+                    EnergyEffect(switchCondition.CalorieGainOnHit, switchCondition.CalorieGainOverTime);
                     cubeRenderer.material.SetColor("_Color", Color.green);
                     isHitByEnergy = true;
                 break;
@@ -118,10 +122,7 @@ public class CitizenController : MonoBehaviour
             }
 
             StartCoroutine(FreezeOnHit());
-            myAnim.SetTrigger("Hit");
-            
-            //if (isScientist) UnityEngine.Debug.Log("You just hit a scientist");
-            //AnimationManager.DeathCamManager(this.gameObject, "Scientist");
+            myAnim.SetTrigger("Hit");           
         }
     }
 
@@ -191,26 +192,68 @@ public class CitizenController : MonoBehaviour
 
     void Dead(int playerIndex)
     {
+        //playersArray = new PlayerController[2];
+
         isDead = true;
 
         gameManager.peopleKilled[playerIndex] += 1;
+        if (isScientist)
+        {
+            PlayerController[] playersArray;
+            playersArray = FindObjectsOfType<PlayerController>();
+            playersArray[playerIndex].ultimateEnabled = true;
+        }
 
         SpawnManager.citizensInScene.Remove(gameObject);
         myCol.enabled = false;
         rb.constraints = RigidbodyConstraints.FreezeAll;
-        
-        if (greasyHits > sweetHits) myAnim.SetInteger("DeadType", 1);
-        else if (greasyHits < sweetHits) myAnim.SetInteger("DeadType", 2);
-        else if (isHitByEnergy) myAnim.SetInteger("DeadType", 3);
 
-        if (!gameManager.isDeathAnimOnGoing)
+        if (greasyHits > sweetHits)
+        {
+            myAnim.SetInteger("DeathType", 1);
+        }
+        else if (greasyHits < sweetHits)
+        {
+            myAnim.SetInteger("DeathType", 2);
+        }
+        else if (isHitByEnergy)
+        {
+            myAnim.SetInteger("DeathType", 3);
+        }
+
+        if (!isScientist)
+        {
+            if (gameManager.deathAnimsOnGoing <= gameManager.maxDeathAnims)
+            {
+                bubble.transform.LookAt(theCamera);
+                //reason.LookAt(theCamera);
+                reason.localPosition = new Vector3(reason.localPosition.x, reason.localPosition.y, reason.localPosition.z + reasonDecal);
+
+                if (greasyHits > sweetHits)
+                {
+                    bubble.whichDeath = 0;
+                }
+                else if (greasyHits < sweetHits)
+                {
+                    bubble.whichDeath = 1;
+                }
+                else if (isHitByEnergy)
+                {
+                    bubble.whichDeath = 2;
+                }
+
+                gameManager.deathAnimsOnGoing += 1;
+                bubble.GetComponent<Animator>().SetTrigger("FadeIn");
+            }
+        }
+        else
         {
             bubble.transform.LookAt(theCamera);
             reason.LookAt(theCamera);
-            reason.localPosition = new Vector3(reason.localPosition.x, reason.localPosition.y, reason.localPosition.z+0.01f);
-            if (greasyHits > sweetHits) bubble.whichDeath = 0;
-            else if (greasyHits < sweetHits) bubble.whichDeath = 1;
-            else if(isHitByEnergy) bubble.whichDeath = 2;
+            reason.localPosition = new Vector3(reason.localPosition.x, reason.localPosition.y, reason.localPosition.z + 0.01f);
+
+            bubble.whichDeath = Random.Range(0, 4);
+
             bubble.GetComponent<Animator>().SetTrigger("FadeIn");
         }
     }
