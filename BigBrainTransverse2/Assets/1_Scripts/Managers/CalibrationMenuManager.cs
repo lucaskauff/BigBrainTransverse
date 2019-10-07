@@ -42,7 +42,8 @@ public class CalibrationMenuManager : MonoBehaviour
 
     private void Start()
     {
-        sceneLoader = NewGameManager.Instance.sceneLoader;
+        //sceneLoader = NewGameManager.Instance.sceneLoader;
+        sceneLoader = FindObjectOfType<SceneLoader>();
 
         distanceToCamera = (playerKnobs[0].transform.position - Camera.main.transform.position).magnitude;
 

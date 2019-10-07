@@ -14,12 +14,18 @@ public class RetourCamera : MonoBehaviour
 
     private void Start()
     {
+        /*
         inputManager = NewGameManager.Instance.inputManager;
-        kinectManager = KinectManager.Instance;
+        */
+
+        inputManager = FindObjectOfType<NewInputManager>();
+
     }
 
     private void Update()
     {
+        kinectManager = KinectManager.Instance;
+
         if (kinectManager && kinectManager.IsInitialized())
         {
             RenderRealtimeCamera(kinectManager);
